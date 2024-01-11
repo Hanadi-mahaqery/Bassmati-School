@@ -1,0 +1,74 @@
+import 'package:flutter/cupertino.dart';
+import 'package:school_app/screen/all_sign/all_sign.dart';
+import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
+import 'package:school_app/screen/attendence_screen/attendence_screen.dart';
+import 'package:school_app/screen/event_screen/event_screen.dart';
+import 'package:school_app/screen/exam_schedule/exam_schedule.dart';
+import 'package:school_app/screen/fee_screen/fee_screen.dart';
+import 'package:school_app/screen/library_screen/first_session/books/first_session.dart';
+import 'package:school_app/screen/library_screen/library_screen.dart';
+import 'package:school_app/screen/library_screen/first_session/library_type.dart';
+import 'package:school_app/screen/library_screen/second_session/library_type2.dart';
+import 'package:school_app/screen/library_screen/second_session/second_session.dart';
+import 'package:school_app/screen/library_screen/lib_sessions_screen.dart';
+import 'package:school_app/screen/notification_screen/notification_screen.dart';
+import 'package:school_app/screen/parent_login/parent_log.dart';
+import 'package:school_app/screen/result_screen/months_result/months2_screen.dart';
+import 'package:school_app/screen/result_screen/months_result/months_result.dart';
+import 'package:school_app/screen/result_screen/session1/result2_screen.dart';
+import 'package:school_app/screen/result_screen/session1/result3_screen.dart';
+import 'package:school_app/screen/result_screen/session1/result_screen.dart';
+import 'package:school_app/screen/result_screen/session2/result_nd_1.dart';
+import 'package:school_app/screen/result_screen/session2/result_nd_2.dart';
+import 'package:school_app/screen/result_screen/session2/result_nd_3.dart';
+import 'package:school_app/screen/result_screen/sessions_screen/session_screen.dart';
+import 'package:school_app/screen/result_screen/total_screen/total%20screen.dart';
+import 'package:school_app/screen/result_screen/total_screen/total1_screen.dart';
+import 'package:school_app/screen/result_screen/total_screen/total2_screen.dart';
+import 'package:school_app/screen/schedule_screen/schedule_screen.dart';
+import 'package:school_app/screen/splash_screen/splash_screen.dart';
+import 'package:school_app/screen/login_screen/login_screen.dart';
+import 'package:school_app/screen/home_screen/home_screen.dart';
+import 'package:school_app/screen/student_profile/student_profile.dart';
+
+
+
+Map<String, WidgetBuilder> routes ={
+  //all screens registered here
+  SplashScreen.routeName :(context)=> SplashScreen(),
+  LoginScreen.routeName:(context)=>LoginScreen(),
+  HomeScreen.routeName:(context)=>HomeScreen(),
+  StudentProfile.routeName:(context)=>StudentProfile(),
+  FeeScreen.routName:(context)=>FeeScreen(),
+  AllSign.routName:(context)=>AllSign(),
+  ParentLogin.routName:(context)=>ParentLogin(),
+  ResultScreen.routeName:(context)=>ResultScreen(),
+  AssignmentScreen.routeName:(context)=>AssignmentScreen(),
+  ExamScreen.routeName:(context)=>ExamScreen(),
+  MonthsResults.routeName:(context)=>MonthsResults(),
+  SessionScreen.routeName:(context)=>SessionScreen(),
+  Months2Results.routeName:(context)=>Months2Results(),
+  Result2Screen.routeName:(context)=>Result2Screen(),
+  Result3Screen.routeName:(context)=>Result3Screen(),
+  ResultNd1Screen.routeName:(context)=>ResultNd1Screen(),
+  ResultNd2Screen.routeName:(context)=>ResultNd2Screen(),
+  ResultNd3Screen.routeName:(context)=>ResultNd3Screen(),
+  Total1Screen.routeName:(context)=>Total1Screen(),
+  Total2Screen.routeName:(context)=>Total2Screen(),
+  TotalScreen.routeName:(context)=>TotalScreen(),
+  EventScreen.routeName:(context)=>EventScreen(),
+  NotificationScreen.routeName:(context)=>NotificationScreen(),
+  LibraryScreen.routeName:(context)=>LibraryScreen(),
+  ScheduleScreen.routeName:(context)=>ScheduleScreen(),
+  AttendanceScreen.routeName:(context)=>AttendanceScreen(),
+  LibSessionsScreen.routName:(context)=>LibSessionsScreen(),
+  FirstSession.routeName:(context)=>FirstSession(),
+  SecondSession.routeName:(context)=>SecondSession(),
+  LibraryType.routName:(context)=>LibraryType(),
+  LibraryType2.routName:(context)=>LibraryType2(),
+
+
+
+
+
+};
