@@ -107,6 +107,8 @@ class TotalScreen extends StatelessWidget {
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
+
+
                   child: Column(
                     children: [
                       Text('Grade',

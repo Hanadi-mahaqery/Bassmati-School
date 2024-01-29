@@ -23,8 +23,8 @@ class EventScreen extends StatelessWidget {
                 margin: EdgeInsets.only(
                   left: kDefaultPadding / 2,
                   right: kDefaultPadding / 2,
-                  top: kDefaultPadding / 2, // ÙØ³Ø§ÙØ© ÙÙ Ø§ÙØ£Ø¹ÙÙ
-                  bottom: kDefaultPadding / 2, // ÙØ³Ø§ÙØ© ÙÙ Ø§ÙØ£Ø³ÙÙ
+                  top: kDefaultPadding / 2,
+                  bottom: kDefaultPadding / 2,
                 ),
                 padding: EdgeInsets.all(kDefaultPadding / 1),
                 decoration: BoxDecoration(
