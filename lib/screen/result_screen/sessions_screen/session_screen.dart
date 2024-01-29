@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
-import 'package:school_app/screen/result_screen/months_result/months2_screen.dart';
-import 'package:school_app/screen/result_screen/months_result/months_result.dart';
+import 'package:school_app/screen/result_screen/session2/months2_screen.dart';
+import 'package:school_app/screen/result_screen/session1/months_result.dart';
 import 'package:school_app/screen/result_screen/total_screen/total%20screen.dart';
 
 class SessionScreen extends StatelessWidget {

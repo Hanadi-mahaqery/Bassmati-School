@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
-import 'package:school_app/screen/result_screen/session1/result2_screen.dart';
-import 'package:school_app/screen/result_screen/session1/result3_screen.dart';
-import 'package:school_app/screen/result_screen/total_screen/total1_screen.dart';
+import 'package:school_app/screen/result_screen/session2/moths2/result_nd_1.dart';
+import 'package:school_app/screen/result_screen/session2/moths2/result_nd_2.dart';
+import 'package:school_app/screen/result_screen/session2/moths2/result_nd_3.dart';
+import 'package:school_app/screen/result_screen/total_screen/total2_screen.dart';
 
-class MonthsResults extends StatelessWidget {
-  const MonthsResults({super.key});
-  static String routeName = 'MonthsResults';
+class Months2Results extends StatelessWidget {
+  const Months2Results({super.key});
+  static String routeName = 'Months2Results';
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class MonthsResults extends StatelessWidget {
             height: MediaQuery.of(context).size.height /3.0,
             child: Column(
               children: [
-             //   Image.asset('assets/images/boy.png',height: 150.0,width: 150.0,),
+                //   Image.asset('assets/images/boy.png',height: 150.0,width: 150.0,),
                 SizedBox(
                   height: kDefaultPadding /2,
                 ),
@@ -41,7 +42,7 @@ class MonthsResults extends StatelessWidget {
                               .bodyMedium!
                               .copyWith(fontWeight: FontWeight.w200),
                         ),
-                        Text('Fatima',
+                        Text('Fatema',
                             style: Theme.of(context).textTheme.bodyMedium)
                       ],
                     )
@@ -50,7 +51,7 @@ class MonthsResults extends StatelessWidget {
                 SizedBox(
                   height: kDefaultPadding,
                 ),
-              /*  Text(
+                /*  Text(
                   'Sign in to continue',
                   style: Theme.of(context).textTheme.bodySmall,
                 )*/
@@ -73,16 +74,16 @@ class MonthsResults extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MonthNumber(title: 'Month 1', onPress:(){
-                      Navigator.pushNamed(context, Result3Screen.routeName);
+                      Navigator.pushNamed(context, ResultNd1Screen.routeName);
                     }) ,
                     MonthNumber(title: 'Month 2', onPress:(){
-                      Navigator.pushNamed(context, Result2Screen.routeName);
+                      Navigator.pushNamed(context, ResultNd2Screen.routeName);
                     }) ,
                     MonthNumber(title: 'Month 3', onPress:(){
-                      Navigator.pushNamed(context, Result3Screen.routeName);
+                      Navigator.pushNamed(context, ResultNd3Screen.routeName);
                     }),
-                    MonthNumber(title: 'Session 1 Total', onPress:(){
-                      Navigator.pushNamed(context, Total1Screen.routeName);
+                    MonthNumber(title: 'Session 2 Total', onPress:(){
+                      Navigator.pushNamed(context, Total2Screen.routeName);
                     })
 
                   ],
@@ -123,7 +124,7 @@ class MonthNumber extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-           // Image.asset(icon, height: 40.0, width: 40.0, color: kOtherColor),
+            // Image.asset(icon, height: 40.0, width: 40.0, color: kOtherColor),
             Text(
               title,
               textAlign: TextAlign.center,

@@ -34,13 +34,16 @@ class _LoginScreenState extends State<LoginScreen> {
       //when user tap anywhere on the screen == keyboard hides
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+
         appBar: AppBar(
           title: Text('Sign in'),
         ),
         body: ListView(
+
           //divide the body into half
           children: [
             Container(
+
               //media query == fit all screen sizes in same manner
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2.8,
@@ -129,13 +132,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                 iconData: Icons.arrow_forward_outlined),
                             sizedBox,
                             Align(
+
                               alignment: Alignment.bottomRight,
-                              child: Text(
-                                'Forget Password?',
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                    color: kPrimaryColor, fontSize: 15),
+                              child:InkWell(
+                                onTap: () {
+                                  // يتم استدعاء هذا الكود عند النقر على النص
+                                  // يمكنك هنا تنفيذ التنقل إلى الصفحة الأخرى
+                                  Navigator.pushNamed(context, 'ForgetPassword');
+                                },
+                                child: Text(
+                                  'Forget Password?',
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
                               ),
+
                             )
                           ],
                         ))
@@ -168,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
       autofillHints: [AutofillHints.email],
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value){
-        if(value!.isEmpty ||RegExp(r'^[\w\.-]+\.\w{2,3}(\.\w{2,3})?$').hasMatch(value!)){
+        if(value!.isEmpty ||!RegExp(r'^[a-zA-Z]+$').hasMatch(value)){
           return 'please enter correct Email';
         }
       },
@@ -206,9 +221,12 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
-        if (value!.length < 5) {
-          return 'Password must be more than 5 characters';
-        }
+        if (value!.isEmpty ||!RegExp(r'^[a-zA-Z]+$').hasMatch(value)){
+          return 'Enter a correct password';
+
+        } else if (value.length < 5) {
+      return 'Password should be more than 5 characters';
+    }
       },
     );
   }

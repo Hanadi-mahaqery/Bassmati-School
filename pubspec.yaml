@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^2.1.0
   flutter_svg: ^0.22.0
   route_map: ^0.0.17
+  table_calendar: ^2.3.3
 
 
 dev_dependencies:
@@ -93,6 +94,10 @@ flutter:
     - assets/images/Maths.jpg
     - assets/images/Quran.jpg
     - assets/images/Science.jpg
+    - assets/icons/reminder.png
+    - assets/icons/announcement.png
+    - assets/icons/group.png
+
 
 
 

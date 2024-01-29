@@ -3,9 +3,9 @@ import 'package:school_app/constant.dart';
 import 'package:school_app/screen/result_screen/components/result_compnents.dart';
 import 'package:school_app/screen/result_screen/data/result_data.dart';
 
-class Result2Screen extends StatelessWidget {
-  const Result2Screen({super.key});
-  static String routeName= 'Result2Screen';
+class ResultNd1Screen extends StatelessWidget {
+  const ResultNd1Screen({super.key});
+  static String routeName= 'ResultNd1Screen';
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,7 @@ class Result2Screen extends StatelessWidget {
         children: [
           Container(
             height: 170.0,
-            /* child: CustomPaint(
-              foregroundPainter: CircularPainter(
-                backgroundColor: kPrimaryColor,
-                lineColor: kOtherColor,
-                width: 50,
-              ),
-            ),
-*/
+
           ),
           Text('You are Excellent',
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -42,7 +35,7 @@ class Result2Screen extends StatelessWidget {
               ),
               child: ListView.builder(
                   padding: EdgeInsets.all(kDefaultPadding),
-                  itemCount: result.length,
+                  itemCount: result4.length,
                   itemBuilder: (
                       context , index){
                     return Container(
@@ -71,7 +64,7 @@ class Result2Screen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                result[index].subjectName,
+                                result4[index].subjectName,
                                 textAlign: TextAlign.start,
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
@@ -80,13 +73,13 @@ class Result2Screen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    '${result[index].obtainedMark}/${result[index].totalMarks}',
+                                    '${result4[index].obtainedMark}/${result4[index].totalMarks}',
                                     style: Theme.of(context).textTheme.bodyLarge,
                                   ),
                                   Stack(
                                     children: [
                                       Container(
-                                        width: result[index].totalMarks.toDouble(),
+                                        width: result4[index].totalMarks.toDouble(),
                                         height: 20.0,
                                         decoration: BoxDecoration(
                                             color: Colors.grey[700],
@@ -99,9 +92,9 @@ class Result2Screen extends StatelessWidget {
                                       ),
                                       Container(
                                         height: 20.0,
-                                        width: result[index].obtainedMark.toDouble(),
+                                        width: result4[index].obtainedMark.toDouble(),
                                         decoration: BoxDecoration(
-                                            color: result[index].grade =='D'
+                                            color: result4[index].grade =='D'
                                                 ? kErrorBorderColor : kOtherColor,
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(kDefaultPadding),
@@ -111,7 +104,7 @@ class Result2Screen extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  Text(result[index].grade,
+                                  Text(result4[index].grade,
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                         fontWeight: FontWeight.w900

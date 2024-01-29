@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class AttendanceCalenderWidget extends StatelessWidget {
-  const AttendanceCalenderWidget({super.key});
+  const AttendanceCalenderWidget({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('July, 2024')
-      ],
-    );
+   return Scaffold();
+
+
   }
 }

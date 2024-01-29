@@ -5,23 +5,39 @@ import 'package:school_app/screen/attendence_screen/attendence_screen.dart';
 import 'package:school_app/screen/event_screen/event_screen.dart';
 import 'package:school_app/screen/exam_schedule/exam_schedule.dart';
 import 'package:school_app/screen/fee_screen/fee_screen.dart';
-import 'package:school_app/screen/library_screen/first_session/books/first_session.dart';
+import 'package:school_app/screen/library_screen/first_session/books/books_first_session.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/content/Quran.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/videos_first_session.dart';
 import 'package:school_app/screen/library_screen/library_screen.dart';
 import 'package:school_app/screen/library_screen/first_session/library_type.dart';
 import 'package:school_app/screen/library_screen/second_session/library_type2.dart';
 import 'package:school_app/screen/library_screen/second_session/second_session.dart';
 import 'package:school_app/screen/library_screen/lib_sessions_screen.dart';
+import 'package:school_app/screen/login_screen/forget_password.dart';
 import 'package:school_app/screen/notification_screen/notification_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
-import 'package:school_app/screen/result_screen/months_result/months2_screen.dart';
-import 'package:school_app/screen/result_screen/months_result/months_result.dart';
-import 'package:school_app/screen/result_screen/session1/result2_screen.dart';
-import 'package:school_app/screen/result_screen/session1/result3_screen.dart';
-import 'package:school_app/screen/result_screen/session1/result_screen.dart';
-import 'package:school_app/screen/result_screen/session2/result_nd_1.dart';
-import 'package:school_app/screen/result_screen/session2/result_nd_2.dart';
-import 'package:school_app/screen/result_screen/session2/result_nd_3.dart';
+import 'package:school_app/screen/result_screen/session2/month2nd/arabic_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month3nd/arabic_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month3nd/english_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month3nd/islamic_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month3nd/math_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month3nd/quran_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month3nd/sciense_degree.dart';
+import 'package:school_app/screen/result_screen/subjects_degreeM2/arabic_degree.dart';
+import 'package:school_app/screen/result_screen/subjects_degreeM2/english_degree.dart';
+import 'package:school_app/screen/result_screen/subjects_degreeM2/islamic_degree.dart';
+import 'package:school_app/screen/result_screen/subjects_degreeM2/math_degree.dart';
+import 'package:school_app/screen/result_screen/subjects_degreeM2/quran_degree.dart';
+import 'package:school_app/screen/result_screen/session2/months2_screen.dart';
+import 'package:school_app/screen/result_screen/session1/months_result.dart';
+import 'package:school_app/screen/result_screen/session1/months/result2_screen.dart';
+import 'package:school_app/screen/result_screen/session1/months/result3_screen.dart';
+import 'package:school_app/screen/result_screen/session1/months/result_screen.dart';
+import 'package:school_app/screen/result_screen/session2/moths2/result_nd_1.dart';
+import 'package:school_app/screen/result_screen/session2/moths2/result_nd_2.dart';
+import 'package:school_app/screen/result_screen/session2/moths2/result_nd_3.dart';
 import 'package:school_app/screen/result_screen/sessions_screen/session_screen.dart';
+import 'package:school_app/screen/result_screen/subjects_degreeM2/science_degree.dart';
 import 'package:school_app/screen/result_screen/total_screen/total%20screen.dart';
 import 'package:school_app/screen/result_screen/total_screen/total1_screen.dart';
 import 'package:school_app/screen/result_screen/total_screen/total2_screen.dart';
@@ -66,6 +82,23 @@ Map<String, WidgetBuilder> routes ={
   SecondSession.routeName:(context)=>SecondSession(),
   LibraryType.routName:(context)=>LibraryType(),
   LibraryType2.routName:(context)=>LibraryType2(),
+  QuranDegree.routName:(context)=>QuranDegree(),
+  EnglishDegree.routName:(context)=>EnglishDegree(),
+  ArabicDegree.routName:(context)=>ArabicDegree(),
+  MathDegree.routName:(context)=>MathDegree(),
+  ScienceDegree.routName:(context)=>ScienceDegree(),
+  IslamicDegree.routName:(context)=>IslamicDegree(),
+  VideoFirstScreen.routName:(context)=>VideoFirstScreen(),
+  QuranContentScreen.routeName:(context)=>QuranContentScreen(),
+  ForgotPasswordPage.routeName:(context)=>ForgotPasswordPage(),
+  ArabicDegree6.routName:(context)=>ArabicDegree6(),
+  ScienceDegree6.routName:(context)=>ScienceDegree6(),
+  MathDegree6.routName:(context)=>MathDegree6(),
+  QuranDegree6.routName:(context)=>QuranDegree6(),
+  IslamicDegree6.routName:(context)=>QuranDegree6(),
+  EnglishDegree6.routName:(context)=>EnglishDegree6(),
+  ArabicDegree5.routName:(context)=>ArabicDegree5(),
+
 
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/library_screen/first_session/books/first_session.dart';
+import 'package:school_app/screen/library_screen/first_session/books/books_first_session.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/videos_first_session.dart';
 import 'package:school_app/screen/library_screen/second_session/second_session.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
@@ -72,7 +73,7 @@ class LibraryType extends StatelessWidget {
                       Navigator.pushNamed(context, FirstSession.routeName);
                     }) ,
                     LibType(title: 'Videos & PDFs', icon:'assets/icons/videos.png', onPress:(){
-                      Navigator.pushNamed(context, SecondSession.routeName);
+                      Navigator.pushNamed(context, VideoFirstScreen.routName);
                     }) ,
 
                   ],
