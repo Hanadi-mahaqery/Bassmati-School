@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:school_app/screen/all_sign/all_sign.dart';
 import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
@@ -16,7 +18,30 @@ import 'package:school_app/screen/library_screen/lib_sessions_screen.dart';
 import 'package:school_app/screen/login_screen/forget_password.dart';
 import 'package:school_app/screen/notification_screen/notification_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
+import 'package:school_app/screen/result_screen/session1/month1/arabic_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month1/english_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month1/islamic_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month1/math_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month1/quran_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month1/sciense_data.dart';
+import 'package:school_app/screen/result_screen/session1/month3/arabic_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month3/english_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month3/islamic_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month3/math_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month3/quran_degree.dart';
+import 'package:school_app/screen/result_screen/session1/month3/sciense_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month1nd/arabic_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month1nd/english_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month1nd/islamic_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month1nd/math_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month1nd/quran_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month1nd/sciense_degree.dart';
 import 'package:school_app/screen/result_screen/session2/month2nd/arabic_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month2nd/english_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month2nd/islamic_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month2nd/math_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month2nd/quran_degree.dart';
+import 'package:school_app/screen/result_screen/session2/month2nd/sciense_degree.dart';
 import 'package:school_app/screen/result_screen/session2/month3nd/arabic_degree.dart';
 import 'package:school_app/screen/result_screen/session2/month3nd/english_degree.dart';
 import 'package:school_app/screen/result_screen/session2/month3nd/islamic_degree.dart';
@@ -98,6 +123,30 @@ Map<String, WidgetBuilder> routes ={
   IslamicDegree6.routName:(context)=>QuranDegree6(),
   EnglishDegree6.routName:(context)=>EnglishDegree6(),
   ArabicDegree5.routName:(context)=>ArabicDegree5(),
+  QuranDegree5.routName:(context)=>QuranDegree5(),
+  MathDegree5.routName:(context)=>MathDegree5(),
+  IslamicDegree5.routName:(context)=>IslamicDegree5(),
+  ScienceDegree5.routName:(context)=>ScienceDegree5(),
+  EnglishDegree5.routName:(context)=>EnglishDegree5(),
+  ArabicDegree4.routName:(context)=>ArabicDegree4(),
+  QuranDegree4.routName:(context)=>QuranDegree4(),
+  MathDegree4.routName:(context)=>MathDegree4(),
+  IslamicDegree4.routName:(context)=>IslamicDegree4(),
+  ScienceDegree4.routName:(context)=>ScienceDegree4(),
+  EnglishDegree4.routName:(context)=>EnglishDegree4(),
+  ArabicDegree3.routName:(context)=>ArabicDegree5(),
+  QuranDegree3.routName:(context)=>QuranDegree3(),
+  MathDegree3.routName:(context)=>MathDegree3(),
+  IslamicDegree3.routName:(context)=>IslamicDegree3(),
+  ScienceDegree3.routName:(context)=>ScienceDegree3(),
+  EnglishDegree3.routName:(context)=>EnglishDegree3(),
+  ArabicDegree2.routName:(context)=>ArabicDegree2(),
+  QuranDegree2.routName:(context)=>QuranDegree2(),
+  MathDegree2.routName:(context)=>MathDegree2(),
+  IslamicDegree2.routName:(context)=>IslamicDegree2(),
+  ScienceDegree2.routName:(context)=>ScienceDegree2(),
+  EnglishDegree2.routName:(context)=>EnglishDegree2(),
+
 
 
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/result_screen/months_result/quran_degree_data.dart';
 
-class QuranDegree extends StatelessWidget {
-  const QuranDegree({super.key});
-  static String routName = 'QuranDegree';
+class QuranDegree2 extends StatelessWidget {
+  const QuranDegree2({super.key});
+  static String routName = 'QuranDegree2';
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +39,14 @@ class QuranDegree extends StatelessWidget {
                     numeric: true, // تحديد العمود كعمود رقمي
                   ),
                 ],
-                rows: List.generate(quranData.length, (index) {
+                rows: List.generate(quranData2.length, (index) {
                   return DataRow(
                     cells: [
 
-                      DataCell(Text(quranData[index].type,
+                      DataCell(Text(quranData2[index].type,
                           style: TextStyle(fontSize: 20, color: kTextBlackColor))),
 
-                      DataCell(Text(quranData[index].degree,
+                      DataCell(Text(quranData2[index].degree,
                           style: TextStyle(fontSize: 18, color: kPrimaryColor))),
 
                     ],
@@ -85,11 +85,11 @@ class QuranDegree extends StatelessWidget {
                 SizedBox(height: 8),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: quranResultComment.length,
+                    itemCount: quranResultComment2.length,
                     itemBuilder: (context, index) {
                       return Center(
                         child: Text(
-                          quranResultComment[index].comment,
+                          quranResultComment2[index].comment,
                           style: TextStyle(fontSize: 16, color: kPrimaryColor),
                         ),
                       );

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/result_screen/months_result/Math_degree_data.dart';
 
-class MathDegree extends StatelessWidget {
-  const MathDegree({super.key});
-  static String routName = 'MathDegree';
+class MathDegree2 extends StatelessWidget {
+  const MathDegree2({super.key});
+  static String routName = 'MathDegree2';
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +40,14 @@ class MathDegree extends StatelessWidget {
                     numeric: true, // تحديد العمود كعمود رقمي
                   ),
                 ],
-                rows: List.generate(mathData.length, (index) {
+                rows: List.generate(mathData2.length, (index) {
                   return DataRow(
                     cells: [
 
-                      DataCell(Text(mathData[index].type,
+                      DataCell(Text(mathData2[index].type,
                           style: TextStyle(fontSize: 20, color: kTextBlackColor))),
 
-                      DataCell(Text(mathData[index].degree,
+                      DataCell(Text(mathData2[index].degree,
                           style: TextStyle(fontSize: 18, color: kPrimaryColor))),
 
                     ],
@@ -86,11 +86,11 @@ class MathDegree extends StatelessWidget {
                 SizedBox(height: 8),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: mathResultComment.length,
+                    itemCount: mathResultComment2.length,
                     itemBuilder: (context, index) {
                       return Center(
                         child: Text(
-                          mathResultComment[index].comment,
+                          mathResultComment2[index].comment,
                           style: TextStyle(fontSize: 16, color: kPrimaryColor),
                         ),
                       );

@@ -3,10 +3,10 @@ import 'package:school_app/constant.dart';
 
 import '../months_result/arabic_degree_data.dart';
 
-class ArabicDegree extends StatelessWidget {
-  const ArabicDegree({Key? key}) : super(key: key);
+class ArabicDegree2 extends StatelessWidget {
+  const ArabicDegree2({Key? key}) : super(key: key);
 
-  static String routName = 'ArabicDegree';
+  static String routName = 'ArabicDegree2';
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +41,14 @@ class ArabicDegree extends StatelessWidget {
                     numeric: true, // تحديد العمود كعمود رقمي
                   ),
                 ],
-                rows: List.generate(arabicData.length, (index) {
+                rows: List.generate(arabicData2.length, (index) {
                   return DataRow(
                     cells: [
 
-                      DataCell(Text(arabicData[index].type,
+                      DataCell(Text(arabicData2[index].type,
                           style: TextStyle(fontSize: 20, color: kTextBlackColor))),
 
-                      DataCell(Text(arabicData[index].degree,
+                      DataCell(Text(arabicData2[index].degree,
                           style: TextStyle(fontSize: 18, color: kPrimaryColor))),
 
                     ],
@@ -87,11 +87,11 @@ class ArabicDegree extends StatelessWidget {
                   SizedBox(height: 8),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: resultComment.length,
+                      itemCount: resultComment2.length,
                       itemBuilder: (context, index) {
                         return Center(
                           child: Text(
-                            resultComment[index].comment,
+                            resultComment2[index].comment,
                             style: TextStyle(fontSize: 16, color: kPrimaryColor),
                           ),
                         );

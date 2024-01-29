@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/result_screen/months_result/english_degree_data.dart';
 
-class EnglishDegree extends StatelessWidget {
-  const EnglishDegree({super.key});
-  static String routName = 'EnglishDegree';
+class EnglishDegree2 extends StatelessWidget {
+  const EnglishDegree2({super.key});
+  static String routName = 'EnglishDegree2';
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +40,14 @@ class EnglishDegree extends StatelessWidget {
                     numeric: true, // تحديد العمود كعمود رقمي
                   ),
                 ],
-                rows: List.generate(englishData.length, (index) {
+                rows: List.generate(englishData2.length, (index) {
                   return DataRow(
                     cells: [
 
-                      DataCell(Text(englishData[index].type,
+                      DataCell(Text(englishData2[index].type,
                           style: TextStyle(fontSize: 20, color: kTextBlackColor))),
 
-                      DataCell(Text(englishData[index].degree,
+                      DataCell(Text(englishData2[index].degree,
                           style: TextStyle(fontSize: 18, color: kPrimaryColor))),
 
                     ],
@@ -86,11 +86,11 @@ class EnglishDegree extends StatelessWidget {
                 SizedBox(height: 8),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: englishResultComment.length,
+                    itemCount: englishResultComment2.length,
                     itemBuilder: (context, index) {
                       return Center(
                         child: Text(
-                          englishResultComment[index].comment,
+                          englishResultComment2[index].comment,
                           style: TextStyle(fontSize: 16, color: kPrimaryColor),
                         ),
                       );
