@@ -40,6 +40,10 @@ dependencies:
   flutter_svg: ^0.22.0
   route_map: ^0.0.17
   table_calendar: ^2.3.3
+  path_provider: ^2.0.11
+  sqflite: ^2.2.3
+  path: ^1.8.2
+  shared_preferences: ^2.0.17
 
 
 dev_dependencies:
