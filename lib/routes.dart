@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:path/path.dart';
 import 'package:school_app/screen/all_sign/all_sign.dart';
 import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
 import 'package:school_app/screen/attendence_screen/attendence_screen.dart';
@@ -69,6 +70,7 @@ import 'package:school_app/screen/splash_screen/splash_screen.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/home_screen/home_screen.dart';
 import 'package:school_app/screen/student_profile/student_profile.dart';
+import 'package:school_app/student.dart';
 
 
 
@@ -144,6 +146,7 @@ Map<String, WidgetBuilder> routes ={
   IslamicDegree2.routName:(context)=>IslamicDegree2(),
   ScienceDegree2.routName:(context)=>ScienceDegree2(),
   EnglishDegree2.routName:(context)=>EnglishDegree2(),
+  Student.routeName:(context)=>Student(),
 
 
 

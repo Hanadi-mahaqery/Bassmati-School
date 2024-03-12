@@ -26,7 +26,7 @@ class SQL_Helper {
     final dbFolder = await getExternalStorageDirectory();
     final dbPath = p.join(dbFolder!.path, "Database");
     Directory dbFolderDir = await Directory(dbPath).create();
-    final file = File(p.join(dbFolderDir.path, 'school.db'));
+    final file = File(p.join(dbFolderDir.path, 'ٍSchool.db'));
     var schoolDB = await openDatabase(
       file.path,
       version: dbver,
@@ -62,9 +62,10 @@ class SQL_Helper {
       await db.execute(studentTbl);
       await db.execute(teacherTbl);
       await db.execute(subjectTbl);
-      /*for (int i = 0; i < tablesNameList.length; i++) {
+for (int i = 0; i < tablesNameList.length; i++) {
         await db.execute(tablesNameList[i]["sql"]);
-      }*/
+      }
+
     }
     catch(e){
       print("CreateExp:- "+ e.toString());
@@ -90,7 +91,7 @@ class SQL_Helper {
 
   Future<int> insertStudent(StudentModel obj)async{
     Database db = await database;
-    var res = await db.insert("Students", obj.toJson());
+    var res = await db.insert("numbers", obj.toJson());
     return res;
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
+import 'package:school_app/student.dart';
 
 class AllSign extends StatelessWidget {
   const AllSign({super.key});
@@ -48,7 +49,8 @@ class AllSign extends StatelessWidget {
                 Text(
                   'Sign in to continue',
                   style: Theme.of(context).textTheme.bodySmall,
-                )
+                ),
+
               ],
             ),
           ),
@@ -74,6 +76,9 @@ class AllSign extends StatelessWidget {
                     SignType(title: 'As a Parent', icon: 'assets/icons/parent.png', onPress:(){
               Navigator.pushNamed(context, ParentLogin.routName);
             }) ,
+                    SignType(title: 'View Student', icon: 'assets/icons/parent.png', onPress:(){
+                      Navigator.pushNamed(context, Student.routeName);
+                    }) ,
 
                   ],
                 )

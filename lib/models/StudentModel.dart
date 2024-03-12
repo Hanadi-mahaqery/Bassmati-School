@@ -1,42 +1,28 @@
-/// id : 7
-/// Name : "hanadi"
-/// Age : 24
+
 
 class StudentModel {
   StudentModel({
-      num id, 
-      String name, 
-      num age,}){
-    _id = id;
-    _name = name;
-    _age = age;
-}
+    this.id,
+    this.name,
+    this.age,});
 
   StudentModel.fromJson(dynamic json) {
-    _id = json['id'];
-    _name = json['Name'];
-    _age = json['Age'];
+    id = json['id'];
+    name = json['name'];
+    age = json['age'];
   }
-  num _id;
-  String _name;
-  num _age;
-StudentModel copyWith({  num id,
-  String name,
-  num age,
-}) => StudentModel(  id: id ?? _id,
-  name: name ?? _name,
-  age: age ?? _age,
-);
-  num get id => _id;
-  String get name => _name;
-  num get age => _age;
+  int? id;
+  String? name;
+  int? age;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['Name'] = _name;
-    map['Age'] = _age;
+    map['id'] = id;
+    map['name'] = name;
+    map['age'] = age;
     return map;
   }
+
+
 
 }

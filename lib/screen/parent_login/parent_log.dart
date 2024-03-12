@@ -15,7 +15,7 @@ class _ParentLoginState extends State<ParentLogin> {
   @override
   Widget build(BuildContext context) {
     var list =SQL_Helper().getAll("Students");
-    var clr = Colors.yellow;
+    var clr = Colors.white54;
     return Scaffold(
       appBar: AppBar(
         title: Text("add student"),

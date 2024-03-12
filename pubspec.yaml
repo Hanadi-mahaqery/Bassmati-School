@@ -44,6 +44,9 @@ dependencies:
   sqflite: ^2.2.3
   path: ^1.8.2
   shared_preferences: ^2.0.17
+  bloc:  ^7.0.0
+  flutter_bloc: ^7.0.0
+  dio: ^5.2.1+1
 
 
 dev_dependencies:
