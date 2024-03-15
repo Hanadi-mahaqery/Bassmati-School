@@ -7,7 +7,10 @@ import 'package:school_app/screen/event_screen/event_screen.dart';
 import 'package:school_app/screen/exam_schedule/exam_schedule.dart';
 import 'package:school_app/screen/fee_screen/fee_screen.dart';
 import 'package:school_app/screen/library_screen/first_session/books/books_first_session.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/content/Arabic.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/content/Islamic.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/Quran.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/data/Islamic_content_data.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/videos_first_session.dart';
 import 'package:school_app/screen/library_screen/library_screen.dart';
 import 'package:school_app/screen/library_screen/first_session/library_type.dart';
@@ -147,6 +150,9 @@ Map<String, WidgetBuilder> routes ={
   ScienceDegree2.routName:(context)=>ScienceDegree2(),
   EnglishDegree2.routName:(context)=>EnglishDegree2(),
   Student.routeName:(context)=>Student(),
+  IslamicContentScreen.routeName:(context)=>IslamicContentScreen(),
+  ArabicContentScreen.routeName:(context)=>ArabicContentScreen(),
+
 
 
 

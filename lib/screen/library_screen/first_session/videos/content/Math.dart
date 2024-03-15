@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/exam_schedule/data/exam_data.dart';
-import 'package:school_app/screen/library_screen/first_session/videos/data/Quran_content_data.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/data/Arabic_content_data.dart';
 
-class QuranContentScreen extends StatelessWidget {
-  const QuranContentScreen({super.key});
-  static const String routeName ='QuranContentScreen';
+class MathContentScreen extends StatelessWidget {
+  const MathContentScreen({super.key});
+  static const String routeName ='MathContentScreen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('َQuran'),
+        title: Text('Math'),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -62,7 +62,7 @@ class QuranContentScreen extends StatelessWidget {
                               ),),
                           ],
                         ),
-                       /* Column(
+                        /* Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -80,7 +80,7 @@ class QuranContentScreen extends StatelessWidget {
                               ),)
                           ],
                         ),*/
-                       /* Column(
+                        /* Column(
                           children: [
                             Text(examSchedule[index].time,
                               style: TextStyle(

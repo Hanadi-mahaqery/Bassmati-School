@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/library_screen/first_session/books/books_first_session.dart';
 import 'package:school_app/screen/library_screen/first_session/library_type.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/content/Arabic.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/Quran.dart';
 import 'package:school_app/screen/library_screen/second_session/library_type2.dart';
 import 'package:school_app/screen/library_screen/second_session/second_session.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
+
+import 'content/Islamic.dart';
 
 class VideoFirstScreen extends StatelessWidget {
   const VideoFirstScreen({super.key});
@@ -75,7 +78,10 @@ class VideoFirstScreen extends StatelessWidget {
                       Navigator.pushNamed(context, QuranContentScreen.routeName);
                     }) ,
                     LibType(title: 'Islamic', icon:'assets/icons/library.png', onPress:(){
-                      Navigator.pushNamed(context, LibraryType2.routName);
+                      Navigator.pushNamed(context, IslamicContentScreen.routeName);
+                    }) ,
+                    LibType(title: 'Arabic', icon:'assets/icons/library.png', onPress:(){
+                      Navigator.pushNamed(context, ArabicContentScreen.routeName );
                     }) ,
 
                   ],
