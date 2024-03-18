@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/exam_schedule/data/exam_data.dart';
-import 'package:school_app/screen/library_screen/first_session/videos/data/Math_content_data.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/data/Science_content_data.dart';
 
-class MathContentScreen extends StatelessWidget {
-  const MathContentScreen({super.key});
-  static const String routeName ='MathContentScreen';
+class ScienceContentScreen extends StatelessWidget {
+  const ScienceContentScreen({super.key});
+  static const String routeName ='ScienceContentScreen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Math'),
+        title: Text('Science'),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,

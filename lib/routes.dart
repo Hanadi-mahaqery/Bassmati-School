@@ -8,8 +8,11 @@ import 'package:school_app/screen/exam_schedule/exam_schedule.dart';
 import 'package:school_app/screen/fee_screen/fee_screen.dart';
 import 'package:school_app/screen/library_screen/first_session/books/books_first_session.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/Arabic.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/content/English.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/Islamic.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/content/Math.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/Quran.dart';
+import 'package:school_app/screen/library_screen/first_session/videos/content/Science.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/data/Islamic_content_data.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/videos_first_session.dart';
 import 'package:school_app/screen/library_screen/library_screen.dart';
@@ -152,6 +155,9 @@ Map<String, WidgetBuilder> routes ={
   Student.routeName:(context)=>Student(),
   IslamicContentScreen.routeName:(context)=>IslamicContentScreen(),
   ArabicContentScreen.routeName:(context)=>ArabicContentScreen(),
+  MathContentScreen.routeName:(context)=>MathContentScreen(),
+  EnglishContentScreen.routeName:(context)=>EnglishContentScreen(),
+  ScienceContentScreen.routeName:(context)=>ScienceContentScreen(),
 
 
 
