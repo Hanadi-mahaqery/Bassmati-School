@@ -1,25 +1,31 @@
 
 
+import 'package:flutter/material.dart';
+
 class StudentModel {
   StudentModel({
-    this.id,
-    this.name,
-    this.age,});
+    this.stuId,
+    this.stuName,
+    this.age
+    });
 
   StudentModel.fromJson(dynamic json) {
-    id = json['id'];
-    name = json['name'];
+    stuId = json['stuId'];
+    stuName = json['stuName'];
     age = json['age'];
+
   }
-  int? id;
-  String? name;
-  int? age;
+  int? stuId;
+  String? stuName;
+  String? age;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id'] = id;
-    map['name'] = name;
+    map['stuId'] = stuId;
+    map['stuName'] = stuName;
     map['age'] = age;
+
     return map;
   }
 

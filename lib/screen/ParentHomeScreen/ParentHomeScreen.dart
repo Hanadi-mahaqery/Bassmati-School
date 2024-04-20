@@ -16,11 +16,12 @@ import 'package:school_app/screen/result_screen/sessions_screen/session_screen.d
 import 'package:school_app/screen/schedule_screen/schedule_screen.dart';
 import 'package:school_app/screen/student_profile/student_profile.dart';
 
+import '../home_screen/widgets/student_data.dart';
 import 'widgets/student_data.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-  static String routeName = 'HomeScreen';
+class ParentHomeScreen extends StatelessWidget {
+  const ParentHomeScreen({super.key});
+  static String routeName = 'ParentHomeScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +48,17 @@ class HomeScreen extends StatelessWidget {
                         kHalfSizedBox,
                         StudentClass(studentClass: 'Level 3 class A'),
                         kHalfSizedBox,
-                      StudentYear(studentYear: '2023-2024')
+                        StudentYear(studentYear: '2023-2024')
                       ],
                     ),
-                   kHalfSizedBox,
-                   StudentPicture(pictureAddress: 'assets/images/kid.jpg', onPress:(){
-                     Navigator.pushNamed(context, StudentProfile.routeName);
-                   })
+                    kHalfSizedBox,
+                    StudentPicture(pictureAddress: 'assets/images/kid.jpg', onPress:(){
+                      Navigator.pushNamed(context, StudentProfile.routeName);
+                    })
                   ],
                 ),
-               sizedBox,
-              /*  Row(
+                sizedBox,
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     StudentDataCard(title: 'Attendance', value: '90.2%', onPress: (){
@@ -70,7 +71,7 @@ class HomeScreen extends StatelessWidget {
 
 
                   ],
-                )*/
+                )
               ],
             ),
           ),
@@ -159,11 +160,11 @@ class HomeScreen extends StatelessWidget {
                                   title: Text('Log out'),
                                   content: Text('Are you sure you want to log out?'),
                                   actions: <Widget>[
-                                   TextButton(onPressed: (){
-                                     Navigator.pushNamed(context, AllSign.routName);
-                                   }, child: Text('Yes')),
                                     TextButton(onPressed: (){
-                                      Navigator.pushNamed(context, HomeScreen.routeName);
+                                      Navigator.pushNamed(context, AllSign.routName);
+                                    }, child: Text('Yes')),
+                                    TextButton(onPressed: (){
+                                      Navigator.pushNamed(context, ParentHomeScreen.routeName);
                                     }, child: Text('No')),
 
                                   ],
@@ -188,9 +189,9 @@ class HomeScreen extends StatelessWidget {
 class HomeCard extends StatelessWidget {
   const HomeCard(
       {super.key,
-      required this.onPress,
-      required this.icon,
-      required this.title});
+        required this.onPress,
+        required this.icon,
+        required this.title});
   final VoidCallback onPress;
   final String icon;
   final String title;

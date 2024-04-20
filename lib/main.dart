@@ -1,19 +1,32 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:school_app/blocs/student_bloc.dart';
+import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/repositories/student_repository.dart';
 import 'package:school_app/routes.dart';
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
 import 'package:school_app/screen/home_screen/home_screen.dart';
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
 
+  }
+
+}
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
   // This widget is the root of your application.
   @override
@@ -85,6 +98,7 @@ class MyApp extends StatelessWidget {
       routes: routes,
     ));
   }
+
 }
 
 

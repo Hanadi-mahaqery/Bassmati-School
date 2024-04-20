@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
+import 'package:school_app/screen/ParentHomeScreen/ParentHomeScreen.dart';
 import 'package:school_app/screen/all_sign/all_sign.dart';
 import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
 import 'package:school_app/screen/attendence_screen/attendence_screen.dart';
@@ -17,9 +18,16 @@ import 'package:school_app/screen/library_screen/first_session/videos/data/Islam
 import 'package:school_app/screen/library_screen/first_session/videos/videos_first_session.dart';
 import 'package:school_app/screen/library_screen/library_screen.dart';
 import 'package:school_app/screen/library_screen/first_session/library_type.dart';
+import 'package:school_app/screen/library_screen/second_session/books/books_second_session.dart';
 import 'package:school_app/screen/library_screen/second_session/library_type2.dart';
 import 'package:school_app/screen/library_screen/second_session/second_session.dart';
 import 'package:school_app/screen/library_screen/lib_sessions_screen.dart';
+import 'package:school_app/screen/library_screen/second_session/videos/content/Arabic2.dart';
+import 'package:school_app/screen/library_screen/second_session/videos/content/English2.dart';
+import 'package:school_app/screen/library_screen/second_session/videos/content/Islamic2.dart';
+import 'package:school_app/screen/library_screen/second_session/videos/content/Math2.dart';
+import 'package:school_app/screen/library_screen/second_session/videos/content/Quran2.dart';
+import 'package:school_app/screen/library_screen/second_session/videos/content/Science2.dart';
 import 'package:school_app/screen/login_screen/forget_password.dart';
 import 'package:school_app/screen/notification_screen/notification_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
@@ -88,7 +96,7 @@ Map<String, WidgetBuilder> routes ={
   StudentProfile.routeName:(context)=>StudentProfile(),
   FeeScreen.routName:(context)=>FeeScreen(),
   AllSign.routName:(context)=>AllSign(),
-  ParentLogin.routName:(context)=>ParentLogin(),
+  ParentLogin.routeName:(context)=>ParentLogin(),
   ResultScreen.routeName:(context)=>ResultScreen(),
   AssignmentScreen.routeName:(context)=>AssignmentScreen(),
   ExamScreen.routeName:(context)=>ExamScreen(),
@@ -109,8 +117,8 @@ Map<String, WidgetBuilder> routes ={
   ScheduleScreen.routeName:(context)=>ScheduleScreen(),
   AttendanceScreen.routeName:(context)=>AttendanceScreen(),
   LibSessionsScreen.routName:(context)=>LibSessionsScreen(),
-  FirstSession.routeName:(context)=>FirstSession(),
-  SecondSession.routeName:(context)=>SecondSession(),
+  BooksFirstSession.routeName:(context)=>BooksFirstSession(),
+  VideosSecondSession.routName:(context)=>VideosSecondSession(),
   LibraryType.routName:(context)=>LibraryType(),
   LibraryType2.routName:(context)=>LibraryType2(),
   QuranDegree.routName:(context)=>QuranDegree(),
@@ -158,7 +166,15 @@ Map<String, WidgetBuilder> routes ={
   MathContentScreen.routeName:(context)=>MathContentScreen(),
   EnglishContentScreen.routeName:(context)=>EnglishContentScreen(),
   ScienceContentScreen.routeName:(context)=>ScienceContentScreen(),
-
+  ParentHomeScreen.routeName:(context)=>ParentHomeScreen(),
+  BooksFirstSession.routeName:(context)=>BooksFirstSession(),
+  BooksSecondSession.routeName:(context)=>BooksSecondSession(),
+  Arabic2ContentScreen.routeName:(context)=>Arabic2ContentScreen(),
+  Islamic2ContentScreen.routeName:(context)=>Islamic2ContentScreen(),
+  English2ContentScreen.routeName:(context)=>English2ContentScreen(),
+  Math2ContentScreen.routeName:(context)=>Math2ContentScreen(),
+  Quran2ContentScreen.routeName:(context)=>Quran2ContentScreen(),
+  Science2ContentScreen.routeName:(context)=>Science2ContentScreen(),
 
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/Data/DbHelper.dart';
-import 'package:school_app/models/StudentModel.dart';
+import 'package:school_app/models/LibraryModel.dart';
 import 'package:school_app/our_dialog.dart';
 
 class AddStudentPage extends StatefulWidget {
@@ -100,13 +100,13 @@ class _AddStudentPageState extends State<AddStudentPage> {
                 ),
 
                 SizedBox(height: 15,),
-                TextButton(
+                /*TextButton(
 
                     onPressed: ()async{
 
                       if(_formKey.currentState!.validate()){
-                        var s1= StudentModel(name: nameCtr.text, age: int.parse(ageCtr.text));
-                        var addRes = await SQL_Helper().insert("Students", s1.toJson());
+                        var s1= StudentModel(Content: nameCtr.text, Link: int.parse(ageCtr.text));
+                        var addRes = await SQL_Helper().insert("E_Library", s1.toJson());
                         if(addRes > 0){
 
                           Navigator.of(context).pop(addRes);
@@ -122,7 +122,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                       }
 
                     },
-                    child: Text("Send"))
+                    child: Text("Send"))*/
               ],
             ),
           )),

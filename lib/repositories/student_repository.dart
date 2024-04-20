@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:school_app/Data/DbHelper.dart';
-import 'package:school_app/models/StudentModel.dart';
+import 'package:school_app/models/LibraryModel.dart';
 
 class StudentRepository{
   late Dio dio;
-  String url ="http://192.168.1.10:5281/api/numbers";
+  String url ="https://192.168.0.145:5011/api/Library";
   StudentRepository(){
     dio = Dio();
     dio.options.responseType = ResponseType.json;
@@ -13,15 +13,15 @@ class StudentRepository{
 
 
   }
-  Future<List<StudentModel>> getAll()async{
+  Future<List<LibraryModel>> getAll()async{
     try{
       await Future.delayed(Duration(seconds: 1));
       var response = await dio.get(url);
       if (response.statusCode == 200){
         var dt = response.data as List;
-        List<StudentModel> items =[];
+        List<LibraryModel> items =[];
         dt.forEach((e) {
-          items.add(StudentModel.fromJson(e));
+          items.add(LibraryModel.fromJson(e));
         });
 
         return items;
@@ -33,10 +33,10 @@ class StudentRepository{
     }
   }
 
-  Future<bool> add(StudentModel obj)async{
+  Future<bool> add(LibraryModel obj)async{
     var dt={
-      "name": obj.name,
-      "age": obj.age
+      "content": obj.content,
+      "link": obj.link
     };
     try{
       await Future.delayed(Duration(seconds: 1));

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/library_screen/first_session/books/books_data.dart';
 
-class BooksFirstSession extends StatelessWidget {
-  const BooksFirstSession({super.key});
-  static String routeName = 'BooksFirstSession';
+class BooksSecondSession extends StatelessWidget {
+  const BooksSecondSession({super.key});
+  static String routeName = 'BooksSecondSession';
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/Data/DbHelper.dart';
 import 'package:school_app/add_student.dart';
-import 'package:school_app/blocs/student_bloc.dart';
+import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
-import 'package:school_app/models/StudentModel.dart';
+import 'package:school_app/models/LibraryModel.dart';
 import 'package:school_app/our_dialog.dart';
 
 class Student extends StatefulWidget {
@@ -19,7 +19,7 @@ class _StudentState extends State<Student> {
   @override
   Widget build(BuildContext context) {
     var _bloc = context.read<StudentBloc>();
-    var list =SQL_Helper().getAll("Students");
+    var list =SQL_Helper().getAll("E_Library");
     var clr = Colors.white54;
     return Scaffold(
       appBar: AppBar(
@@ -81,7 +81,7 @@ class _StudentState extends State<Student> {
                       color: clr,
                       child: ListTile(
                         //style: ListTileStyle.drawer,
-                        title: Text("${state.items[index].name}"),
+                        title: Text("${state.items[index].content}"),
                         leading: CircleAvatar(
                           radius: 50,
                           foregroundColor: Colors.purple,
@@ -103,7 +103,7 @@ class _StudentState extends State<Student> {
                           ),
                         ),
                         trailing: Icon(Icons.settings),
-                        subtitle: Text("${state.items[index].age}"),
+                        subtitle: Text("${state.items[index].link}"),
                         onTap: (){
                           clr = clr==Colors.lightBlue?Colors.yellow:Colors.lightBlue;
                           setState(() {

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-import '../models/StudentModel.dart';
+import '../models/LibraryModel.dart';
 class SQL_Helper {
   static SQL_Helper? dbHelper;
   static Database? _database;
@@ -89,9 +89,9 @@ for (int i = 0; i < tablesNameList.length; i++) {
 
 
 
-  Future<int> insertStudent(StudentModel obj)async{
+  Future<int> insertStudent(LibraryModel obj)async{
     Database db = await database;
-    var res = await db.insert("numbers", obj.toJson());
+    var res = await db.insert("E_Library", obj.toJson());
     return res;
   }
 
