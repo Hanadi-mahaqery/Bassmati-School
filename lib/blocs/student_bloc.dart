@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
-import 'package:school_app/models/LibraryModel.dart';
+import 'package:school_app/models/StudentModel.dart';
 import 'package:school_app/repositories/student_repository.dart';
 
 class StudentBloc extends Bloc<StudentEvent, StudentState>{
@@ -63,7 +63,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState>{
 class StudentState {
   final StateTypes currentState;
   final String? error;
-  final List<LibraryModel> items;
+  final List<StudentModel> items;
 
   StudentState({
     this.currentState = StateTypes.init,
@@ -74,7 +74,7 @@ class StudentState {
   StudentState copyWith({
     StateTypes? currentState,
     String? error,
-    List<LibraryModel>? items
+    List<StudentModel>? items
   }) {
     return StudentState(
         currentState: currentState ?? this.currentState,
@@ -87,7 +87,7 @@ class StudentState {
 abstract class StudentEvent {}
 
 class Submit extends StudentEvent {
-  final LibraryModel model;
+  final StudentModel model;
 
   Submit(this.model);
 }

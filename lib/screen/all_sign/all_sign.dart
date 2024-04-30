@@ -77,7 +77,7 @@ class AllSign extends StatelessWidget {
               Navigator.pushNamed(context, ParentLogin.routeName);
             }) ,
                     SignType(title: 'View Student', icon: 'assets/icons/parent.png', onPress:(){
-                      Navigator.pushNamed(context, Student.routeName);
+                      Navigator.pushNamed(context, StudentScreen.routeName);
                     }) ,
 
                   ],

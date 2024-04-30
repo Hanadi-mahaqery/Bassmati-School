@@ -6,18 +6,24 @@ class StudentModel {
   StudentModel({
     this.stuId,
     this.stuName,
-    this.age
+    this.age,
+    this.stuEmail,
+    this.stuPhoneNo,
     });
 
   StudentModel.fromJson(dynamic json) {
     stuId = json['stuId'];
     stuName = json['stuName'];
     age = json['age'];
+    age = json['stuEmail'];
+    stuPhoneNo = json['stuPhoneNo'];
 
   }
   int? stuId;
   String? stuName;
   String? age;
+  String? stuEmail;
+  String? stuPhoneNo;
 
 
   Map<String, dynamic> toJson() {
@@ -25,6 +31,8 @@ class StudentModel {
     map['stuId'] = stuId;
     map['stuName'] = stuName;
     map['age'] = age;
+    map['stuEmail'] = stuEmail;
+    map['stuPhoneNo'] = stuPhoneNo;
 
     return map;
   }

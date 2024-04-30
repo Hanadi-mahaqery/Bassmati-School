@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:school_app/Data/Student_DbHelper.dart';
-import 'package:school_app/models/StudentModel.dart';
+import 'package:school_app/Data/DbHelper.dart';
+import 'package:school_app/models/LibraryModel.dart';
 
 class StudentRepository{
   late Dio dio;
-  String url ="https://192.168.0.145:5011/api/Student";
+  String url ="https://192.168.0.145:5011/api/Library";
   StudentRepository(){
     dio = Dio();
     dio.options.responseType = ResponseType.json;
@@ -13,32 +13,30 @@ class StudentRepository{
 
 
   }
-  Future<List<StudentModel>> getAll()async{
+  Future<List<LibraryModel>> getAll()async{
     try{
       await Future.delayed(Duration(seconds: 1));
       var response = await dio.get(url);
       if (response.statusCode == 200){
         var dt = response.data as List;
-        List<StudentModel> items =[];
+        List<LibraryModel> items =[];
         dt.forEach((e) {
-          items.add(StudentModel.fromJson(e));
+          items.add(LibraryModel.fromJson(e));
         });
 
         return items;
       }
-      throw Exception("Response Error ${response.statusMessage}");
+     throw Exception("Response Error ${response.statusMessage}");
     }
     catch(ex){
       rethrow;
     }
   }
 
-  Future<bool> add(StudentModel obj)async{
+  Future<bool> add(LibraryModel obj)async{
     var dt={
-      "stuName": obj.stuName,
-      "age": obj.age,
-      "stuEmail": obj.stuEmail,
-      "stuPhoneNo": obj.stuPhoneNo
+      "content": obj.content,
+      "link": obj.link
     };
     try{
       await Future.delayed(Duration(seconds: 1));

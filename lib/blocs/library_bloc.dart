@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
 import 'package:school_app/models/LibraryModel.dart';
-import 'package:school_app/repositories/student_repository.dart';
+import 'package:school_app/repositories/library_repository.dart';
 
 class StudentBloc extends Bloc<StudentEvent, StudentState>{
   final StudentRepository repository;
