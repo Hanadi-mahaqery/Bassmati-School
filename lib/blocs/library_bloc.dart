@@ -3,15 +3,15 @@ import 'package:school_app/data_enum/state_types.dart';
 import 'package:school_app/models/LibraryModel.dart';
 import 'package:school_app/repositories/library_repository.dart';
 
-class StudentBloc extends Bloc<StudentEvent, StudentState>{
-  final StudentRepository repository;
+class LibraryBloc extends Bloc<LibraryEvent, LibraryState>{
+  final LibraryRepository repository;
 
-  StudentBloc({required this.repository}) : super(StudentState()){
+  LibraryBloc({required this.repository}) : super(LibraryState()){
     on<Submit>(_onSubmit);
     on<LoadData>(_onLoadData);
   }
 
-  Future<void> _onLoadData(LoadData event, Emitter<StudentState> emit)async{
+  Future<void> _onLoadData(LoadData event, Emitter<LibraryState> emit)async{
     emit(state.copyWith(currentState: StateTypes.loading));
     try{
       var items = await repository.getAll();
@@ -30,7 +30,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState>{
       );
     }
   }
-  Future<void> _onSubmit(Submit event, Emitter<StudentState> emit)async{
+  Future<void> _onSubmit(Submit event, Emitter<LibraryState> emit)async{
     emit(state.copyWith(currentState: StateTypes.submitting));
     try{
       var res = await repository.add(event.model);
@@ -60,23 +60,23 @@ class StudentBloc extends Bloc<StudentEvent, StudentState>{
 }
 
 
-class StudentState {
+class LibraryState {
   final StateTypes currentState;
   final String? error;
   final List<LibraryModel> items;
 
-  StudentState({
+  LibraryState({
     this.currentState = StateTypes.init,
     this.error,
     this.items = const []
   });
 
-  StudentState copyWith({
+  LibraryState copyWith({
     StateTypes? currentState,
     String? error,
     List<LibraryModel>? items
   }) {
-    return StudentState(
+    return LibraryState(
         currentState: currentState ?? this.currentState,
         error: error ?? this.error,
         items: items ?? this.items
@@ -84,12 +84,12 @@ class StudentState {
   }
 }
 
-abstract class StudentEvent {}
+abstract class LibraryEvent {}
 
-class Submit extends StudentEvent {
+class Submit extends LibraryEvent {
   final LibraryModel model;
 
   Submit(this.model);
 }
 
-class LoadData extends StudentEvent {}
+class LoadData extends LibraryEvent {}

@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:school_app/Data/DbHelper.dart';
 import 'package:school_app/models/LibraryModel.dart';
 
-class StudentRepository{
+class LibraryRepository{
   late Dio dio;
-  String url ="https://192.168.0.145:5011/api/Library";
-  StudentRepository(){
+  String url ="http://192.168.0.145:5257/api/Library";
+  LibraryRepository(){
     dio = Dio();
     dio.options.responseType = ResponseType.json;
     dio.options.receiveTimeout= const Duration(seconds: 60);

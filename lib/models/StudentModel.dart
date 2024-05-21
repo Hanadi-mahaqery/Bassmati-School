@@ -15,7 +15,7 @@ class StudentModel {
     stuId = json['stuId'];
     stuName = json['stuName'];
     age = json['age'];
-    age = json['stuEmail'];
+    stuEmail= json['stuEmail'];
     stuPhoneNo = json['stuPhoneNo'];
 
   }

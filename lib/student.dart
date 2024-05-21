@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/Data/Student_DbHelper.dart';
+import 'package:school_app/EditStudentPage.dart';
 import 'package:school_app/add_student.dart';
 import 'package:school_app/blocs/student_bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
@@ -24,7 +25,7 @@ class _StudentScreenState extends State<StudentScreen> {
   void initState() {
     super.initState();
     _bloc = StudentBloc(repository: StudentRepository());
-    _bloc.add(LoadData());
+    _bloc.add(LoadStudentData());
   }
 
   @override
@@ -49,7 +50,7 @@ class _StudentScreenState extends State<StudentScreen> {
             ),
           );
           if (result != null && result is bool && result) {
-            _bloc.add(LoadData());
+            _bloc.add(LoadStudentData());
           }
         },
         child: Icon(Icons.add),
@@ -85,16 +86,50 @@ class _StudentScreenState extends State<StudentScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(student.age ?? ''),
-                      Text(student.stuEmail ?? ''), // إضافة البريد الإلكتروني
-                      Text(student.stuPhoneNo ?? ''), // إضافة رقم الهاتف
+                      Text(student.stuEmail ?? ''),
+                      Text(student.stuPhoneNo ?? ''),
                     ],
                   ),
                   onTap: () {
-                    // TODO: Implement onTap action
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditStudentPage(student: student, bloc: _bloc,),
+                      ),
+                    );
                   },
-                  onLongPress: () {
-                    // TODO: Implement onLongPress action
-                  },
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      print(student.stuId);
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Confirm Delete'),
+                            content: Text('Are you sure you want to delete this student?'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () async {
+                                  Navigator.of(context).pop();
+                                  // Dispatch delete event to bloc
+                                  _bloc.add(Delete(studentId: student.stuId!)); // هنا تأكد من استخدام student.stuId
+                                },
+                                child: Text('Delete'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Cancel'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+
+                  ),
                 );
               },
             );
@@ -158,4 +193,3 @@ class _StudentScreenState extends State<StudentScreen> {
     super.dispose();
   }
 }
-

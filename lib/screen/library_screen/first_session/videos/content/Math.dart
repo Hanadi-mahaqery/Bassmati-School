@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:school_app/Data/DbHelper.dart';
-import 'package:school_app/add_student.dart';
+
 import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
-import 'package:school_app/models/LibraryModel.dart';
-import 'package:school_app/our_dialog.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/exam_schedule/data/exam_data.dart';
-import 'package:school_app/screen/library_screen/first_session/videos/data/Math_content_data.dart';
 
 class MathContentScreen extends StatelessWidget {
-  const MathContentScreen({Key? key});
+  const MathContentScreen({Key? key}) : super(key: key);
 
   static const String routeName = 'MathContentScreen';
 
   @override
   Widget build(BuildContext context) {
-    var _bloc = context.read<StudentBloc>();
+    // Use BlocProvider.of to access the StudentBloc
+    var _bloc = BlocProvider.of<LibraryBloc>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Math'),
+        title: const Text('Math'),
       ),
-      body: BlocBuilder<StudentBloc, StudentState>(
+      body: BlocBuilder<LibraryBloc, LibraryState>(
+        bloc: _bloc,
         builder: (context, state) {
           if (state.currentState == StateTypes.loading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state.currentState == StateTypes.loaded) {
@@ -37,33 +34,32 @@ class MathContentScreen extends StatelessWidget {
                 var library = state.items[index];
 
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: kDefaultPadding / 2, vertical: kDefaultPadding / 4),
-                  padding: EdgeInsets.all(kDefaultPadding / 2),
+                  margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2, vertical: kDefaultPadding / 4),
+                  padding: const EdgeInsets.all(kDefaultPadding / 2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Divider(thickness: 1.0, height: kDefaultPadding),
+                      const Divider(thickness: 1.0, height: kDefaultPadding),
                       Text(
                         library.content ?? '',
-                        style: TextStyle(color: kTextBlackColor, fontSize: 26.0, fontWeight: FontWeight.bold),
+                        style: const TextStyle(color: kTextBlackColor, fontSize: 26.0, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: kDefaultPadding / 4),
+                      const SizedBox(height: kDefaultPadding / 4),
                       YoutubePlayer(
                         controller: YoutubePlayerController(
                           initialVideoId: library.link ?? '',
-                          flags: YoutubePlayerFlags(
+                          flags: const YoutubePlayerFlags(
                             autoPlay: false,
                             mute: false,
                           ),
                         ),
                         showVideoProgressIndicator: true,
-                        progressColors: ProgressBarColors(
+                        progressColors: const ProgressBarColors(
                           playedColor: Colors.amber,
                           handleColor: Colors.amberAccent,
                         ),
                       ),
-
                     ],
                   ),
                 );
@@ -75,7 +71,7 @@ class MathContentScreen extends StatelessWidget {
             );
           }
           // Handle other states here if needed
-          return SizedBox();
+          return const SizedBox();
         },
       ),
     );

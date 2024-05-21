@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/blocs/student_bloc.dart';
 import 'package:school_app/constant.dart';
+import 'package:school_app/repositories/library_repository.dart';
 import 'package:school_app/repositories/student_repository.dart';
 import 'package:school_app/routes.dart';
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
@@ -39,7 +41,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => StudentBloc(repository: StudentRepository())..add(LoadData()),
+          create: (_) => LibraryBloc(repository: LibraryRepository())..add(LoadData()),
+        ),
+        BlocProvider(
+          create: (_) => StudentBloc(repository: StudentRepository())..add(LoadStudentData()),
         ),
         // Add any additional bloc providers here
       ],
@@ -49,28 +54,28 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: kPrimaryColor,
           primaryColor: kPrimaryColor,
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             color: kPrimaryColor,
             elevation: 0,
           ),
           textTheme: GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme).apply().copyWith(
-            bodyMedium: TextStyle(
+            bodyMedium: const TextStyle(
               color: kTextWhiteColor,
               fontSize: 35.0,
               fontWeight: FontWeight.bold,
             ),
-            bodyLarge: TextStyle(
+            bodyLarge: const TextStyle(
               color: kTextWhiteColor,
               fontSize: 22.0,
               fontWeight: FontWeight.w500,
             ),
-            bodySmall: TextStyle(
+            bodySmall: const TextStyle(
               color: kTextWhiteColor,
               fontSize: 18.0,
               fontWeight: FontWeight.w300,
             ),
           ),
-          inputDecorationTheme: InputDecorationTheme(
+          inputDecorationTheme: const InputDecorationTheme(
             labelStyle: TextStyle(
               fontSize: 15.0,
               color: kTextLightColor,
