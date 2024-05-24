@@ -90,13 +90,16 @@ class _StudentScreenState extends State<StudentScreen> {
                       Text(student.stuPhoneNo ?? ''),
                     ],
                   ),
-                  onTap: () {
-                    Navigator.push(
+                  onTap: () async {
+                    final result = await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditStudentPage(student: student, bloc: _bloc,),
                       ),
                     );
+                    if (result == true) {
+                      _bloc.add(LoadStudentData());
+                    }
                   },
                   trailing: IconButton(
                     icon: Icon(Icons.delete),
@@ -112,7 +115,6 @@ class _StudentScreenState extends State<StudentScreen> {
                               TextButton(
                                 onPressed: () async {
                                   Navigator.of(context).pop();
-                                  // Dispatch delete event to bloc
                                   _bloc.add(Delete(studentId: student.stuId!)); // هنا تأكد من استخدام student.stuId
                                 },
                                 child: Text('Delete'),
@@ -128,7 +130,6 @@ class _StudentScreenState extends State<StudentScreen> {
                         },
                       );
                     },
-
                   ),
                 );
               },
@@ -163,7 +164,8 @@ class _StudentScreenState extends State<StudentScreen> {
             );
           } else if (state.currentState == StateTypes.submitted) {
             WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-              GetDialog(context, "Added Successfully",
+              GetDialog(context, "Updated Successfully",
+
                   Icon(Icons.check_circle_outline, color: Colors.green));
             });
             return SizedBox();

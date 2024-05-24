@@ -67,7 +67,7 @@ class _EditStudentPageState extends State<EditStudentPage> {
                 );
 
                 widget.bloc.add(Update(updatedStudent)); // استخدم bloc لإرسال حدث التحديث
-                Navigator.pop(context); // العودة إلى الصفحة السابقة بعد التحديث
+                Navigator.pop(context, true); // العودة إلى الصفحة السابقة بعد التحديث
               },
               child: Text('Save'),
             ),

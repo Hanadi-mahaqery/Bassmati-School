@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
 import 'package:school_app/constant.dart';

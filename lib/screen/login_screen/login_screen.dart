@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:school_app/components/custom_button.dart';
 import 'package:school_app/constant.dart';

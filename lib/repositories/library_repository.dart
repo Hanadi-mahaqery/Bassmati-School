@@ -4,7 +4,7 @@ import 'package:school_app/models/LibraryModel.dart';
 
 class LibraryRepository{
   late Dio dio;
-  String url ="http://192.168.0.145:5257/api/Library";
+  String url ="http://192.168.111.81:5257/api/Library";
   LibraryRepository(){
     dio = Dio();
     dio.options.responseType = ResponseType.json;

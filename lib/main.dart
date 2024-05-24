@@ -1,5 +1,6 @@
 import 'dart:io';
 
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +12,10 @@ import 'package:school_app/repositories/student_repository.dart';
 import 'package:school_app/routes.dart';
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+
   setupHttpOverrides();
   setupLocator();
   runApp(const MyApp());
