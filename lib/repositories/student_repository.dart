@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:school_app/models/StudentModel.dart';
 import 'dart:developer'; // لإضافة مسجلات للأخطاء
-
 class StudentRepository {
 late Dio dio;
-String url = "http://192.168.111.81:5257/api/Student";
+String url = "http://192.168.219.81:5257/api/Student";
 
 StudentRepository() {
 dio = Dio();

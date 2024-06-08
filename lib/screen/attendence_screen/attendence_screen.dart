@@ -11,12 +11,12 @@ class AttendanceScreen extends StatefulWidget {
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
-  late CalendarController _calendarController;
+  //late CalendarController _calendarController;
 
   @override
   void initState() {
     super.initState();
-    _calendarController = CalendarController();
+   // _calendarController = CalendarController();
   }
 
   @override
@@ -34,7 +34,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               SliverToBoxAdapter(
                 child: Container(
                   color: kSecondaryColor,
-                  child: TableCalendar(
+                 /* child: TableCalendar(
                     calendarController: _calendarController,
                     daysOfWeekStyle: DaysOfWeekStyle(
                       weekdayStyle: TextStyle(
@@ -51,7 +51,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       ),
                     ),
                     onDaySelected: (date, events, holidays) {},
-                  ),
+                  ),*/
                 ),
               ),
             ],

@@ -9,6 +9,12 @@ import 'package:school_app/screen/event_screen/event_screen.dart';
 import 'package:school_app/screen/exam_schedule/exam_schedule.dart';
 import 'package:school_app/screen/fee_screen/fee_screen.dart';
 import 'package:school_app/screen/library_screen/first_session/books/books_first_session.dart';
+import 'package:school_app/screen/library_screen/first_session/books/pdfs/Arabic_pdf.dart';
+import 'package:school_app/screen/library_screen/first_session/books/pdfs/English_pdf.dart';
+import 'package:school_app/screen/library_screen/first_session/books/pdfs/Islamic_pdf.dart';
+import 'package:school_app/screen/library_screen/first_session/books/pdfs/Math_pdf.dart';
+import 'package:school_app/screen/library_screen/first_session/books/pdfs/Quran_pdf.dart';
+import 'package:school_app/screen/library_screen/first_session/books/pdfs/Science_pdf.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/Arabic.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/English.dart';
 import 'package:school_app/screen/library_screen/first_session/videos/content/Islamic.dart';
@@ -118,7 +124,7 @@ Map<String, WidgetBuilder> routes ={
   ScheduleScreen.routeName:(context)=>ScheduleScreen(),
   AttendanceScreen.routeName:(context)=>AttendanceScreen(),
   LibSessionsScreen.routName:(context)=>LibSessionsScreen(),
-  BooksFirstSession.routeName:(context)=>BooksFirstSession(),
+  BooksFirstSession.routName:(context)=>BooksFirstSession(),
   VideosSecondSession.routName:(context)=>VideosSecondSession(),
   LibraryType.routName:(context)=>LibraryType(),
   LibraryType2.routName:(context)=>LibraryType2(),
@@ -129,7 +135,7 @@ Map<String, WidgetBuilder> routes ={
   ScienceDegree.routName:(context)=>ScienceDegree(),
   IslamicDegree.routName:(context)=>IslamicDegree(),
   VideoFirstScreen.routName:(context)=>VideoFirstScreen(),
-  QuranContentScreen.routeName:(context)=>QuranContentScreen(),
+  QuranContentScreen.routeName:(context)=>QuranContentScreen(subjectId: 4, subjectName: 'َQuran'),
   ForgotPasswordPage.routeName:(context)=>ForgotPasswordPage(),
   ArabicDegree6.routName:(context)=>ArabicDegree6(),
   ScienceDegree6.routName:(context)=>ScienceDegree6(),
@@ -162,13 +168,13 @@ Map<String, WidgetBuilder> routes ={
   ScienceDegree2.routName:(context)=>ScienceDegree2(),
   EnglishDegree2.routName:(context)=>EnglishDegree2(),
   StudentScreen.routeName:(context)=>StudentScreen(),
-  IslamicContentScreen.routeName:(context)=>IslamicContentScreen(),
-  ArabicContentScreen.routeName:(context)=>ArabicContentScreen(),
-  MathContentScreen.routeName:(context)=>MathContentScreen(),
-  EnglishContentScreen.routeName:(context)=>EnglishContentScreen(),
-  ScienceContentScreen.routeName:(context)=>ScienceContentScreen(),
+  IslamicContentScreen.routeName:(context)=>IslamicContentScreen(subjectId: 5, subjectName: 'Islamic'),
+  ArabicContentScreen.routeName:(context)=>ArabicContentScreen(subjectId: 2, subjectName: 'Arabic'),
+  MathContentScreen.routeName:(context)=>MathContentScreen(subjectId: 1, subjectName: 'math'),
+  EnglishContentScreen.routeName:(context)=>EnglishContentScreen(subjectId: 6, subjectName: 'English'),
+  ScienceContentScreen.routeName:(context)=>ScienceContentScreen(subjectId: 7, subjectName: 'Science'),
   ParentHomeScreen.routeName:(context)=>ParentHomeScreen(),
-  BooksFirstSession.routeName:(context)=>BooksFirstSession(),
+  BooksFirstSession.routName:(context)=>BooksFirstSession(),
   BooksSecondSession.routeName:(context)=>BooksSecondSession(),
   Arabic2ContentScreen.routeName:(context)=>Arabic2ContentScreen(),
   Islamic2ContentScreen.routeName:(context)=>Islamic2ContentScreen(),
@@ -176,6 +182,12 @@ Map<String, WidgetBuilder> routes ={
   Math2ContentScreen.routeName:(context)=>Math2ContentScreen(),
   Quran2ContentScreen.routeName:(context)=>Quran2ContentScreen(),
   Science2ContentScreen.routeName:(context)=>Science2ContentScreen(),
+  MathPdfContentScreen.routeName:(context)=>MathPdfContentScreen(subjectId: 1, subjectName: 'math'),
+  QuranPdfContentScreen.routeName:(context)=>QuranPdfContentScreen(subjectId: 4, subjectName: 'Quran'),
+  IslamicPdfContentScreen.routeName:(context)=>IslamicPdfContentScreen(subjectId: 5, subjectName: 'Islamic'),
+  ArabicPdfContentScreen.routeName:(context)=>ArabicPdfContentScreen(subjectId: 2, subjectName: 'Arabic'),
+  EnglishPdfContentScreen.routeName:(context)=>EnglishPdfContentScreen(subjectId: 6, subjectName: 'English'),
+  SciencePdfContentScreen.routeName:(context)=>SciencePdfContentScreen(subjectId: 7, subjectName: 'Science'),
 
 
 

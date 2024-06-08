@@ -1,6 +1,4 @@
 import 'dart:io';
-
-//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,13 +6,22 @@ import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/blocs/student_bloc.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/repositories/library_repository.dart';
+import 'package:school_app/repositories/pdf_repository.dart';
 import 'package:school_app/repositories/student_repository.dart';
 import 'package:school_app/routes.dart';
+import 'package:school_app/screen/login_screen/login_screen.dart'; // تعديل: استيراد شاشة تسجيل الدخول
+import 'package:school_app/screen/home_screen/home_screen.dart'; // تعديل: استيراد شاشة الرئيسية
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
+import 'package:school_app/services/auth_services.dart'; // تعديل: استيراد خدمة المصادقة
+import 'package:firebase_core/firebase_core.dart';
+import 'blocs/pdf_bloc.dart';
+import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   setupHttpOverrides();
   setupLocator();
@@ -45,10 +52,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => LibraryBloc(repository: LibraryRepository())..add(LoadData()),
+          create: (_) => LibraryBloc(repository: LibraryRepository())..add(FetchLibraryItemsBySubjectId(subjectId:1) ),
         ),
         BlocProvider(
           create: (_) => StudentBloc(repository: StudentRepository())..add(LoadStudentData()),
+        ),
+        BlocProvider(
+          create: (_) => PdfBloc(repository: PdfRepository()),
         ),
         // Add any additional bloc providers here
       ],
@@ -62,7 +72,7 @@ class MyApp extends StatelessWidget {
             color: kPrimaryColor,
             elevation: 0,
           ),
-          textTheme: GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme).apply().copyWith(
+          textTheme: GoogleFonts.aBeeZeeTextTheme(Theme.of(context).textTheme).apply().copyWith(
             bodyMedium: const TextStyle(
               color: kTextWhiteColor,
               fontSize: 35.0,
@@ -111,7 +121,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
         initialRoute: SplashScreen.routeName,
-        routes: routes,
+        routes: {
+          ...routes, // يستخدم المسارات المعرفة سابقًا
+          LoginScreen.routeName: (context) => LoginScreen(), // تعديل: إضافة شاشة تسجيل الدخول
+          HomeScreen.routeName: (context) => HomeScreen(), // تعديل: إضافة شاشة الرئيسية
+        },
       ),
     );
   }

@@ -70,7 +70,7 @@ class LibraryType extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     LibType(title: 'Books', icon: 'assets/icons/book.png', onPress:(){
-                      Navigator.pushNamed(context, BooksFirstSession.routeName);
+                      Navigator.pushNamed(context, BooksFirstSession.routName);
                     }) ,
                     LibType(title: 'Videos & PDFs', icon:'assets/icons/videos.png', onPress:(){
                       Navigator.pushNamed(context, VideoFirstScreen.routName);

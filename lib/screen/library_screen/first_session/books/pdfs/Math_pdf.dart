@@ -1,37 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:school_app/blocs/pdf_bloc.dart';
+import 'package:school_app/data_enum/state_types.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/exam_schedule/data/exam_data.dart';
-import 'package:school_app/screen/library_screen/first_session/videos/data/Quran_content_data.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:school_app/models/PdfModel.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 
-import '../../../../../blocs/library_bloc.dart';
-import '../../../../../data_enum/state_types.dart';
-
-
-
-class QuranContentScreen extends StatelessWidget {
+class MathPdfContentScreen extends StatelessWidget {
   final int subjectId;
   final String subjectName;
 
-  const QuranContentScreen({Key? key, required this.subjectId, required this.subjectName}) : super(key: key);
+  const MathPdfContentScreen({Key? key, required this.subjectId, required this.subjectName}) : super(key: key);
 
-  static const String routeName = 'QuranContentScreen';
+  static const String routeName = 'MathPdfContentScreen';
 
   @override
   Widget build(BuildContext context) {
-    var _bloc = BlocProvider.of<LibraryBloc>(context);
-
-    // جلب الفيديوهات بناءً على subjectId
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _bloc.add(FetchLibraryItemsBySubjectId(subjectId: subjectId));
-    });
+    var _bloc = BlocProvider.of<PdfBloc>(context);
+    _bloc.add(FetchPdfItemsBySubjectId(subjectId: subjectId));
 
     return Scaffold(
       appBar: AppBar(
         title: Text(subjectName),
       ),
-      body: BlocBuilder<LibraryBloc, LibraryState>(
+      body: BlocBuilder<PdfBloc, PdfState>(
         bloc: _bloc,
         builder: (context, state) {
           if (state.currentState == StateTypes.loading) {
@@ -42,7 +37,7 @@ class QuranContentScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: state.items.length,
               itemBuilder: (context, index) {
-                var library = state.items[index];
+                var pdf = state.items[index];
 
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2, vertical: kDefaultPadding / 4),
@@ -53,23 +48,23 @@ class QuranContentScreen extends StatelessWidget {
                     children: [
                       const Divider(thickness: 1.0, height: kDefaultPadding),
                       Text(
-                        library.content ?? '',
+                        pdf.fileName ?? '',
                         style: const TextStyle(color: kTextBlackColor, fontSize: 26.0, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: kDefaultPadding / 4),
-                      YoutubePlayer(
-                        controller: YoutubePlayerController(
-                          initialVideoId: library.link ?? '',
-                          flags: const YoutubePlayerFlags(
-                            autoPlay: false,
-                            mute: false,
-                          ),
-                        ),
-                        showVideoProgressIndicator: true,
-                        progressColors: const ProgressBarColors(
-                          playedColor: Colors.amber,
-                          handleColor: Colors.amberAccent,
-                        ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          final file = await _createFileFromBase64(pdf.fileData!);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PDFView(
+                                filePath: file.path,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(pdf.fileName ?? 'View PDF'),
                       ),
                     ],
                   ),
@@ -86,19 +81,12 @@ class QuranContentScreen extends StatelessWidget {
       ),
     );
   }
+
+  Future<File> _createFileFromBase64(String base64Str) async {
+    final bytes = base64Decode(base64Str);
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File('${dir.path}/temp.pdf');
+    await file.writeAsBytes(bytes);
+    return file;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -39,7 +39,7 @@ class DefualtButton extends StatelessWidget {
 
             Spacer(),
             Text(title,
-              style: Theme.of(context).textTheme.subtitle2!.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontWeight: FontWeight.w600,
                 fontSize: 30.0,
                 color: kOtherColor

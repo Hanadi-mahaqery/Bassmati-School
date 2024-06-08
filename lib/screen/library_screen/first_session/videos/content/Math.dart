@@ -6,18 +6,25 @@ import 'package:school_app/data_enum/state_types.dart';
 import 'package:school_app/constant.dart';
 
 class MathContentScreen extends StatelessWidget {
-  const MathContentScreen({Key? key}) : super(key: key);
+  final int subjectId;
+  final String subjectName;
+
+  const MathContentScreen({Key? key, required this.subjectId, required this.subjectName}) : super(key: key);
 
   static const String routeName = 'MathContentScreen';
 
   @override
   Widget build(BuildContext context) {
-    // Use BlocProvider.of to access the StudentBloc
     var _bloc = BlocProvider.of<LibraryBloc>(context);
+
+    // جلب الفيديوهات بناءً على subjectId
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _bloc.add(FetchLibraryItemsBySubjectId(subjectId: subjectId));
+    });
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Math'),
+        title: Text(subjectName),
       ),
       body: BlocBuilder<LibraryBloc, LibraryState>(
         bloc: _bloc,
@@ -69,7 +76,6 @@ class MathContentScreen extends StatelessWidget {
               child: Text("Error: ${state.error}"),
             );
           }
-          // Handle other states here if needed
           return const SizedBox();
         },
       ),

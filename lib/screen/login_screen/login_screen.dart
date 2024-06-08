@@ -4,12 +4,12 @@ import 'package:school_app/constant.dart';
 import 'package:school_app/routes.dart';
 import 'package:school_app/screen/home_screen/home_screen.dart';
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
+import 'package:school_app/services/auth_services.dart';
 
 late bool _passwordvisible;
 
 class LoginScreen extends StatefulWidget {
   static String routeName = 'LoginScreen';
-
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -17,11 +17,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  final AuthService _authService = AuthService();
 
-  get EmailValidator => null;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _passwordvisible = true;
   }
@@ -32,16 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
       //when user tap anywhere on the screen == keyboard hides
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-
         appBar: AppBar(
           title: Text('Sign in'),
         ),
         body: ListView(
-
           //divide the body into half
           children: [
             Container(
-
               //media query == fit all screen sizes in same manner
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2.8,
@@ -98,45 +97,76 @@ class _LoginScreenState extends State<LoginScreen> {
                         key: _formKey,
                         child: Column(
                           children: [
-                            sizedBox,
+                            SizedBox(height: kDefaultPadding),
                             buildEmailField(),
                             SizedBox(
                               height: kDefaultPadding,
                             ),
                             buildPasswordField(),
-                            sizedBox,
+                            SizedBox(height: kDefaultPadding),
                             DefualtButton(
-                                onpress: () {
-                                  if(_formKey.currentState!.validate()) {
-                                    //go to next activity
-                                    Navigator.pushNamedAndRemoveUntil(context,
-                                        HomeScreen.routeName, (route) => false);
+                                onpress: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    try {
+                                      await _authService.login(
+                                        _emailController.text,
+                                        _passwordController.text,
+                                      );
+                                      Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        HomeScreen.routeName,
+                                            (route) => false,
+                                      );
+                                    } catch (e) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Text('ERROR'),
+                                            content: Text(
+                                                'Email or password are not valid'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('OK'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text('ERROR'),
+                                          content: Text(
+                                              'Email or password are not valid'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('OK'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   }
-                                  else{
-                                   AlertDialog(
-                                     title: Text('ERROR'),
-                                     content: Text('Email or password are not valid'),
-                                     actions: [
-                                     BackButtonIcon(
-
-                                     )
-                                     ],
-                                   );
-
-                                  }
-
                                 },
                                 title: 'SIGN IN',
                                 iconData: Icons.arrow_forward_outlined),
-                            sizedBox,
+                            SizedBox(height: kDefaultPadding),
                             Align(
-
                               alignment: Alignment.bottomRight,
-                              child:InkWell(
+                              child: InkWell(
                                 onTap: () {
-                                  // يتم استدعاء هذا الكود عند النقر على النص
-                                  // يمكنك هنا تنفيذ التنقل إلى الصفحة الأخرى
-                                  Navigator.pushNamed(context, 'ForgetPassword');
+                                  Navigator.pushNamed(
+                                      context, 'ForgetPassword');
                                 },
                                 child: Text(
                                   'Forget Password?',
@@ -148,8 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                               ),
-
-                            )
+                            ),
                           ],
                         ))
                   ],
@@ -164,6 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextFormField buildEmailField() {
     return TextFormField(
+      controller: _emailController,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.emailAddress,
       style: TextStyle(
@@ -175,21 +205,15 @@ class _LoginScreenState extends State<LoginScreen> {
           labelText: 'Mobile Number/ Email',
           floatingLabelBehavior: FloatingLabelBehavior.always,
           isDense: true,
-          prefixIcon: Icon(Icons.person)
-          //style for form field
-          ),
+          prefixIcon: Icon(Icons.person)),
       autofillHints: [AutofillHints.email],
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value){
-        if(value!.isEmpty ||!RegExp(r'^[a-zA-Z]+$').hasMatch(value)){
-          return 'please enter correct Email';
-        }
-      },
     );
   }
 
   TextFormField buildPasswordField() {
     return TextFormField(
+      controller: _passwordController,
       obscureText: _passwordvisible,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.visiblePassword,
@@ -210,31 +234,11 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             icon: Icon(_passwordvisible
                 ? Icons.visibility_off_outlined
-                : Icons.visibility_off_outlined),
+                : Icons.visibility_outlined),
             iconSize: kDefaultPadding,
           ),
-          prefixIcon: Icon(Icons.password_outlined)
-          //style for form field
-
-          ),
+          prefixIcon: Icon(Icons.password_outlined)),
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value) {
-        if (value!.isEmpty ||!RegExp(r'^[a-zA-Z]+$').hasMatch(value)){
-          return 'Enter a correct password';
-
-        } else if (value.length < 5) {
-      return 'Password should be more than 5 characters';
-    }
-      },
     );
   }
-
- /* String? validateEmail(String? email) {
-    RegExp emailRegex = RegExp(r'^[\w\.-]+\.\w{2,3}(\.\w{2,3})?$');
-    final isEmailValid = emailRegex.hasMatch(email ?? '');
-    if (!isEmailValid){
-      return 'Please enter a valid number';
-    }
-    return null;
-  }*/
 }
