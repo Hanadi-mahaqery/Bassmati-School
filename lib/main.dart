@@ -5,15 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/blocs/student_bloc.dart';
 import 'package:school_app/constant.dart';
+import 'package:school_app/repositories/event_repository.dart';
 import 'package:school_app/repositories/library_repository.dart';
 import 'package:school_app/repositories/pdf_repository.dart';
 import 'package:school_app/repositories/student_repository.dart';
 import 'package:school_app/routes.dart';
+import 'package:school_app/screen/event_screen/event_screen.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart'; // تعديل: استيراد شاشة تسجيل الدخول
 import 'package:school_app/screen/home_screen/home_screen.dart'; // تعديل: استيراد شاشة الرئيسية
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
 import 'package:school_app/services/auth_services.dart'; // تعديل: استيراد خدمة المصادقة
 import 'package:firebase_core/firebase_core.dart';
+import 'blocs/event_bloc.dart';
 import 'blocs/pdf_bloc.dart';
 import 'firebase_options.dart';
 
@@ -59,6 +62,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => PdfBloc(repository: PdfRepository()),
+        ),
+        BlocProvider(
+          create: (context) => EventBloc(repository: EventRepository())..add(FetchEventItemsByLevelId(levelId:1)),
+          child: EventScreen(),
         ),
         // Add any additional bloc providers here
       ],

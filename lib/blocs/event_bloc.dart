@@ -1,20 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
-import 'package:school_app/models/LibraryModel.dart';
-import 'package:school_app/repositories/library_repository.dart';
+import 'package:school_app/models/EventModel.dart';
+import 'package:school_app/repositories/event_repository.dart';
 
-class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
-  final LibraryRepository repository;
+class EventBloc extends Bloc<EventsEvent, EventState> {
+  final EventRepository repository;
 
-  LibraryBloc({required this.repository}) : super(LibraryState()) {
+  EventBloc({required this.repository}) : super(EventState()) {
     on<Submit>(_onSubmit);
-    on<FetchLibraryItemsBySubjectId>(_onFetchLibraryItemsBySubjectId);
+    on<FetchEventItemsByLevelId>(_onFetchEventItemsByLevelId);
   }
 
-  Future<void> _onFetchLibraryItemsBySubjectId(FetchLibraryItemsBySubjectId event, Emitter<LibraryState> emit) async {
+  Future<void> _onFetchEventItemsByLevelId(FetchEventItemsByLevelId event, Emitter<EventState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getByLevel(event.subjectId);
+      var items = await repository.getByLevel(event.levelId);
       emit(state.copyWith(
           currentState: StateTypes.loaded,
           items: items,
@@ -30,7 +30,7 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     }
   }
 
-  Future<void> _onSubmit(Submit event, Emitter<LibraryState> emit) async {
+  Future<void> _onSubmit(Submit event, Emitter<EventState> emit) async {
     emit(state.copyWith(currentState: StateTypes.submitting));
     try {
       var res = await repository.add(event.model);
@@ -56,40 +56,40 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
   }
 }
 
-class LibraryState {
+class EventState {
   final StateTypes currentState;
   final String? error;
-  final List<LibraryModel> items;
+  final List<EventModel> items;
 
-  LibraryState({
+  EventState({
     this.currentState = StateTypes.init,
     this.error,
-    this.items = const []
+    this.items = const [],
   });
 
-  LibraryState copyWith({
+  EventState copyWith({
     StateTypes? currentState,
     String? error,
-    List<LibraryModel>? items
+    List<EventModel>? items,
   }) {
-    return LibraryState(
-        currentState: currentState ?? this.currentState,
-        error: error ?? this.error,
-        items: items ?? this.items
+    return EventState(
+      currentState: currentState ?? this.currentState,
+      error: error ?? this.error,
+      items: items ?? this.items,
     );
   }
 }
 
-abstract class LibraryEvent {}
+abstract class EventsEvent {}
 
-class Submit extends LibraryEvent {
-  final LibraryModel model;
+class Submit extends EventsEvent {
+  final EventModel model;
 
   Submit(this.model);
 }
 
-class FetchLibraryItemsBySubjectId extends LibraryEvent {
-  final int subjectId;
+class FetchEventItemsByLevelId extends EventsEvent {
+  final int levelId;
 
-  FetchLibraryItemsBySubjectId({required this.subjectId});
+  FetchEventItemsByLevelId({required this.levelId});
 }

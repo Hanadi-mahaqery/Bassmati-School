@@ -1,26 +1,26 @@
 import 'package:dio/dio.dart';
-import 'package:school_app/models/LibraryModel.dart';
+import 'package:school_app/models/EventModel.dart';
 
-class LibraryRepository {
+class EventRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Library";
+  String url = "http://192.168.219.81:5257/api/Events";
 
-  LibraryRepository() {
+  EventRepository() {
     dio = Dio();
     dio.options.responseType = ResponseType.json;
     dio.options.receiveTimeout = const Duration(seconds: 60);
     dio.options.connectTimeout = const Duration(seconds: 60);
   }
 
-  Future<List<LibraryModel>> getByLevel(int subjectId) async {
+  Future<List<EventModel>> getByLevel(int levelId) async {
     try {
       await Future.delayed(Duration(seconds: 1));
-      var response = await dio.get('$url/subject/$subjectId');
+      var response = await dio.get('$url/level/$levelId');
       if (response.statusCode == 200) {
         var dt = response.data as List;
-        List<LibraryModel> items = [];
+        List<EventModel> items = [];
         dt.forEach((e) {
-          items.add(LibraryModel.fromJson(e));
+          items.add(EventModel.fromJson(e));
         });
         return items;
       }
@@ -30,11 +30,13 @@ class LibraryRepository {
     }
   }
 
-  Future<bool> add(LibraryModel obj) async {
+  Future<bool> add(EventModel obj) async {
     var dt = {
-      "content": obj.content,
-      "link": obj.link,
-      "subjectId": obj.subjectId
+      "eventName": obj.eventName,
+      "eventDesc": obj.eventDesc,
+      "eventDate": obj.eventDate,
+      "eventLocation": obj.eventLocation,
+      "levelId": obj.levelId,
     };
     try {
       await Future.delayed(Duration(seconds: 1));

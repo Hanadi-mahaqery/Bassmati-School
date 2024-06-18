@@ -6,6 +6,7 @@ import 'package:school_app/screen/all_sign/all_sign.dart';
 import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
 import 'package:school_app/screen/attendence_screen/attendence_screen.dart';
 import 'package:school_app/screen/event_screen/event_screen.dart';
+import 'package:school_app/screen/event_screen/levels_events/level1_events.dart';
 import 'package:school_app/screen/exam_schedule/exam_schedule.dart';
 import 'package:school_app/screen/fee_screen/fee_screen.dart';
 import 'package:school_app/screen/library_screen/first_session/books/books_first_session.dart';
@@ -188,6 +189,7 @@ Map<String, WidgetBuilder> routes ={
   ArabicPdfContentScreen.routeName:(context)=>ArabicPdfContentScreen(subjectId: 2, subjectName: 'Arabic'),
   EnglishPdfContentScreen.routeName:(context)=>EnglishPdfContentScreen(subjectId: 6, subjectName: 'English'),
   SciencePdfContentScreen.routeName:(context)=>SciencePdfContentScreen(subjectId: 7, subjectName: 'Science'),
+  Level1Events.routeName:(context)=>Level1Events(),
 
 
 
