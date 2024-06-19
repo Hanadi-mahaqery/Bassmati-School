@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           create: (_) => PdfBloc(repository: PdfRepository()),
         ),
         BlocProvider(
-          create: (context) => EventBloc(repository: EventRepository())..add(FetchEventItemsByLevelId(levelId:1)),
+          create: (context) => EventBloc(repository: EventRepository())..add(LoadEventData()),
           child: EventScreen(),
         ),
         // Add any additional bloc providers here

@@ -8,27 +8,26 @@ class EventBloc extends Bloc<EventsEvent, EventState> {
 
   EventBloc({required this.repository}) : super(EventState()) {
     on<Submit>(_onSubmit);
-    on<FetchEventItemsByLevelId>(_onFetchEventItemsByLevelId);
+    on<LoadEventData>(_onLoadData);
   }
 
-  Future<void> _onFetchEventItemsByLevelId(FetchEventItemsByLevelId event, Emitter<EventState> emit) async {
+  Future<void> _onLoadData(LoadEventData event, Emitter<EventState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getByLevel(event.levelId);
+      var items = await repository.getAll();
       emit(state.copyWith(
-          currentState: StateTypes.loaded,
-          items: items,
-          error: null
+        currentState: StateTypes.loaded,
+        items: items,
+        error: null,
       ));
     } catch (ex) {
-      emit(
-          state.copyWith(
-              currentState: StateTypes.error,
-              error: "Error: ${ex}"
-          )
-      );
+      emit(state.copyWith(
+        currentState: StateTypes.error,
+        error: "Error: ${ex}",
+      ));
     }
   }
+
 
   Future<void> _onSubmit(Submit event, Emitter<EventState> emit) async {
     emit(state.copyWith(currentState: StateTypes.submitting));
@@ -88,8 +87,5 @@ class Submit extends EventsEvent {
   Submit(this.model);
 }
 
-class FetchEventItemsByLevelId extends EventsEvent {
-  final int levelId;
+class LoadEventData extends EventsEvent {}
 
-  FetchEventItemsByLevelId({required this.levelId});
-}

@@ -7,6 +7,8 @@ import 'package:school_app/routes.dart';
 import 'package:school_app/screen/home_screen/home_screen.dart';
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
 
+import '../ParentHomeScreen/ParentHomeScreen.dart';
+
 late bool _passwordvisible;
 
 class ParentLogin extends StatefulWidget {
@@ -112,7 +114,7 @@ class _ParentLoginState extends State<ParentLogin> {
                                   if(_formKey.currentState!.validate()) {
                                     //go to next activity
                                     Navigator.pushNamedAndRemoveUntil(context,
-                                        HomeScreen.routeName, (route) => false);
+                                        ParentHomeScreen.routeName, (route) => false);
                                   }
                                   else{
                                     AlertDialog(

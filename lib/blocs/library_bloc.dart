@@ -14,7 +14,7 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
   Future<void> _onFetchLibraryItemsBySubjectId(FetchLibraryItemsBySubjectId event, Emitter<LibraryState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getByLevel(event.subjectId);
+      var items = await repository.getBySubject(event.subjectId);
       emit(state.copyWith(
           currentState: StateTypes.loaded,
           items: items,

@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/exam_schedule/data/exam_data.dart';
-import 'package:school_app/screen/library_screen/first_session/videos/data/Arabic_content_data.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import '../../../../../blocs/library_bloc.dart';
 import '../../../../../data_enum/state_types.dart';
-
-
-
 
 class ArabicContentScreen extends StatelessWidget {
   final int subjectId;

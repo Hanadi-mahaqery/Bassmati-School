@@ -29,7 +29,7 @@ class EventModel {
     map['eventId'] = eventId;
     map['eventName'] = eventName;
     map['eventDesc'] = eventDesc;
-    map['eventDate'] = eventDate;
+   // map['eventDate'] = eventDate;
     map['eventLocation'] = eventLocation;
     map['levelId'] = levelId;
     return map;

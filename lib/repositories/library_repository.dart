@@ -12,7 +12,7 @@ class LibraryRepository {
     dio.options.connectTimeout = const Duration(seconds: 60);
   }
 
-  Future<List<LibraryModel>> getByLevel(int subjectId) async {
+  Future<List<LibraryModel>> getBySubject(int subjectId) async {
     try {
       await Future.delayed(Duration(seconds: 1));
       var response = await dio.get('$url/subject/$subjectId');

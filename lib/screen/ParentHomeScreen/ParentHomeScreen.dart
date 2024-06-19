@@ -155,6 +155,18 @@ class ParentHomeScreen extends StatelessWidget {
                             title: 'Notifications'),
                         HomeCard(
                             onPress: () {
+                              Navigator.pushNamed(context, NotificationScreen.routeName);
+
+                            },
+                            icon: 'assets/icons/meeting.png',
+                            title: 'Meetings'),
+
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        HomeCard(
+                            onPress: () {
                               showDialog(context: context, builder: (BuildContext context){
                                 return AlertDialog(
                                   title: Text('Log out'),
@@ -174,7 +186,7 @@ class ParentHomeScreen extends StatelessWidget {
                             icon: 'assets/icons/logout.png',
                             title: 'Log out'),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

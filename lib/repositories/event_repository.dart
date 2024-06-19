@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:school_app/models/EventModel.dart';
 
@@ -12,20 +14,18 @@ class EventRepository {
     dio.options.connectTimeout = const Duration(seconds: 60);
   }
 
-  Future<List<EventModel>> getByLevel(int levelId) async {
+  Future<List<EventModel>> getAll() async {
     try {
       await Future.delayed(Duration(seconds: 1));
-      var response = await dio.get('$url/level/$levelId');
+      var response = await dio.get(url);
       if (response.statusCode == 200) {
         var dt = response.data as List;
-        List<EventModel> items = [];
-        dt.forEach((e) {
-          items.add(EventModel.fromJson(e));
-        });
+        List<EventModel> items = dt.map((e) => EventModel.fromJson(e)).toList();
         return items;
       }
       throw Exception("Response Error ${response.statusMessage}");
     } catch (ex) {
+      log("Error in getAll: $ex");
       rethrow;
     }
   }
