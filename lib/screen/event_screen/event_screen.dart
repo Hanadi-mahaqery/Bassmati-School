@@ -25,7 +25,7 @@ class EventScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 3.0,
             child: Column(
               children: [
-                Image.asset('assets/icons/eventsLevel.png', height: 150.0, width: 150.0),
+                Image.asset('assets/icons/events.png', height: 150.0, width: 150.0),
                 SizedBox(
                   height: kDefaultPadding / 2,
                 ),

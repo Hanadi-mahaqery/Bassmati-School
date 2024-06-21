@@ -2,12 +2,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_app/blocs/examSchedule_bloc.dart';
+import 'package:school_app/blocs/intallment_bloc.dart';
 import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/blocs/student_bloc.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/repositories/event_repository.dart';
+import 'package:school_app/repositories/examSchedule_repository.dart';
+import 'package:school_app/repositories/install_repository.dart';
 import 'package:school_app/repositories/library_repository.dart';
+import 'package:school_app/repositories/meeting_repository.dart';
 import 'package:school_app/repositories/pdf_repository.dart';
+
 import 'package:school_app/repositories/student_repository.dart';
 import 'package:school_app/routes.dart';
 import 'package:school_app/screen/event_screen/event_screen.dart';
@@ -17,6 +23,7 @@ import 'package:school_app/screen/splash_screen/splash_screen.dart';
 import 'package:school_app/services/auth_services.dart'; // تعديل: استيراد خدمة المصادقة
 import 'package:firebase_core/firebase_core.dart';
 import 'blocs/event_bloc.dart';
+import 'blocs/meeting_bloc.dart';
 import 'blocs/pdf_bloc.dart';
 import 'firebase_options.dart';
 
@@ -66,6 +73,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => EventBloc(repository: EventRepository())..add(LoadEventData()),
           child: EventScreen(),
+        ),
+        BlocProvider<MeetingBloc>(
+          create: (context) => MeetingBloc(repository:  MeetingRepository())..add(LoadMeetingData()),
+        ),
+        BlocProvider<ExamScheduleBloc>(
+          create: (context) => ExamScheduleBloc(repository:  ExamScheduleRepository())..add(LoadExamScheduleData()),
+        ),
+        BlocProvider<InstallmentBloc>(
+          create: (context) => InstallmentBloc(repository:  InstallmentRepository())..add(LoadInstallmentData()),
         ),
         // Add any additional bloc providers here
       ],

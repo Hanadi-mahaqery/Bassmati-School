@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/constant.dart';
+import 'package:school_app/models/StuProfModel.dart';
+import 'package:school_app/blocs/stuProf_bloc.dart';
+import 'package:school_app/data_enum/state_types.dart';
+import 'dart:convert';
+
+import '../../repositories/stuProf_repository.dart'; // for base64Decode
 
 class StudentProfile extends StatelessWidget {
   const StudentProfile({super.key});
   static String routeName = 'StudentProfile';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,84 +31,96 @@ class StudentProfile extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   )
                 ],
-
-                //
               ),
             ),
           )
         ],
       ),
-      body: Container(
-        color: kOtherColor,
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 150,
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(kDefaultPadding * 2),
-                  bottomLeft: Radius.circular(kDefaultPadding * 2),
+      body: BlocProvider(
+        create: (context) => StuProfBloc(repository: StuProfRepository())
+          ..add(FetchStudentItemsByStudentId(subjectId: 1)), // Replace with the actual student ID
+        child: BlocBuilder<StuProfBloc, StuProfState>(
+          builder: (context, state) {
+            if (state.currentState == StateTypes.loading) {
+              return Center(child: CircularProgressIndicator());
+            } else if (state.currentState == StateTypes.loaded) {
+              final student = state.items.isNotEmpty ? state.items.first : null;
+              if (student == null) {
+                return Center(child: Text("No data found"));
+              }
+              return Container(
+                color: kOtherColor,
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        color: kPrimaryColor,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(kDefaultPadding * 2),
+                          bottomLeft: Radius.circular(kDefaultPadding * 2),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            maxRadius: 50.0,
+                            minRadius: 50.0,
+                            backgroundColor: kSecondaryColor,
+                            backgroundImage: student.stuImage != null
+                                ? MemoryImage(base64Decode(student.stuImage!))
+                                : null,
+                            child: student.stuImage == null
+                                ? Icon(Icons.person, size: 50)
+                                : null,
+                          ),
+                          kWidthSizedBox,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                student.stuName ?? 'Unknown',
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    sizedBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ProfileDetail(title: 'Level', value: '3'),
+                        ProfileDetail(title: 'Academic Year', value: '2023-2024'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ProfileDetail(title: 'Class', value: 'Class A'),
+                        ProfileDetail(title: 'Session', value: '1'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ProfileDetail(title: 'Age', value: student.age ?? 'Unknown'),
+                        ProfileDetail(title: 'Admission Year', value: '2020'),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    maxRadius: 50.0,
-                    minRadius: 50.0,
-                    backgroundColor: kSecondaryColor,
-                    backgroundImage: AssetImage('assets/images/kid.jpg'),
-                  ),
-                  kWidthSizedBox,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Fatima Mohammed',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        'Level 3 Class A',
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              fontSize: 14.0,
-                            ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            sizedBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetail(
-                    title: 'Registration Number', value: '2023-019988'),
-                ProfileDetail(title: 'Academic Year ', value: '2023-2024'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetail(title: 'Admission Class', value: 'Class A'),
-                ProfileDetail(title: 'Admission Number ', value: '000231'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetail(title: 'Date of Admission', value: '3-July-2020'),
-                ProfileDetail(title: 'Date of Birth', value: '15-may-2018'),
-              ],
-            ),
-            ProfileDetailColumn(title: 'Email', value: 'Fatima.mo@gmail.com'),
-            ProfileDetailColumn(title: 'Father Name', value: 'Mohammed Ali'),
-            ProfileDetailColumn(title: 'Mother Name', value: 'Aysha Bassam'),
-            ProfileDetailColumn(title: 'Phone Number', value: '00976775718371'),
-          ],
+              );
+            } else if (state.currentState == StateTypes.error) {
+              return Center(child: Text("Error: ${state.error}"));
+            } else {
+              return Center(child: Text("Unknown state"));
+            }
+          },
         ),
       ),
     );
@@ -128,7 +148,6 @@ class ProfileDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
-
                 children: [
                   Text(
                     title,
@@ -154,59 +173,8 @@ class ProfileDetail extends StatelessWidget {
                   )
                 ],
               ),
-             // Icon(Icons.lock_outline, size: 20.0),
             ],
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class ProfileDetailColumn extends StatelessWidget {
-  const ProfileDetailColumn(
-      {super.key, required this.title, required this.value});
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: kTextLightColor,
-                      fontSize: 15.0,
-                    ),
-              ),
-              kHalfSizedBox,
-              Text(
-                value,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: kTextBlackColor,
-                      fontSize: 15.0,
-                    ),
-              ),
-              kHalfSizedBox,
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 1.1,
-                child: Divider(
-                  thickness: 1.0,
-                ),
-              )
-            ],
-          ),
-          Icon(
-            Icons.lock_outline,
-            size: 20.0,
-          )
         ],
       ),
     );

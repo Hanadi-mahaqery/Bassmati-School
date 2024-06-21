@@ -1,12 +1,12 @@
-class PdfModel {
-  PdfModel({
+class StuProfModel {
+  StuProfModel({
     this.id,
     this.fileName,
     this.fileData,
     this.subId,
   });
 
-  PdfModel.fromJson(dynamic json) {
+  StuProfModel.fromJson(dynamic json) {
     id = json['id'];
     fileName = json['fileName'];
     fileData = json['fileData'];

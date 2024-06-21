@@ -33,7 +33,7 @@ class PdfBloc extends Bloc<PdfEvent, PdfState> {
 class PdfState {
   final StateTypes currentState;
   final String? error;
-  final List<PdfModel> items;
+  final List<StuProfModel> items;
 
   PdfState({
     this.currentState = StateTypes.init,
@@ -44,7 +44,7 @@ class PdfState {
   PdfState copyWith({
     StateTypes? currentState,
     String? error,
-    List<PdfModel>? items
+    List<StuProfModel>? items
   }) {
     return PdfState(
         currentState: currentState ?? this.currentState,

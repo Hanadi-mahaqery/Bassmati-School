@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:school_app/EditStudentPage.dart';
+import 'package:school_app/screen/Meetings/meetings_screen.dart';
 import 'package:school_app/screen/ParentHomeScreen/ParentHomeScreen.dart';
 import 'package:school_app/screen/all_sign/all_sign.dart';
 import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
@@ -188,6 +189,7 @@ Map<String, WidgetBuilder> routes ={
   ArabicPdfContentScreen.routeName:(context)=>ArabicPdfContentScreen(subjectId: 2, subjectName: 'Arabic'),
   EnglishPdfContentScreen.routeName:(context)=>EnglishPdfContentScreen(subjectId: 6, subjectName: 'English'),
   SciencePdfContentScreen.routeName:(context)=>SciencePdfContentScreen(subjectId: 7, subjectName: 'Science'),
+  MeetingScreen.routeName:(context)=>MeetingScreen(),
 
 
 

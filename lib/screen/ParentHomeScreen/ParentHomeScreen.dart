@@ -16,6 +16,7 @@ import 'package:school_app/screen/result_screen/sessions_screen/session_screen.d
 import 'package:school_app/screen/schedule_screen/schedule_screen.dart';
 import 'package:school_app/screen/student_profile/student_profile.dart';
 
+import '../Meetings/meetings_screen.dart';
 import '../home_screen/widgets/student_data.dart';
 import 'widgets/student_data.dart';
 
@@ -155,15 +156,17 @@ class ParentHomeScreen extends StatelessWidget {
                             title: 'Notifications'),
                         HomeCard(
                             onPress: () {
-                              Navigator.pushNamed(context, NotificationScreen.routeName);
+                              Navigator.pushNamed(context, MeetingScreen.routeName);
 
                             },
-                            icon: 'assets/icons/meeting.png',
+                            icon: 'assets/icons/parent.png',
                             title: 'Meetings'),
 
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+
                       children: [
                         HomeCard(
                             onPress: () {
