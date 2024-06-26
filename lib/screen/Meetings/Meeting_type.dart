@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/login_screen/login_screen.dart';
-import 'package:school_app/screen/parent_login/parent_log.dart';
-import 'package:school_app/screen/result_screen/session1/months/result2_screen.dart';
-import 'package:school_app/screen/result_screen/session1/months/result3_screen.dart';
-import 'package:school_app/screen/result_screen/total_screen/total1_screen.dart';
+import 'package:school_app/screen/Meetings/PreMeetingScreen.dart';
+import 'package:school_app/screen/Meetings/inCome_meetings_screen.dart';
 
-import 'months/result_screen.dart';
 
-class MonthsResults extends StatelessWidget {
-  const MonthsResults({super.key});
-  static String routeName = 'MonthsResults';
+class MeetingTypeScreen extends StatelessWidget {
+  const MeetingTypeScreen({super.key});
+  static String routeName = 'MeetingTypeScreen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Months'),
+        title: Text('Meetings'),
       ),
-      body: ListView(
 
+      body: ListView(
         children: [
           Container(
-
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height /3.0,
             child: Column(
               children: [
-             //   Image.asset('assets/images/boy.png',height: 150.0,width: 150.0,),
+                //   Image.asset('assets/images/boy.png',height: 150.0,width: 150.0,),
                 SizedBox(
                   height: kDefaultPadding /2,
                 ),
@@ -54,7 +49,7 @@ class MonthsResults extends StatelessWidget {
                 SizedBox(
                   height: kDefaultPadding,
                 ),
-              /*  Text(
+                /*  Text(
                   'Sign in to continue',
                   style: Theme.of(context).textTheme.bodySmall,
                 )*/
@@ -76,18 +71,14 @@ class MonthsResults extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MonthNumber(title: 'Month 1', onPress:(){
-                      Navigator.pushNamed(context, ResultScreen.routeName);
+                    SessionNumber(title: 'الاجتماعات القادمة', onPress:(){
+                      Navigator.pushNamed(context, InComeMeetingScreen.routeName);
                     }) ,
-                    MonthNumber(title: 'Month 2', onPress:(){
-                      Navigator.pushNamed(context, Result2Screen.routeName);
+                    SessionNumber(title: 'الاجتماعات السابقة', onPress:(){
+                      Navigator.pushNamed(context, PreMeetingScreen.routeName);
                     }) ,
-                    MonthNumber(title: 'Month 3', onPress:(){
-                      Navigator.pushNamed(context, Result3Screen.routeName);
-                    }),
-                    MonthNumber(title: 'Session 1 Total', onPress:(){
-                      Navigator.pushNamed(context, Total1Screen.routeName);
-                    })
+
+
 
                   ],
                 )
@@ -104,8 +95,8 @@ class MonthsResults extends StatelessWidget {
 }
 
 
-class MonthNumber extends StatelessWidget {
-  const MonthNumber({super.key, required this.title, required this.onPress});
+class SessionNumber extends StatelessWidget {
+  const SessionNumber({super.key, required this.title, required this.onPress});
   final String title;
   final VoidCallback onPress;
 
@@ -127,7 +118,7 @@ class MonthNumber extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-           // Image.asset(icon, height: 40.0, width: 40.0, color: kOtherColor),
+            // Image.asset(icon, height: 40.0, width: 40.0, color: kOtherColor),
             Text(
               title,
               textAlign: TextAlign.center,

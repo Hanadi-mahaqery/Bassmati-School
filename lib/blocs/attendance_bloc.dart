@@ -1,17 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
-import 'package:school_app/models/ExamScheduleModel.dart';
-import 'package:school_app/repositories/examSchedule_repository.dart';
+import 'package:school_app/models/AttendanceModel.dart';
+import 'package:school_app/repositories/attendance_repository.dart';
 
-class ExamScheduleBloc extends Bloc<ExamScheduleEvent, ExamScheduleState> {
-  final ScheduleRepository repository;
+class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
+  final AttendanceRepository repository;
 
-  ExamScheduleBloc({required this.repository}) : super(ExamScheduleState()) {
+  AttendanceBloc({required this.repository}) : super(AttendanceState()) {
     on<Submit>(_onSubmit);
-    on<LoadExamScheduleData>(_onLoadData);
+    on<LoadAttendanceData>(_onLoadData);
   }
 
-  Future<void> _onLoadData(LoadExamScheduleData event, Emitter<ExamScheduleState> emit) async {
+  Future<void> _onLoadData(LoadAttendanceData event, Emitter<AttendanceState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
       var items = await repository.getAll();
@@ -29,7 +29,7 @@ class ExamScheduleBloc extends Bloc<ExamScheduleEvent, ExamScheduleState> {
   }
 
 
-  Future<void> _onSubmit(Submit event, Emitter<ExamScheduleState> emit) async {
+  Future<void> _onSubmit(Submit event, Emitter<AttendanceState> emit) async {
     emit(state.copyWith(currentState: StateTypes.submitting));
     try {
       var res = await repository.add(event.model);
@@ -55,23 +55,23 @@ class ExamScheduleBloc extends Bloc<ExamScheduleEvent, ExamScheduleState> {
   }
 }
 
-class ExamScheduleState {
+class AttendanceState {
   final StateTypes currentState;
   final String? error;
-  final List<ScheduleModel> items;
+  final List<AttendanceModel> items;
 
-  ExamScheduleState({
+  AttendanceState({
     this.currentState = StateTypes.init,
     this.error,
     this.items = const [],
   });
 
-  ExamScheduleState copyWith({
+  AttendanceState copyWith({
     StateTypes? currentState,
     String? error,
-    List<ScheduleModel>? items,
+    List<AttendanceModel>? items,
   }) {
-    return ExamScheduleState(
+    return AttendanceState(
       currentState: currentState ?? this.currentState,
       error: error ?? this.error,
       items: items ?? this.items,
@@ -79,13 +79,13 @@ class ExamScheduleState {
   }
 }
 
-abstract class ExamScheduleEvent {}
+abstract class AttendanceEvent {}
 
-class Submit extends ExamScheduleEvent {
-  final ScheduleModel model;
+class Submit extends AttendanceEvent {
+  final AttendanceModel model;
 
   Submit(this.model);
 }
 
-class LoadExamScheduleData extends ExamScheduleEvent {}
+class LoadAttendanceData extends AttendanceEvent {}
 

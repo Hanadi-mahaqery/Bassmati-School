@@ -1,26 +1,26 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:school_app/models/ExamScheduleModel.dart';
+import 'package:school_app/models/AttendanceModel.dart';
 
-class ScheduleRepository {
+class AttendanceRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Exam_Schedules";
+  String url = "http://192.168.219.81:5257/api/Attendance";
 
-  ScheduleRepository() {
+  AttendanceRepository() {
     dio = Dio();
     dio.options.responseType = ResponseType.json;
     dio.options.receiveTimeout = const Duration(seconds: 60);
     dio.options.connectTimeout = const Duration(seconds: 60);
   }
 
-  Future<List<ScheduleModel>> getAll() async {
+  Future<List<AttendanceModel>> getAll() async {
     try {
       await Future.delayed(Duration(seconds: 1));
       var response = await dio.get(url);
       if (response.statusCode == 200) {
         var dt = response.data as List;
-        List<ScheduleModel> items = dt.map((e) => ScheduleModel.fromJson(e)).toList();
+        List<AttendanceModel> items = dt.map((e) => AttendanceModel.fromJson(e)).toList();
         return items;
       }
       throw Exception("Response Error ${response.statusMessage}");
@@ -30,13 +30,11 @@ class ScheduleRepository {
     }
   }
 
-  Future<bool> add(ScheduleModel obj) async {
+  Future<bool> add(AttendanceModel obj) async {
     var dt = {
-      "examDate": obj.examDate,
-      "examDay": obj.examDay,
-      "examTime": obj.examTime,
-      "subName": obj.subName,
-      // "levelId": obj.,
+      "attendDate": obj.attendDate,
+      "attendStatus": obj.attendStatus,
+
     };
     try {
       await Future.delayed(Duration(seconds: 1));

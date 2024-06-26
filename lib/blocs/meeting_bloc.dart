@@ -1,54 +1,29 @@
 import 'package:bloc/bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
-import 'package:school_app/models/MeetingModel.dart';
+import 'package:school_app/models/InComeMeetingModel.dart';
 import 'package:school_app/repositories/meeting_repository.dart';
 
 class MeetingBloc extends Bloc<MeetingEvent, MeetingState> {
   final MeetingRepository repository;
 
   MeetingBloc({required this.repository}) : super(MeetingState()) {
-    on<Submit>(_onSubmit);
-    on<LoadMeetingData>(_onLoadData);
+    on<FetchMeetingItemsByStatues>(_onFetchMeetingItemsByStatues);
   }
 
-  Future<void> _onLoadData(LoadMeetingData event, Emitter<MeetingState> emit) async {
+  Future<void> _onFetchMeetingItemsByStatues(FetchMeetingItemsByStatues event, Emitter<MeetingState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getAll();
+      var items = await repository.getByStatues(event.meetStatues);
       emit(state.copyWith(
-        currentState: StateTypes.loaded,
-        items: items,
-        error: null,
+          currentState: StateTypes.loaded,
+          items: items,
+          error: null
       ));
-    } catch (ex) {
-      emit(state.copyWith(
-        currentState: StateTypes.error,
-        error: "Error: ${ex}",
-      ));
-    }
-  }
-
-
-  Future<void> _onSubmit(Submit event, Emitter<MeetingState> emit) async {
-    emit(state.copyWith(currentState: StateTypes.submitting));
-    try {
-      var res = await repository.add(event.model);
-      if (res) {
-        emit(state.copyWith(
-            currentState: StateTypes.submitted,
-            error: null
-        ));
-      } else {
-        emit(state.copyWith(
-            currentState: StateTypes.error,
-            error: "Error: Adding Field"
-        ));
-      }
     } catch (ex) {
       emit(
           state.copyWith(
               currentState: StateTypes.error,
-              error: "Exp: ${ex}"
+              error: "Error: ${ex}"
           )
       );
     }
@@ -58,34 +33,31 @@ class MeetingBloc extends Bloc<MeetingEvent, MeetingState> {
 class MeetingState {
   final StateTypes currentState;
   final String? error;
-  final List<ExamScheduleModel> items;
+  final List<MeetingModel> items;
 
   MeetingState({
     this.currentState = StateTypes.init,
     this.error,
-    this.items = const [],
+    this.items = const []
   });
 
   MeetingState copyWith({
     StateTypes? currentState,
     String? error,
-    List<ExamScheduleModel>? items,
+    List<MeetingModel>? items
   }) {
     return MeetingState(
-      currentState: currentState ?? this.currentState,
-      error: error ?? this.error,
-      items: items ?? this.items,
+        currentState: currentState ?? this.currentState,
+        error: error ?? this.error,
+        items: items ?? this.items
     );
   }
 }
 
 abstract class MeetingEvent {}
 
-class Submit extends MeetingEvent {
-  final ExamScheduleModel model;
+class FetchMeetingItemsByStatues extends MeetingEvent {
+  final int meetStatues;
 
-  Submit(this.model);
+  FetchMeetingItemsByStatues({required this.meetStatues});
 }
-
-class LoadMeetingData extends MeetingEvent {}
-

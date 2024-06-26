@@ -13,7 +13,7 @@ class StuProfBloc extends Bloc<StuProfEvent, StuProfState> {
   Future<void> _onFetchStudentItemsByStudentId(FetchStudentItemsByStudentId event, Emitter<StuProfState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getByStudent(event.subjectId);
+      var items = await repository.getByStudent(event.StudentId);
       emit(state.copyWith(
           currentState: StateTypes.loaded,
           items: items,
@@ -57,7 +57,7 @@ class StuProfState {
 abstract class StuProfEvent {}
 
 class FetchStudentItemsByStudentId extends StuProfEvent {
-  final int subjectId;
+  final int StudentId;
 
-  FetchStudentItemsByStudentId({required this.subjectId});
+  FetchStudentItemsByStudentId({required this.StudentId});
 }

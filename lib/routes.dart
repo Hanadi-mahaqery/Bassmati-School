@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:school_app/EditStudentPage.dart';
-import 'package:school_app/screen/Meetings/meetings_screen.dart';
+import 'package:school_app/screen/Meetings/Meeting_type.dart';
+import 'package:school_app/screen/Meetings/PreMeetingScreen.dart';
+import 'package:school_app/screen/Meetings/inCome_meetings_screen.dart';
 import 'package:school_app/screen/ParentHomeScreen/ParentHomeScreen.dart';
 import 'package:school_app/screen/all_sign/all_sign.dart';
 import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
@@ -96,6 +98,7 @@ import 'package:school_app/student.dart';
 
 
 
+
 Map<String, WidgetBuilder> routes ={
   //all screens registered here
   SplashScreen.routeName :(context)=> SplashScreen(),
@@ -129,7 +132,7 @@ Map<String, WidgetBuilder> routes ={
   VideosSecondSession.routName:(context)=>VideosSecondSession(),
   LibraryType.routName:(context)=>LibraryType(),
   LibraryType2.routName:(context)=>LibraryType2(),
-  QuranDegree.routName:(context)=>QuranDegree(),
+  QuranDegree.routeName:(context)=>QuranDegree(),
   EnglishDegree.routName:(context)=>EnglishDegree(),
   ArabicDegree.routName:(context)=>ArabicDegree(),
   MathDegree.routName:(context)=>MathDegree(),
@@ -189,10 +192,9 @@ Map<String, WidgetBuilder> routes ={
   ArabicPdfContentScreen.routeName:(context)=>ArabicPdfContentScreen(subjectId: 2, subjectName: 'Arabic'),
   EnglishPdfContentScreen.routeName:(context)=>EnglishPdfContentScreen(subjectId: 6, subjectName: 'English'),
   SciencePdfContentScreen.routeName:(context)=>SciencePdfContentScreen(subjectId: 7, subjectName: 'Science'),
-  MeetingScreen.routeName:(context)=>MeetingScreen(),
-
-
-
+  InComeMeetingScreen.routeName:(context)=>InComeMeetingScreen(meetStatus: 1,/*meetStatus: 1,*/),
+  PreMeetingScreen.routeName:(context)=>PreMeetingScreen(/*meetStatues: 0*/),
+  MeetingTypeScreen.routeName:(context)=>MeetingTypeScreen(),
 
 
 };

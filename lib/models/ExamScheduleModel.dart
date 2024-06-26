@@ -1,5 +1,5 @@
-class InstallModel {
-  InstallModel({
+class ScheduleModel {
+  ScheduleModel({
     this.examId,
     this.subName,
     this.examTime,
@@ -7,7 +7,7 @@ class InstallModel {
     this.examDay,
   });
 
-  InstallModel.fromJson(dynamic json) {
+  ScheduleModel.fromJson(dynamic json) {
     examId = json['examId'];
     subName = json['subName'];
     examTime = json['examTime'];

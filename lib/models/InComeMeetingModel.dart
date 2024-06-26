@@ -1,35 +1,40 @@
-class ExamScheduleModel {
-  ExamScheduleModel({
+class MeetingModel {
+  MeetingModel({
     this.meetId,
     this.topics,
-    this.decisions,
     this.meetTime,
     this.meetLink,
+    this.decisions,
+    this.meetStatues,
   });
 
-  ExamScheduleModel.fromJson(dynamic json) {
+  MeetingModel.fromJson(dynamic json) {
     meetId = json['meetId'];
     topics = json['topics'];
-    decisions = json['decisions'];
     meetTime = json['meetTime'];
     meetLink = json['meetLink'];
+    decisions = json['decisions'];
+    meetStatues = json['meetStatues'];
 
 
   }
 
   int? meetId;
   String? topics;
-  String? decisions;
   String? meetTime;
   String? meetLink;
+  String? decisions;
+  int? meetStatues;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['meetId'] = meetId;
     map['topics'] = topics;
-    map['decisions'] = decisions;
     map['meetTime'] = meetTime;
     map['meetLink'] = meetLink;
+    map['decisions'] = decisions;
+    map['meetStatues'] = meetStatues;
 
 
     return map;

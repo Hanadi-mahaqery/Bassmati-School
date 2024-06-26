@@ -38,7 +38,7 @@ class StudentProfile extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => StuProfBloc(repository: StuProfRepository())
-          ..add(FetchStudentItemsByStudentId(subjectId: 1)), // Replace with the actual student ID
+          ..add(FetchStudentItemsByStudentId(StudentId: 1)), // Replace with the actual student ID
         child: BlocBuilder<StuProfBloc, StuProfState>(
           builder: (context, state) {
             if (state.currentState == StateTypes.loading) {
