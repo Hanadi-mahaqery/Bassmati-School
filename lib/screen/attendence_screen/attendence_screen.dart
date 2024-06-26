@@ -34,12 +34,12 @@ class AttendanceScreen extends StatelessWidget {
                   focusedDay: DateTime.now(),
                   calendarFormat: CalendarFormat.month,
                   calendarStyle: CalendarStyle(
-                    weekendTextStyle: TextStyle(color: Colors.purple, fontSize: 12),
+                    weekendTextStyle: TextStyle(color: Colors.deepPurple, fontSize: 12),
                     defaultTextStyle: TextStyle(fontSize: 12),
                     cellPadding: EdgeInsets.all(4.0), // Reduced padding for cells
                   ),
                   daysOfWeekStyle: DaysOfWeekStyle(
-                    weekendStyle: TextStyle(color: Colors.purple, fontSize: 12),
+                    weekendStyle: TextStyle(color: Colors.deepPurple, fontSize: 12),
                     weekdayStyle: TextStyle(fontSize: 12),
                   ),
                   headerStyle: HeaderStyle(
@@ -61,7 +61,7 @@ class AttendanceScreen extends StatelessWidget {
                         margin: EdgeInsets.all(4.0), // Reduced margin for cells
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: isAbsent ? Colors.red : isWeekend ? Colors.purple : null,
+                          color: isAbsent ? Colors.red : isWeekend ? Colors.deepPurple : null,
                           shape: BoxShape.circle,
                         ),
                         child: Text(
