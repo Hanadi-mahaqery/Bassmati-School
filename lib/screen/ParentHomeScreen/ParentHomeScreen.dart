@@ -1,23 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/all_sign/all_sign.dart';
 import 'package:school_app/screen/assignment_screen/assignment_screen.dart';
 import 'package:school_app/screen/attendence_screen/attendence_screen.dart';
 import 'package:school_app/screen/event_screen/event_screen.dart';
 import 'package:school_app/screen/exam_schedule/exam_schedule.dart';
 import 'package:school_app/screen/fee_screen/fee_screen.dart';
-import 'package:school_app/screen/library_screen/library_screen.dart';
 import 'package:school_app/screen/library_screen/lib_sessions_screen.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/notification_screen/notification_screen.dart';
-import 'package:school_app/screen/result_screen/session1/months_result.dart';
-import 'package:school_app/screen/result_screen/session1/months/result_screen.dart';
 import 'package:school_app/screen/result_screen/sessions_screen/session_screen.dart';
 import 'package:school_app/screen/schedule_screen/schedule_screen.dart';
 import 'package:school_app/screen/student_profile/student_profile.dart';
@@ -25,9 +17,9 @@ import 'package:school_app/screen/student_profile/student_profile.dart';
 import '../../blocs/stuProf_bloc.dart';
 import '../../data_enum/state_types.dart';
 import '../Meetings/Meeting_type.dart';
-import '../Meetings/inCome_meetings_screen.dart';
+import '../all_sign/all_sign.dart';
 import '../home_screen/widgets/student_data.dart';
-import 'widgets/student_data.dart';
+
 class ParentHomeScreen extends StatelessWidget {
   const ParentHomeScreen({Key? key}) : super(key: key);
 
@@ -50,16 +42,27 @@ class ParentHomeScreen extends StatelessWidget {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        maxRadius: 50.0,
-                        minRadius: 50.0,
-                        backgroundColor: kSecondaryColor,
-                        backgroundImage: state.items.isNotEmpty && state.items[0].stuImage != null
-                            ? MemoryImage(base64Decode(state.items[0].stuImage!))
-                            : null,
-                        child: state.items.isEmpty || state.items[0].stuImage == null
-                            ? Icon(Icons.person, size: 50)
-                            : null,
+                      GestureDetector(
+                        onTap: () {
+                          if (state.items.isNotEmpty) {
+                            Navigator.pushNamed(
+                              context,
+                              StudentProfile.routeName,
+                              // افترض أن معرف الطالب هو id
+                            );
+                          }
+                        },
+                        child: CircleAvatar(
+                          maxRadius: 50.0,
+                          minRadius: 50.0,
+                          backgroundColor: kSecondaryColor,
+                          backgroundImage: state.items.isNotEmpty && state.items[0].stuImage != null
+                              ? MemoryImage(base64Decode(state.items[0].stuImage!))
+                              : null,
+                          child: state.items.isEmpty || state.items[0].stuImage == null
+                              ? Icon(Icons.person, size: 50)
+                              : null,
+                        ),
                       ),
                       SizedBox(height: kDefaultPadding / 2),
                       Text(

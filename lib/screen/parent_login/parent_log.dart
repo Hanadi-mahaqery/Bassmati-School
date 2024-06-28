@@ -5,6 +5,7 @@ import 'package:school_app/components/custom_button.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/routes.dart';
 import 'package:school_app/screen/home_screen/home_screen.dart';
+import 'package:school_app/screen/parent_login/Select_Son.dart';
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
 
 import '../ParentHomeScreen/ParentHomeScreen.dart';
@@ -114,7 +115,7 @@ class _ParentLoginState extends State<ParentLogin> {
                                   if(_formKey.currentState!.validate()) {
                                     //go to next activity
                                     Navigator.pushNamedAndRemoveUntil(context,
-                                        ParentHomeScreen.routeName, (route) => false);
+                                        SelectSon.routName, (route) => false);
                                   }
                                   else{
                                     AlertDialog(

@@ -21,6 +21,7 @@ import 'package:school_app/screen/student_profile/student_profile.dart';
 
 import '../../blocs/stuProf_bloc.dart';
 import '../../data_enum/state_types.dart';
+import '../ParentHomeScreen/ParentHomeScreen.dart';
 import 'widgets/student_data.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -95,6 +96,92 @@ class HomeScreen extends StatelessWidget {
                 child: ListView(
                   physics: BouncingScrollPhysics(),
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        HomeCard(
+                            onPress: () {
+                              Navigator.pushNamed(context, AssignmentScreen.routeName);
+                            },
+                            icon: 'assets/images/hw.png',
+                            title: 'Tasks'),
+                        HomeCard(
+                            onPress: () {
+                              Navigator.pushNamed(context, ScheduleScreen.routeName);
+
+                            },
+                            icon: 'assets/icons/calender2.png',
+                            title: 'Schedule'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        HomeCard(
+                            onPress: () {
+                              Navigator.pushNamed(context,SessionScreen.routeName);
+                            },
+                            icon: 'assets/icons/results.png',
+                            title: 'Results'),
+                        HomeCard(
+                            onPress: () {
+                              Navigator.pushNamed(context, ExamScreen.routeName);
+                            },
+                            icon: 'assets/icons/Exam.png',
+                            title: 'Exams\n Schedule'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        HomeCard(
+                            onPress: () {
+                              Navigator.pushNamed(context, EventScreen.routeName);
+
+                            },
+                            icon: 'assets/icons/events.png',
+                            title: 'Events'),
+                        HomeCard(
+                            onPress: () {
+                              Navigator.pushNamed(context, LibSessionsScreen.routName);
+
+                            },
+                            icon: 'assets/icons/library.png',
+                            title: 'Library'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        HomeCard(
+                            onPress: () {
+                              Navigator.pushNamed(context, NotificationScreen.routeName);
+
+                            },
+                            icon: 'assets/icons/notification.png',
+                            title: 'Notifications'),
+                        HomeCard(
+                            onPress: () {
+                              showDialog(context: context, builder: (BuildContext context){
+                                return AlertDialog(
+                                  title: Text('Log out'),
+                                  content: Text('Are you sure you want to log out?'),
+                                  actions: <Widget>[
+                                    TextButton(onPressed: (){
+                                      Navigator.pushNamed(context, AllSign.routName);
+                                    }, child: Text('Yes')),
+                                    TextButton(onPressed: (){
+                                      Navigator.pushNamed(context, HomeScreen.routeName);
+                                    }, child: Text('No')),
+
+                                  ],
+                                );
+                              });
+                            },
+                            icon: 'assets/icons/logout.png',
+                            title: 'Log out'),
+                      ],
+                    )
                     // الأزرار والأيقونات الأخرى هنا
                   ],
                 ),

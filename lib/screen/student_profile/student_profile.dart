@@ -94,14 +94,20 @@ class StudentProfile extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ProfileDetail(title: 'Level', value: '3'),
-                        ProfileDetail(title: 'Academic Year', value: '2023-2024'),
+                        Text(
+                          student.age ?? 'Unknown',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          student.levelName ?? 'Unknown',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ProfileDetail(title: 'Class', value: 'Class A'),
+                        ProfileDetail(title: 'Class', value:  student.className ?? 'Unknown'),
                         ProfileDetail(title: 'Session', value: '1'),
                       ],
                     ),
@@ -109,7 +115,7 @@ class StudentProfile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ProfileDetail(title: 'Age', value: student.age ?? 'Unknown'),
-                        ProfileDetail(title: 'Admission Year', value: '2020'),
+                      //  ProfileDetail(title: 'Admission Year', value: student.),
                       ],
                     ),
                   ],

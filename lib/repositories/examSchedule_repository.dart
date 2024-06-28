@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:school_app/models/ExamScheduleModel.dart';
 
-class ScheduleRepository {
+class ExamScheduleRepository {
   late Dio dio;
   String url = "http://192.168.219.81:5257/api/Exam_Schedules";
 
-  ScheduleRepository() {
+  ExamScheduleRepository() {
     dio = Dio();
     dio.options.responseType = ResponseType.json;
     dio.options.receiveTimeout = const Duration(seconds: 60);

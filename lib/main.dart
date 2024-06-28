@@ -8,9 +8,11 @@ import 'package:school_app/blocs/examSchedule_bloc.dart';
 import 'package:school_app/blocs/intallment_bloc.dart';
 import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/blocs/meeting_bloc.dart';
+import 'package:school_app/blocs/schedule_bloc.dart';
 //import 'package:school_app/blocs/preMeeting_bloc.dart';
 import 'package:school_app/blocs/stuProf_bloc.dart';
 import 'package:school_app/blocs/student_bloc.dart';
+import 'package:school_app/blocs/taskHw_bloc.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/repositories/event_repository.dart';
 import 'package:school_app/repositories/examSchedule_repository.dart';
@@ -19,10 +21,12 @@ import 'package:school_app/repositories/library_repository.dart';
 import 'package:school_app/repositories/meeting_repository.dart';
 //import 'package:school_app/repositories/inComemeeting_repository.dart';
 import 'package:school_app/repositories/pdf_repository.dart';
+import 'package:school_app/repositories/schedule_repository.dart';
 //import 'package:school_app/repositories/preMeeting_repository.dart';
 import 'package:school_app/repositories/stuProf_repository.dart';
 import 'package:school_app/repositories/student_repository.dart';
 import 'package:school_app/repositories/attendance_repository.dart';
+import 'package:school_app/repositories/taskHw_repository.dart';
 import 'package:school_app/routes.dart';
 import 'package:school_app/screen/event_screen/event_screen.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart'; // تعديل: استيراد شاشة تسجيل الدخول
@@ -96,7 +100,10 @@ class MyApp extends StatelessWidget {
               create: (context) => PreMeetingBloc(repository:  PreMeetingRepsitory())..add(LoadPreMeetingData(meetStatues: 0)),
             ),*/
             BlocProvider<ExamScheduleBloc>(
-              create: (context) => ExamScheduleBloc(repository:  ScheduleRepository())..add(LoadExamScheduleData()),
+              create: (context) => ExamScheduleBloc(repository:  ExamScheduleRepository())..add(LoadExamScheduleData()),
+            ),
+            BlocProvider<TaskHwBloc>(
+              create: (context) => TaskHwBloc(repository:  TaskHwRepository())..add(LoadTaskData()),
             ),
             BlocProvider<InstallmentBloc>(
               create: (context) => InstallmentBloc(repository:  InstallmentRepository())..add(LoadInstallmentData()),
@@ -107,6 +114,9 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) => AttendanceBloc(repository: AttendanceRepository())
                 ..add(LoadAttendanceData()),
+            ),
+            BlocProvider(
+              create: (context) => ScheduleBloc(repository: ScheduleRepository())..add(LoadScheduleData()),
             ),
             // Add any additional bloc providers here
           ],

@@ -4,7 +4,7 @@ import 'package:school_app/models/ExamScheduleModel.dart';
 import 'package:school_app/repositories/examSchedule_repository.dart';
 
 class ExamScheduleBloc extends Bloc<ExamScheduleEvent, ExamScheduleState> {
-  final ScheduleRepository repository;
+  final ExamScheduleRepository repository;
 
   ExamScheduleBloc({required this.repository}) : super(ExamScheduleState()) {
     on<Submit>(_onSubmit);

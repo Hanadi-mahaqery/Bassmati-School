@@ -40,6 +40,7 @@ import 'package:school_app/screen/library_screen/second_session/videos/content/Q
 import 'package:school_app/screen/library_screen/second_session/videos/content/Science2.dart';
 import 'package:school_app/screen/login_screen/forget_password.dart';
 import 'package:school_app/screen/notification_screen/notification_screen.dart';
+import 'package:school_app/screen/parent_login/Select_Son.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
 import 'package:school_app/screen/result_screen/session1/month1/arabic_degree.dart';
 import 'package:school_app/screen/result_screen/session1/month1/english_degree.dart';
@@ -195,6 +196,7 @@ Map<String, WidgetBuilder> routes ={
   InComeMeetingScreen.routeName:(context)=>InComeMeetingScreen(meetStatus: 1,/*meetStatus: 1,*/),
   PreMeetingScreen.routeName:(context)=>PreMeetingScreen(/*meetStatues: 0*/),
   MeetingTypeScreen.routeName:(context)=>MeetingTypeScreen(),
+  SelectSon.routName:(context)=>SelectSon(),
 
 
 };

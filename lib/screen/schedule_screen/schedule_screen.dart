@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/schedule_screen/schedule_data.dart';
+import 'package:school_app/models/ScheduleModel.dart';
+import 'package:school_app/blocs/schedule_bloc.dart';
+import 'package:school_app/data_enum/state_types.dart';
 
 class ScheduleScreen extends StatelessWidget {
-  const ScheduleScreen({Key? key}) : super(key: key);
+  const ScheduleScreen({super.key});
   static String routeName = 'ScheduleScreen';
 
   @override
@@ -12,58 +15,125 @@ class ScheduleScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Class Schedule'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
-          color: kSecondaryColor,
-          child: DataTable(
+      body: BlocBuilder<ScheduleBloc, ScheduleState>(
+        builder: (context, state) {
+          if (state.currentState == StateTypes.loading) {
+            return Center(child: CircularProgressIndicator());
+          } else if (state.currentState == StateTypes.loaded) {
+            if (state.items.isEmpty) {
+              return Center(child: Text('No schedule records found.'));
+            }
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.all(kDefaultPadding),
+                  child: Table(
+                    border: TableBorder.all(color: Colors.black),
+                    columnWidths: {
+                      0: FixedColumnWidth(100.0),
+                      1: FixedColumnWidth(100.0),
+                      2: FixedColumnWidth(100.0),
+                      3: FixedColumnWidth(100.0),
+                      4: FixedColumnWidth(100.0),
+                      5: FixedColumnWidth(100.0),
+                      6: FixedColumnWidth(100.0),
+                      7: FixedColumnWidth(100.0),
+                    },
+                    children: [
+                      TableRow(
+                        decoration: BoxDecoration(color: kOtherColor),
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                            child: Text('Day', style: TextStyle(color: kSecondaryColor, fontWeight: FontWeight.bold,fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                            child: Text('First Period', style: TextStyle(color:kSecondaryColor, fontWeight: FontWeight.bold,fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                            child: Text('Second Period', style: TextStyle(color: kSecondaryColor, fontWeight: FontWeight.bold,fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                            child: Text('Third Period', style: TextStyle(color: kSecondaryColor, fontWeight: FontWeight.bold,fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                            child: Text('Fourth Period', style: TextStyle(color: kSecondaryColor, fontWeight: FontWeight.bold,fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                            child: Text('Fifth Period', style: TextStyle(color: kSecondaryColor, fontWeight: FontWeight.bold,fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                            child: Text('Sixth Period', style: TextStyle(color: kSecondaryColor, fontWeight: FontWeight.bold,fontSize: 25)),
+                          ),
+                        ],
+                      ),
+                      for (var schedule in state.items)
+                        TableRow(
+                          decoration: BoxDecoration(color: kOtherColor),
 
-            columns: [
-              DataColumn(
-                label: Text('Day', style: TextStyle(fontSize: 13.0)),
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(kDefaultPadding / 2),
+                              child: Text(schedule.day ?? '',style: TextStyle(
+                              fontSize: 25,fontWeight: FontWeight.bold,color: kPrimaryColor
+                              ),),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(kDefaultPadding / 2),
+                              child: Text(schedule.firstPeriod ?? '',style: TextStyle(
+                                  fontSize: 25,fontWeight: FontWeight.normal,color: kPrimaryColor
+                              )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(kDefaultPadding / 2),
+                              child: Text(schedule.seconedPeriod ?? '',style: TextStyle(
+                                  fontSize: 25,fontWeight: FontWeight.normal,color: kPrimaryColor
+                              )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(kDefaultPadding / 2),
+                              child: Text(schedule.thirdPeriod ?? '',style: TextStyle(
+                                  fontSize: 25,fontWeight: FontWeight.normal,color: kPrimaryColor
+                              )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(kDefaultPadding / 2),
+                              child: Text(schedule.forthPeriod ?? '',style: TextStyle(
+                                  fontSize: 25,fontWeight: FontWeight.normal,color: kPrimaryColor
+                              )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(kDefaultPadding / 2),
+                              child: Text(schedule.fifthPeriod ?? '',style: TextStyle(
+                                  fontSize: 25,fontWeight: FontWeight.normal,color: kPrimaryColor
+                              )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(kDefaultPadding / 2),
+                              child: Text(schedule.sixthPeriod ?? '',style: TextStyle(
+                                  fontSize: 25,fontWeight: FontWeight.normal,color: kPrimaryColor
+                              )),
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
               ),
-              DataColumn(
-                label: Text('First', style: TextStyle(fontSize: 13.0)),
-              ),
-              DataColumn(
-                label: Text('Second', style: TextStyle(fontSize: 13.0)),
-              ),
-              DataColumn(
-                label: Text('Third', style: TextStyle(fontSize: 13.0)),
-              ),
-              DataColumn(
-                label: Text('Forth', style: TextStyle(fontSize: 13.0)),
-              ), DataColumn(
-                label: Text('Fifth', style: TextStyle(fontSize: 13.0)),
-              ), DataColumn(
-                label: Text('Sixth', style: TextStyle(fontSize: 13.0)),
-              ),
-            ],
-            rows: List.generate(scheduleData.length, (index) {
-              return DataRow(
-                cells: [
-                  DataCell(Text(scheduleData[index].day,
-                      style: TextStyle(fontSize: 16, color: kTextWhiteColor))),
-                  DataCell(Text(scheduleData[index].subject1,
-                      style: TextStyle(fontSize: 13, color: kTextWhiteColor))),
-                  DataCell(Text(scheduleData[index].subject2,
-                      style: TextStyle(fontSize: 13, color: kTextWhiteColor))),
-                  DataCell(Text(scheduleData[index].subject3,
-                      style: TextStyle(fontSize: 13, color: kTextWhiteColor))),
-                  DataCell(Text(scheduleData[index].subject4,
-                      style: TextStyle(fontSize: 13, color: kTextWhiteColor))),
-                  DataCell(Text(scheduleData[index].subject5,
-                      style: TextStyle(fontSize: 13, color: kTextWhiteColor))),
-                  DataCell(Text(scheduleData[index].subject6,
-                      style: TextStyle(fontSize: 13, color: kTextWhiteColor))),
-                ],
-              );
-            }),
-          ),
-        ),
+            );
+          } else if (state.currentState == StateTypes.error) {
+            return Center(child: Text(state.error ?? 'An error occurred.'));
+          }
+          return Center(child: Text('Unknown state.'));
+        },
       ),
     );
   }
-
-
-  }
+}
