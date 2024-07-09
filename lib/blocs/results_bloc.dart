@@ -3,65 +3,71 @@ import 'package:school_app/data_enum/state_types.dart';
 import 'package:school_app/models/ResultsModel.dart';
 import 'package:school_app/repositories/results_repository.dart';
 
-class ResultsBloc extends Bloc<ResultsEvent, ResultsState> {
+
+class ResultBloc extends Bloc<ResultEvent, ResultState> {
   final ResultsRepository repository;
 
-  ResultsBloc({required this.repository}) : super(ResultsState()) {
-    on<LoadResultsData>(_onLoadData);
+  ResultBloc({required this.repository}) : super(ResultState()) {
+
+    on<FetchResultsItemsBySubjectId>(_onFetchResultsItemsBySubjectId);
   }
 
-  Future<void> _onLoadData(LoadResultsData event, Emitter<ResultsState> emit) async {
+  Future<void> _onFetchResultsItemsBySubjectId(FetchResultsItemsBySubjectId event, Emitter<ResultState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getAll();
+      var items = await repository.getBySubject(event.subjectId);
       emit(state.copyWith(
-        currentState: StateTypes.loaded,
-        items: items,
-        error: null,
+          currentState: StateTypes.loaded,
+          items: items,
+          error: null
       ));
     } catch (ex) {
-      emit(state.copyWith(
-        currentState: StateTypes.error,
-        error: "Error: ${ex}",
-      ));
+      emit(
+          state.copyWith(
+              currentState: StateTypes.error,
+              error: "Error: ${ex}"
+          )
+      );
     }
   }
 
 
-
 }
 
-class ResultsState {
+class ResultState {
   final StateTypes currentState;
   final String? error;
   final List<ResultsModel> items;
 
-  ResultsState({
+  ResultState({
     this.currentState = StateTypes.init,
     this.error,
-    this.items = const [],
+    this.items = const []
   });
 
-  ResultsState copyWith({
+  ResultState copyWith({
     StateTypes? currentState,
     String? error,
-    List<ResultsModel>? items,
+    List<ResultsModel>? items
   }) {
-    return ResultsState(
-      currentState: currentState ?? this.currentState,
-      error: error ?? this.error,
-      items: items ?? this.items,
+    return ResultState(
+        currentState: currentState ?? this.currentState,
+        error: error ?? this.error,
+        items: items ?? this.items
     );
   }
 }
 
-abstract class ResultsEvent {}
+abstract class ResultEvent {}
 
-class Submit extends ResultsEvent {
+class Submit extends ResultEvent {
   final ResultsModel model;
 
   Submit(this.model);
 }
 
-class LoadResultsData extends ResultsEvent {}
+class FetchResultsItemsBySubjectId extends ResultEvent {
+  final int subjectId;
 
+  FetchResultsItemsBySubjectId({required this.subjectId});
+}

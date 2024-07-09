@@ -6,13 +6,14 @@ Future<void> handleBackgroundMessage(RemoteMessage message) async {
   print('Payload: ${message.data}');
 }
 
-class FirebaseApi {
+class FirebaseNotifications{
+
   final _firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> initNotification() async {
     await _firebaseMessaging.requestPermission();
-    final fCMToken = await _firebaseMessaging.getToken();
-    print('Token: $fCMToken');
+    String? token = await _firebaseMessaging.getToken();
+    print("Token: $token");
 
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
 
@@ -27,4 +28,5 @@ class FirebaseApi {
       print('Message clicked!');
     });
   }
-}
+
+  }

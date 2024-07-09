@@ -5,7 +5,7 @@ import 'package:school_app/models/InstallModel.dart';
 
 class InstallmentRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Installment";
+  String url = "http://192.168.21.81:5257/api/Installment";
 
   InstallmentRepository() {
     dio = Dio();

@@ -6,7 +6,7 @@ import 'package:school_app/data_enum/state_types.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InComeMeetingScreen extends StatelessWidget {
- final int meetStatus;
+ final bool meetStatus;
 
   const InComeMeetingScreen({Key?key, required this.meetStatus});
   static String routeName = 'InComeMeetingScreen';
@@ -17,7 +17,7 @@ class InComeMeetingScreen extends StatelessWidget {
 
     // جلب البيانات عند تحميل الواجهة
      WidgetsBinding.instance.addPostFrameCallback((_) {
-     _bloc.add(FetchMeetingItemsByStatues(meetStatues: 1));
+     _bloc.add(FetchMeetingItemsByStatues(meetStatues: meetStatus));
      });
 
     return Scaffold(

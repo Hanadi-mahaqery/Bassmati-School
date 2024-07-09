@@ -3,7 +3,7 @@ import 'package:school_app/models/StuProfModel.dart';
 
 class StuProfRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/StuProfile";
+  String url = "http://192.168.21.81:5257/api/StuProfile";
 
   StuProfRepository() {
     dio = Dio();

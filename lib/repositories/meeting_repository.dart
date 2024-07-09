@@ -3,7 +3,7 @@ import 'package:school_app/models/InComeMeetingModel.dart';
 
 class MeetingRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Meetings";
+  String url = "http://192.168.21.81:5257/api/Meetings";
 
   MeetingRepository() {
     dio = Dio();
@@ -12,10 +12,10 @@ class MeetingRepository {
     dio.options.connectTimeout = const Duration(seconds: 60);
   }
 
-  Future<List<MeetingModel>> getByStatues(int meetStatues) async {
+  Future<List<MeetingModel>> getByStatues(bool meetStatues) async {
     try {
       await Future.delayed(Duration(seconds: 1));
-      var response = await dio.get("$url?meetStatues=$meetStatues");
+      var response = await dio.get('$url/parentMeeting/$meetStatues');
       if (response.statusCode == 200) {
         var dt = response.data as List;
         List<MeetingModel> items = [];

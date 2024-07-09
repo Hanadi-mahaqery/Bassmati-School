@@ -5,7 +5,7 @@ class MeetingModel {
     this.meetTime,
     this.meetLink,
     this.decisions,
-    this.meetStatues,
+    this.meetingStatues,
   });
 
   MeetingModel.fromJson(dynamic json) {
@@ -14,7 +14,7 @@ class MeetingModel {
     meetTime = json['meetTime'];
     meetLink = json['meetLink'];
     decisions = json['decisions'];
-    meetStatues = json['meetStatues'];
+    meetingStatues = json['meetingStatues'];
 
 
   }
@@ -24,7 +24,7 @@ class MeetingModel {
   String? meetTime;
   String? meetLink;
   String? decisions;
-  int? meetStatues;
+  bool? meetingStatues;
 
 
   Map<String, dynamic> toJson() {
@@ -34,7 +34,7 @@ class MeetingModel {
     map['meetTime'] = meetTime;
     map['meetLink'] = meetLink;
     map['decisions'] = decisions;
-    map['meetStatues'] = meetStatues;
+    map['meetingStatues'] = meetingStatues;
 
 
     return map;

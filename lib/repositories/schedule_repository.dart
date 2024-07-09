@@ -5,7 +5,7 @@ import 'package:school_app/models/ScheduleModel.dart';
 
 class ScheduleRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Schedule";
+  String url = "http://192.168.21.81:5257/api/Schedule";
 
   ScheduleRepository() {
     dio = Dio();

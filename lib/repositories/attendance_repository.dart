@@ -5,7 +5,7 @@ import 'package:school_app/models/AttendanceModel.dart';
 
 class AttendanceRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Attendance";
+  String url = "http://192.168.21.81:5257/api/Attendance";
 
   AttendanceRepository() {
     dio = Dio();

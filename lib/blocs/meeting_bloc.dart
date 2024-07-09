@@ -57,7 +57,7 @@ class MeetingState {
 abstract class MeetingEvent {}
 
 class FetchMeetingItemsByStatues extends MeetingEvent {
-  final int meetStatues;
+  final bool meetStatues;
 
   FetchMeetingItemsByStatues({required this.meetStatues});
 }

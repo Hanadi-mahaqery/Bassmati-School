@@ -5,7 +5,7 @@ import 'package:school_app/models/TaskHwModel.dart';
 
 class TaskHwRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Tasks_HW";
+  String url = "http://192.168.21.81:5257/api/Tasks_HW";
 
   TaskHwRepository() {
     dio = Dio();

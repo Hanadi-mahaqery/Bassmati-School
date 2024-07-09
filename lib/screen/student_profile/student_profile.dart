@@ -1,12 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/models/StuProfModel.dart';
 import 'package:school_app/blocs/stuProf_bloc.dart';
 import 'package:school_app/data_enum/state_types.dart';
-import 'dart:convert';
 
-import '../../repositories/stuProf_repository.dart'; // for base64Decode
+import '../../repositories/stuProf_repository.dart';
 
 class StudentProfile extends StatelessWidget {
   const StudentProfile({super.key});
@@ -69,8 +69,8 @@ class StudentProfile extends StatelessWidget {
                             maxRadius: 50.0,
                             minRadius: 50.0,
                             backgroundColor: kSecondaryColor,
-                            backgroundImage: student.stuImage != null
-                                ? MemoryImage(base64Decode(student.stuImage!))
+                            backgroundImage: student.stuImage != null && File(student.stuImage!).existsSync()
+                                ? FileImage(File(student.stuImage!))
                                 : null,
                             child: student.stuImage == null
                                 ? Icon(Icons.person, size: 50)
@@ -115,7 +115,6 @@ class StudentProfile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ProfileDetail(title: 'Age', value: student.age ?? 'Unknown'),
-                      //  ProfileDetail(title: 'Admission Year', value: student.),
                       ],
                     ),
                   ],

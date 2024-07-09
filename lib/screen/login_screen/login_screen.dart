@@ -17,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  // final AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     Form(
-                      //  key: _formKey,
+                        key: _formKey,
                         child: Column(
                           children: [
                             SizedBox(height: kDefaultPadding),
@@ -106,38 +106,37 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(height: kDefaultPadding),
                             DefualtButton(
                                 onpress: () async {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                    context,
-                                    HomeScreen.routeName,
-                                        (route) => false,
-                                  );
                                   if (_formKey.currentState!.validate()) {
-                                   // try {
-                                      // await _authService.login(
-                                      //   _emailController.text,
-                                      //   _passwordController.text,
-                                      // );
-
-                                    // } catch (e) {
-                                    //   showDialog(
-                                    //     context: context,
-                                    //     builder: (context) {
-                                    //       return AlertDialog(
-                                    //         title: Text('ERROR'),
-                                    //         content: Text(
-                                    //             'Email or password are not valid'),
-                                    //         actions: [
-                                    //           TextButton(
-                                    //             onPressed: () {
-                                    //               Navigator.of(context).pop();
-                                    //             },
-                                    //             child: Text('OK'),
-                                    //           ),
-                                    //         ],
-                                    //       );
-                                    //     },
-                                    //   );
-                                    // }
+                                    try {
+                                      await _authService.login(
+                                        _emailController.text,
+                                        _passwordController.text,
+                                      );
+                                      Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        HomeScreen.routeName,
+                                            (route) => false,
+                                      );
+                                    } catch (e) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Text('ERROR'),
+                                            content: Text(
+                                                'Email or password are not valid'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('OK'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
                                   } else {
                                     showDialog(
                                       context: context,

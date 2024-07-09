@@ -5,7 +5,7 @@ import 'package:school_app/models/EventModel.dart';
 
 class EventRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Events";
+  String url = "http://192.168.21.81:5257/api/Events";
 
   EventRepository() {
     dio = Dio();

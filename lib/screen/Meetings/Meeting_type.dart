@@ -71,10 +71,10 @@ class MeetingTypeScreen extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SessionNumber(title: 'الاجتماعات القادمة', onPress:(){
+                    SessionNumber(title: 'In Coming Meeting', onPress:(){
                       Navigator.pushNamed(context, InComeMeetingScreen.routeName);
                     }) ,
-                    SessionNumber(title: 'الاجتماعات السابقة', onPress:(){
+                    SessionNumber(title: 'Previous Meetings', onPress:(){
                       Navigator.pushNamed(context, PreMeetingScreen.routeName);
                     }) ,
 

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "571308655560",
-    "project_id": "school-app-8192d",
-    "storage_bucket": "school-app-8192d.appspot.com"
+    "project_number": "540604972198",
+    "project_id": "bassmati-46bae",
+    "storage_bucket": "bassmati-46bae.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:571308655560:android:aea0e7669655207fc3f6fd",
+        "mobilesdk_app_id": "1:540604972198:android:9d39c864eedb8d45ad0867",
         "android_client_info": {
           "package_name": "com.example.school_app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBIlBHSXeYPD2Ve12iqhI5A7lwn5GSi6gM"
+          "current_key": "AIzaSyDkcN5l1p_XOKgN2Y5y1IABdFDzlq3zk5M"
         }
       ],
       "services": {

@@ -3,7 +3,7 @@ import 'package:school_app/models/PdfModel.dart';
 
 class PdfRepository {
   late Dio dio;
-  String url = "http://192.168.219.81:5257/api/Pdf";
+  String url = "http://192.168.21.81:5257/api/Pdf";
 
   PdfRepository() {
     dio = Dio();
