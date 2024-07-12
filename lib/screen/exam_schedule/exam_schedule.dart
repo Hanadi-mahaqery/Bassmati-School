@@ -91,7 +91,7 @@ class ExamScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  exam.subName ?? '',
+                                  exam.subjectName ?? '',
                                   style: TextStyle(
                                     color: kTextBlackColor,
                                     fontSize: 20.0,

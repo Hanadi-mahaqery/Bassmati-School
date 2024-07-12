@@ -9,13 +9,13 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
 
   ResultBloc({required this.repository}) : super(ResultState()) {
 
-    on<FetchResultsItemsBySubjectId>(_onFetchResultsItemsBySubjectId);
+    on<FetchResultsItemsByMonthId>(_onFetchResultsItemsBySubjectId);
   }
 
-  Future<void> _onFetchResultsItemsBySubjectId(FetchResultsItemsBySubjectId event, Emitter<ResultState> emit) async {
+  Future<void> _onFetchResultsItemsBySubjectId(FetchResultsItemsByMonthId event, Emitter<ResultState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getBySubject(event.subjectId);
+      var items = await repository.getByMonth(event.monthId);
       emit(state.copyWith(
           currentState: StateTypes.loaded,
           items: items,
@@ -66,8 +66,8 @@ class Submit extends ResultEvent {
   Submit(this.model);
 }
 
-class FetchResultsItemsBySubjectId extends ResultEvent {
-  final int subjectId;
+class FetchResultsItemsByMonthId extends ResultEvent {
+  final int monthId;
 
-  FetchResultsItemsBySubjectId({required this.subjectId});
+  FetchResultsItemsByMonthId({required this.monthId});
 }

@@ -1,217 +1,156 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/constant.dart';
-import 'package:school_app/screen/result_screen/components/result_compnents.dart';
-import 'package:school_app/screen/result_screen/data/result_data.dart';
+import 'package:school_app/blocs/results_bloc.dart';
+import 'package:school_app/repositories/results_repository.dart';
+import 'package:school_app/data_enum/state_types.dart';
+import 'package:school_app/models/ResultsModel.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key});
-  static String routeName= 'ResultScreen';
+  static String routeName = 'ResultScreen';
 
   @override
   Widget build(BuildContext context) {
+    final int monthId = ModalRoute.of(context)!.settings.arguments as int;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Results'),
+        title: Text('Results for Month $monthId'),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 170.0,
-            /* child: CustomPaint(
-              foregroundPainter: CircularPainter(
-                backgroundColor: kPrimaryColor,
-                lineColor: kOtherColor,
-                width: 50,
-              ),
-            ),
-*/
-          ),
-          Text('You are Excellent',
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                fontWeight: FontWeight.w900
-            ) ,),
-          Text('Fatima',
-              style: Theme.of(context).textTheme.bodyMedium),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: kOtherColor,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(kDefaultPadding * 3),
-                    topRight: Radius.circular(kDefaultPadding * 3)),
-              ),
-              child: ListView.builder(
-                  padding: EdgeInsets.all(kDefaultPadding),
-                  itemCount: result.length,
-                  itemBuilder: (
-                      context , index){
-                    return GestureDetector(
-                      onTap: (){
-                        print("============ rote tapped ==================");
-                        print("============ ${result[index].route} ==================");
-                        Navigator.of(context).pushNamed(result[index].route);
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(
-                            bottom: kDefaultPadding,
-                            top: kDefaultPadding
-                        ),
-                        padding: EdgeInsets.all(kDefaultPadding/2),
-                        decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(kDefaultPadding),
-                            boxShadow:[
-                              BoxShadow(
-                                color: kTextLightColor,
-                                blurRadius: 2.0,
-
-                              )
-                            ]
-
-
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //  IconButton(onPressed: (){print("------------------------- pressed -------");}, icon: Icon(Icons.add)),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: (){
-                                    Navigator.of(context).pushNamed(result[index].route);
-                                  }
-                                  , child: Text(
-                                  result[index].route,
-                                  textAlign: TextAlign.start,
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      '${result[index].obtainedMark}/${result[index].totalMarks}',
-                                      style: Theme.of(context).textTheme.bodyLarge,
-                                    ),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          width: result[index].totalMarks.toDouble(),
-                                          height: 20.0,
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey[700],
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(kDefaultPadding),
-                                                topRight: Radius.circular(kDefaultPadding),
-
-                                              )
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 20.0,
-                                          width: result[index].obtainedMark.toDouble(),
-                                          decoration: BoxDecoration(
-                                              color: result[index].grade =='D'
-                                                  ? kErrorBorderColor : kOtherColor,
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(kDefaultPadding),
-                                                  bottomRight: Radius.circular(kDefaultPadding)
-                                              )
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    Text(result[index].grade,
-                                      textAlign: TextAlign.start,
-                                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                          fontWeight: FontWeight.w900
-                                      ),)
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
-
-            ),
-          )
-        ],
+      body: BlocProvider(
+        create: (context) => ResultBloc(repository: ResultsRepository())..add(FetchResultsItemsByMonthId(monthId: monthId)),
+        child: ResultsListView(),
       ),
     );
   }
 }
 
+class ResultsListView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ResultBloc, ResultState>(
+      builder: (context, state) {
+        if (state.currentState == StateTypes.loading) {
+          return Center(child: CircularProgressIndicator());
+        } else if (state.currentState == StateTypes.error) {
+          return Center(child: Text(state.error ?? 'An error occurred'));
+        } else if (state.currentState == StateTypes.loaded) {
+          return ListView.builder(
+            padding: EdgeInsets.all(kDefaultPadding),
+            itemCount: state.items.length,
+            itemBuilder: (context, index) {
+              final item = state.items[index];
+              return ListTile(
+                title: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SubjectDetailsScreen(subject: item),
+                      ),
+                    );
+                  },
+                  child: Text(item.subjectName!),
+                ),
+              );
+            },
+          );
+        }
+        return Container();
+      },
+    );
+  }
+}
 
-class MonthResult extends StatelessWidget {
-  const MonthResult({super.key, required this.title, required this.onPress, required this.mark, required this.total, required this.g});
-  final String title;
-  final int mark;
-  final int total;
-  final String g;
-  final VoidCallback onPress;
+class SubjectDetailsScreen extends StatelessWidget {
+  final ResultsModel subject;
+
+  const SubjectDetailsScreen({super.key, required this.subject});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPress,
-
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-           title,
-            textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-               '$mark/$total',
-                style: Theme.of(context).textTheme.bodyLarge,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(subject.subjectName!),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(kDefaultPadding),
+        child: Table(
+          border: TableBorder.all(),
+          children: [
+            TableRow(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Category', style: TextStyle(fontWeight: FontWeight.bold)),
               ),
-              Stack(
-                children: [
-                  Container(
-                    width: total.toDouble(),
-                    height: 20.0,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[700],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(kDefaultPadding),
-                          topRight: Radius.circular(kDefaultPadding),
-
-                        )
-                    ),
-                  ),
-                  Container(
-                    height: 20.0,
-                    width: mark.toDouble(),
-                    decoration: BoxDecoration(
-                        color: g =='D'
-                            ? kErrorBorderColor : kOtherColor,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(kDefaultPadding),
-                            bottomRight: Radius.circular(kDefaultPadding)
-                        )
-                    ),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Degree', style: TextStyle(fontWeight: FontWeight.bold)),
               ),
-              Text(g,
-                textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.w900
-                ),)
-            ],
-          )
-        ],
+            ]),
+            TableRow(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Task Degree'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${subject.task}'),
+              ),
+            ]),
+            TableRow(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Attend Degree'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${subject.attend}'),
+              ),
+            ]),
+            TableRow(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Discipline Degree'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${subject.discipline}'),
+              ),
+            ]),
+            TableRow(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Exam Degree'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${subject.exam}'),
+              ),
+            ]),
+            TableRow(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Oral Degree'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${subject.oral}'),
+              ),
+            ]),
+            TableRow(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Total Degree'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${subject.totalMonth}'),
+              ),
+            ]),
+          ],
+        ),
       ),
     );
   }

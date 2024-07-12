@@ -65,24 +65,24 @@ class StudentProfile extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            maxRadius: 50.0,
-                            minRadius: 50.0,
-                            backgroundColor: kSecondaryColor,
-                            backgroundImage: student.stuImage != null && File(student.stuImage!).existsSync()
-                                ? FileImage(File(student.stuImage!))
-                                : null,
-                            child: student.stuImage == null
-                                ? Icon(Icons.person, size: 50)
-                                : null,
-                          ),
+                          // CircleAvatar(
+                          //   maxRadius: 50.0,
+                          //   minRadius: 50.0,
+                          //   backgroundColor: kSecondaryColor,
+                          //   backgroundImage: student.stuImage != null && File(student.stuImage!).existsSync()
+                          //       ? FileImage(File(student.stuImage!))
+                          //       : null,
+                          //   child: student.stuImage == null
+                          //       ? Icon(Icons.person, size: 50)
+                          //       : null,
+                          // ),
                           kWidthSizedBox,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                student.stuName ?? 'Unknown',
+                                student.studentName ?? 'Unknown',
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
@@ -94,10 +94,10 @@ class StudentProfile extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          student.age ?? 'Unknown',
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
+                        // Text(
+                        //   student.studentAge ?? 'Unknown',
+                        //   style: Theme.of(context).textTheme.bodyLarge,
+                        // ),
                         Text(
                           student.levelName ?? 'Unknown',
                           style: Theme.of(context).textTheme.bodyLarge,
@@ -114,7 +114,8 @@ class StudentProfile extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ProfileDetail(title: 'Age', value: student.age ?? 'Unknown'),
+                        ProfileDetail(title: 'Age', value: student.studentAge ?? 'Unknown'),
+                        ProfileDetail(title: 'Level', value: student.levelName ?? 'Unknown'),
                       ],
                     ),
                   ],

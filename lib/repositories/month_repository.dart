@@ -1,26 +1,26 @@
 import 'package:dio/dio.dart';
-import 'package:school_app/models/StuProfModel.dart';
+import 'package:school_app/models/MonthModel.dart';
 
-class StuProfRepository {
+class MonthRepository {
   late Dio dio;
-  String url = "http://192.168.21.81:5257/api/StuProfile";
+  String url = "http://192.168.21.81:5257/api/Month";
 
-  StuProfRepository() {
+  MonthRepository() {
     dio = Dio();
     dio.options.responseType = ResponseType.json;
     dio.options.receiveTimeout = const Duration(seconds: 60);
     dio.options.connectTimeout = const Duration(seconds: 60);
   }
 
-  Future<List<StudentProfModel>> getByStudent(int stuId) async {
+  Future<List<MonthModel>> getBySession(int yearId) async {
     try {
       await Future.delayed(Duration(seconds: 1));
-      var response = await dio.get("$url?studentId=$stuId");
+      var response = await dio.get('$url/month/$yearId');
       if (response.statusCode == 200) {
         var dt = response.data as List;
-        List<StudentProfModel> items = [];
+        List<MonthModel> items = [];
         dt.forEach((e) {
-          items.add(StudentProfModel.fromJson(e));
+          items.add(MonthModel.fromJson(e));
         });
         return items;
       }
@@ -29,4 +29,6 @@ class StuProfRepository {
       rethrow;
     }
   }
+
+
 }

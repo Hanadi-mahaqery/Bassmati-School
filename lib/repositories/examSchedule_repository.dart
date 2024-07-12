@@ -35,7 +35,7 @@ class ExamScheduleRepository {
       "examDate": obj.examDate,
       "examDay": obj.examDay,
       "examTime": obj.examTime,
-      "subName": obj.subName,
+      "subName": obj.subjectName,
       // "levelId": obj.,
     };
     try {

@@ -2,12 +2,12 @@
 class ResultsModel {
   ResultsModel({
     this.degreeId,
-    this.monthName,
-    this.taskDegree,
-    this.attendDegree,
-    this.disciplineDegree,
-    this.examDegree,
-    this.oralDegree,
+    this.subjectName,
+    this.task,
+    this.attend,
+    this.discipline,
+    this.exam,
+    this.oral,
     this.totalMonth,
     this.subId,
 
@@ -15,22 +15,24 @@ class ResultsModel {
 
   ResultsModel.fromJson(dynamic json) {
     degreeId = json['degreeId'];
-    monthName = json['monthName'];
-    taskDegree = json['taskDegree'] ;
-    attendDegree = json['attendDegree'];
-    disciplineDegree = json['disciplineDegree'];
-    examDegree = json['examDegree'];
-    oralDegree = json['oralDegree'];
+    monthId = json['monthId'];
+    subjectName = json['subjectName'];
+    task = json['task'] ;
+    attend = json['attend'];
+    discipline = json['discipline'];
+    exam = json['exam'];
+    oral = json['oral'];
     totalMonth = json['totalMonth'];
     subId = json['subId'];
   }
   int? degreeId;
-  String? monthName;
-  int? taskDegree; // تأكد من أن النوع هو bool
-  int? attendDegree;
-  int? disciplineDegree;
-  int? examDegree;
-  int? oralDegree;
+  int? monthId;
+  String? subjectName;
+  int? task; // تأكد من أن النوع هو bool
+  int? attend;
+  int? discipline;
+  int? exam;
+  int? oral;
   int? totalMonth;
   int? subId;
 
@@ -38,12 +40,13 @@ class ResultsModel {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['degreeId'] = degreeId;
-    map['monthName'] = monthName;
-    map['taskDegree'] = taskDegree;
-    map['attendDegree'] = attendDegree;
-    map['disciplineDegree'] = disciplineDegree;
-    map['examDegree'] = examDegree;
-    map['oralDegree'] = oralDegree;
+    map['monthId'] = monthId;
+    map['subjectName'] = subjectName;
+    map['task'] = task;
+    map['attend'] = attend;
+    map['discipline'] = discipline;
+    map['exam'] = exam;
+    map['oral'] = oral;
     map['totalMonth'] = totalMonth;
     map['subId'] = subId;
     return map;

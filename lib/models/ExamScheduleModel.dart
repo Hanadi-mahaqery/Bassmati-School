@@ -1,7 +1,7 @@
 class ScheduleModel {
   ScheduleModel({
     this.examId,
-    this.subName,
+    this.subjectName,
     this.examTime,
     this.examDate,
     this.examDay,
@@ -9,7 +9,7 @@ class ScheduleModel {
 
   ScheduleModel.fromJson(dynamic json) {
     examId = json['examId'];
-    subName = json['subName'];
+    subjectName = json['subjectName'];
     examTime = json['examTime'];
     examDate = json['examDate'];
     examDay = json['examDay'];
@@ -18,7 +18,7 @@ class ScheduleModel {
   }
 
   int? examId;
-  String? subName;
+  String? subjectName;
   String? examTime;
   String? examDate;
   String? examDay;
@@ -26,7 +26,7 @@ class ScheduleModel {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['examId'] = examId;
-    map['subName'] = subName;
+    map['subjectName'] = subjectName;
     map['examTime'] = examTime;
     map['examDate'] = examDate;
     map['examDay'] = examDay;

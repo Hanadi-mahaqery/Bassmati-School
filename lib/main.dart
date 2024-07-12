@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
           create: (_) => LibraryBloc(repository: LibraryRepository())..add(FetchLibraryItemsBySubjectId(subjectId:1) ),
         ),
         BlocProvider(
-          create: (_) => ResultBloc(repository: ResultsRepository())..add(FetchResultsItemsBySubjectId(subjectId:1) ),
+          create: (_) => ResultBloc(repository: ResultsRepository())..add(FetchResultsItemsByMonthId( monthId: 1) ),
         ),
         BlocProvider(
           create: (_) => StudentBloc(repository: StudentRepository())..add(LoadStudentData()),

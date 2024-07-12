@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       SizedBox(height:  kDefaultPadding / 2,),
                       Text(
-                        state.items.isNotEmpty ? state.items[0].stuName! : 'اسم الطالب',
+                        state.items.isNotEmpty ? state.items[0].studentName! : 'اسم الطالب',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       SizedBox(height:  kDefaultPadding / 2,),

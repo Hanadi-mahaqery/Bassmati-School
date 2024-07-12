@@ -1,9 +1,9 @@
 
 class StudentProfModel {
   StudentProfModel({
-    this.stuId,
-    this.stuName,
-    this.age,
+    this.studentId,
+    this.studentName,
+    this.studentAge,
     this.stuEmail,
     this.stuPhoneNo,
     this.classId,
@@ -14,9 +14,9 @@ class StudentProfModel {
   });
 
   StudentProfModel.fromJson(dynamic json) {
-    stuId = json['stuId'];
-    stuName = json['stuName'];
-    age = json['age'];
+    studentId = json['studentId'];
+    studentName = json['studentName'];
+    studentAge = json['studentAge'];
     stuEmail = json['stuEmail'];
     stuPhoneNo = json['stuPhoneNo'];
     stuImage = json['stuImage'];
@@ -26,9 +26,9 @@ class StudentProfModel {
     levelName = json['levelName'];
   }
 
-  int? stuId;
-  String? stuName;
-  String? age;
+  int? studentId;
+  String? studentName;
+  String? studentAge;
   String? stuEmail;
   String? stuPhoneNo;
   String? stuImage;
@@ -39,9 +39,9 @@ class StudentProfModel {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['stuId'] = stuId;
-    map['stuName'] = stuName;
-    map['age'] = age;
+    map['studentId'] = studentId;
+    map['studentName'] = studentName;
+    map['studentAge'] = studentAge;
     map['stuEmail'] = stuEmail;
     map['stuPhoneNo'] = stuPhoneNo;
     map['stuImage'] = stuImage;
