@@ -195,7 +195,7 @@ Map<String, WidgetBuilder> routes ={
   EnglishPdfContentScreen.routeName:(context)=>EnglishPdfContentScreen(subjectId: 6, subjectName: 'English'),
   SciencePdfContentScreen.routeName:(context)=>SciencePdfContentScreen(subjectId: 7, subjectName: 'Science'),
   InComeMeetingScreen.routeName:(context)=>InComeMeetingScreen(meetStatus: true,/*meetStatus: 1,*/),
-  PreMeetingScreen.routeName:(context)=>PreMeetingScreen(meetStatues: false),
+  PreMeetingScreen.routeName:(context)=>PreMeetingScreen( meetStatus: false,),
   MeetingTypeScreen.routeName:(context)=>MeetingTypeScreen(),
   SelectSon.routName:(context)=>SelectSon(),
 

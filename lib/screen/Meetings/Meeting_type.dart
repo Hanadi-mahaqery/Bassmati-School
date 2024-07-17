@@ -34,13 +34,19 @@ class MeetingTypeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Welcome ',
+                          'Welcome in',
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
                               .copyWith(fontWeight: FontWeight.w200),
                         ),
-                        Text('Fatima',
+                        SizedBox(
+                          height: kDefaultPadding,
+                        ),
+                        SizedBox(
+                          height: kDefaultPadding,
+                        ),
+                        Text('Online Meetings',
                             style: Theme.of(context).textTheme.bodyMedium)
                       ],
                     )
