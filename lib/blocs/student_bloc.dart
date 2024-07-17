@@ -9,15 +9,15 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
   StudentBloc({required this.repository}) : super(StudentState()) {
     on<Submit>(_onSubmit);
-    on<LoadStudentData>(_onLoadData);
+    on<FetchStudentItemsByStudentId>(_onFetchStudentItemsByStudentId);
     on<Update>(_onUpdate);
     on<Delete>(_onDelete); // إضافة الحدث Delete
   }
 
-  Future<void> _onLoadData(LoadStudentData event, Emitter<StudentState> emit) async {
+  Future<void> _onFetchStudentItemsByStudentId(FetchStudentItemsByStudentId event, Emitter<StudentState> emit) async {
     emit(state.copyWith(currentState: StateTypes.loading));
     try {
-      var items = await repository.getAll();
+      var items = await repository.getByStudent(event.StudentId);
       emit(state.copyWith(
         currentState: StateTypes.loaded,
         items: items,
@@ -133,8 +133,12 @@ class Submit extends StudentEvent {
   Submit(this.model);
 }
 
-class LoadStudentData extends StudentEvent {}
 
+class FetchStudentItemsByStudentId extends StudentEvent {
+  final int StudentId;
+
+  FetchStudentItemsByStudentId({required this.StudentId});
+}
 class Update extends StudentEvent {
   final StudentModel model;
 

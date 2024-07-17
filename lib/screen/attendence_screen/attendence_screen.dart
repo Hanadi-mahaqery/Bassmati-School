@@ -26,6 +26,10 @@ class AttendanceScreen extends StatelessWidget {
             if (state.items.isEmpty) {
               return Center(child: Text('No attendance records found.'));
             }
+
+            // حساب عدد أيام الغياب
+            int absentDays = state.items.where((attendance) => !attendance.attendStatus!).length;
+
             return Column(
               children: [
                 TableCalendar(
@@ -34,18 +38,25 @@ class AttendanceScreen extends StatelessWidget {
                   focusedDay: DateTime.now(),
                   calendarFormat: CalendarFormat.month,
                   calendarStyle: CalendarStyle(
-                    weekendTextStyle: TextStyle(color: Colors.deepPurple, fontSize: 12),
+                    weekendTextStyle: TextStyle(color: Colors.teal, fontSize: 12),
                     defaultTextStyle: TextStyle(fontSize: 12),
-                    cellPadding: EdgeInsets.all(4.0), // Reduced padding for cells
+                    outsideTextStyle: TextStyle(fontSize: 12),
+                    cellPadding: EdgeInsets.all(4.0),
+                    outsideDecoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    defaultDecoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
                   ),
                   daysOfWeekStyle: DaysOfWeekStyle(
-                    weekendStyle: TextStyle(color: Colors.deepPurple, fontSize: 12),
+                    weekendStyle: TextStyle(color: Colors.teal, fontSize: 12),
                     weekdayStyle: TextStyle(fontSize: 12),
                   ),
                   headerStyle: HeaderStyle(
                     formatButtonVisible: false,
-                    titleTextStyle: TextStyle(fontSize: 16), // Smaller header text
-                    leftChevronIcon: Icon(Icons.chevron_left, size: 20), // Smaller chevron icons
+                    titleTextStyle: TextStyle(fontSize: 16),
+                    leftChevronIcon: Icon(Icons.chevron_left, size: 20),
                     rightChevronIcon: Icon(Icons.chevron_right, size: 20),
                   ),
                   calendarBuilders: CalendarBuilders(
@@ -58,17 +69,34 @@ class AttendanceScreen extends StatelessWidget {
                           !attendance.attendStatus!);
 
                       return Container(
-                        margin: EdgeInsets.all(4.0), // Reduced margin for cells
+                        margin: EdgeInsets.all(4.0),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: isAbsent ? Colors.red : isWeekend ? Colors.deepPurple : null,
+                          color: isAbsent ? Colors.redAccent : isWeekend ? Colors.blueGrey : null,
                           shape: BoxShape.circle,
                         ),
                         child: Text(
                           '${day.day}',
                           style: TextStyle(
-                            color: isAbsent || isWeekend ? Colors.white : null,
-                            fontSize: 12, // Smaller day text
+                            color: isAbsent || isWeekend ? Colors.white : Colors.black,
+                            fontSize: 12,
+                          ),
+                        ),
+                      );
+                    },
+                    outsideBuilder: (context, day, focusedDay) {
+                      bool isWeekend = day.weekday == DateTime.thursday || day.weekday == DateTime.friday;
+                      return Container(
+                        margin: EdgeInsets.all(4.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          '${day.day}',
+                          style: TextStyle(
+                            color: isWeekend ? Colors.teal : Colors.black,
+                            fontSize: 12,
                           ),
                         ),
                       );
@@ -82,7 +110,7 @@ class AttendanceScreen extends StatelessWidget {
                     Container(
                       width: 20,
                       height: 20,
-                      color: Colors.red,
+                      color: Colors.redAccent,
                       margin: EdgeInsets.symmetric(horizontal: 4),
                     ),
                     Text('غياب', style: TextStyle(fontSize: 14)),
@@ -90,11 +118,16 @@ class AttendanceScreen extends StatelessWidget {
                     Container(
                       width: 20,
                       height: 20,
-                      color: Colors.deepPurple,
+                      color: Colors.blueGrey,
                       margin: EdgeInsets.symmetric(horizontal: 4),
                     ),
                     Text('عطلة نهاية الأسبوع', style: TextStyle(fontSize: 14)),
                   ],
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'عدد أيام الغياب: $absentDays',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ],
             );

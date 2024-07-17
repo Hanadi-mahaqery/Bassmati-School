@@ -20,8 +20,10 @@ import 'package:school_app/screen/schedule_screen/schedule_screen.dart';
 import 'package:school_app/screen/student_profile/student_profile.dart';
 
 import '../../blocs/stuProf_bloc.dart';
+import '../../blocs/student_bloc.dart';
 import '../../data_enum/state_types.dart';
 import '../ParentHomeScreen/ParentHomeScreen.dart';
+import '../image.dart';
 import 'widgets/student_data.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -38,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 2.5,
             padding: EdgeInsets.all(kDefaultPadding),
-            child: BlocBuilder<StuProfBloc, StuProfState>( // استخدام BlocBuilder لاستدعاء StuProfBloc
+            child: BlocBuilder<StudentBloc, StudentState>( // استخدام BlocBuilder لاستدعاء StuProfBloc
               builder: (context, state) {
                 if (state.currentState == StateTypes.loading) {
                   return Center(child: CircularProgressIndicator());
@@ -47,20 +49,18 @@ class HomeScreen extends StatelessWidget {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        maxRadius: 50.0,
-                        minRadius: 50.0,
-                        backgroundColor: kSecondaryColor,
-                        backgroundImage: state.items.isNotEmpty && state.items[0].stuImage != null
-                            ? MemoryImage(base64Decode(state.items[0].stuImage!))
-                            : null,
-                        child: state.items.isEmpty || state.items[0].stuImage == null
-                            ? Icon(Icons.person, size: 50)
-                            : null,
+                      CustomCachedImage(
+                        imageUrl: state.items.isNotEmpty && state.items[0].stuImage != null
+                            ? "http://localhost:5259/${state.items[0].stuImage}"
+                            : "default_image_url",
+                        height: 50,
+                        width: 50,
                       ),
+                      SizedBox(height: kDefaultPadding / 2),
+
                       SizedBox(height:  kDefaultPadding / 2,),
                       Text(
-                        state.items.isNotEmpty ? state.items[0].studentName! : 'اسم الطالب',
+                        state.items.isNotEmpty ? state.items[0].stuName! : 'اسم الطالب',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       SizedBox(height:  kDefaultPadding / 2,),

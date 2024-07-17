@@ -9,11 +9,13 @@ import 'package:school_app/blocs/library_bloc.dart';
 import 'package:school_app/blocs/meeting_bloc.dart';
 import 'package:school_app/blocs/results_bloc.dart';
 import 'package:school_app/blocs/schedule_bloc.dart';
+import 'package:school_app/blocs/selectSon_bloc.dart';
 //import 'package:school_app/blocs/preMeeting_bloc.dart';
 import 'package:school_app/blocs/stuProf_bloc.dart';
 import 'package:school_app/blocs/student_bloc.dart';
 import 'package:school_app/blocs/taskHw_bloc.dart';
 import 'package:school_app/constant.dart';
+import 'package:school_app/repositories/SelectSon_repository.dart';
 import 'package:school_app/repositories/event_repository.dart';
 import 'package:school_app/repositories/examSchedule_repository.dart';
 import 'package:school_app/repositories/install_repository.dart';
@@ -30,9 +32,11 @@ import 'package:school_app/repositories/attendance_repository.dart';
 import 'package:school_app/repositories/taskHw_repository.dart';
 import 'package:school_app/routes.dart';
 import 'package:provider/provider.dart';
+import 'package:school_app/screen/ParentHomeScreen/ParentHomeScreen.dart';
 import 'package:school_app/screen/event_screen/event_screen.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart'; // تعديل: استيراد شاشة تسجيل الدخول
 import 'package:school_app/screen/home_screen/home_screen.dart'; // تعديل: استيراد شاشة الرئيسية
+import 'package:school_app/screen/parent_login/Select_Son.dart';
 import 'package:school_app/screen/splash_screen/splash_screen.dart';
 import 'package:school_app/services/auth_services.dart'; // تعديل: استيراد خدمة المصادقة
 import 'FireBase_API/fireBase_message.dart';
@@ -41,6 +45,7 @@ import 'blocs/event_bloc.dart';
 import 'blocs/pdf_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'models/StudentModel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +65,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        
         // ChangeNotifierProvider<Auth>(
         //   create: (_)=> Auth(),
         // ),
@@ -67,10 +73,16 @@ class MyApp extends StatelessWidget {
           create: (_) => LibraryBloc(repository: LibraryRepository())..add(FetchLibraryItemsBySubjectId(subjectId:1) ),
         ),
         BlocProvider(
+          create: (_) => SelectsonBloc(repository: SelectsonRepository())..add(FetchStudentItemsByParentId(parentId:2) ),
+        ),
+        BlocProvider(
+          create: (_) => StuProfBloc(repository: StuProfRepository())..add(FetchStudentsItemsByStudentId(StudentId: 3) ),
+        ),
+        BlocProvider(
           create: (_) => ResultBloc(repository: ResultsRepository())..add(FetchResultsItemsByMonthId( monthId: 1) ),
         ),
         BlocProvider(
-          create: (_) => StudentBloc(repository: StudentRepository())..add(LoadStudentData()),
+          create: (_) => StudentBloc(repository: StudentRepository())..add(FetchStudentItemsByStudentId(StudentId: 3)),
         ),
         BlocProvider(
           create: (_) => PdfBloc(repository: PdfRepository()),
@@ -98,9 +110,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<InstallmentBloc>(
           create: (context) => InstallmentBloc(repository:  InstallmentRepository())..add(LoadInstallmentData()),
         ),
-        BlocProvider<StuProfBloc>(
-          create: (context) => StuProfBloc(repository:  StuProfRepository())..add(FetchStudentItemsByStudentId(StudentId: 3)),
-        ),
+        // BlocProvider<StuProfBloc>(
+        //   create: (context) => StuProfBloc(repository:  StuProfRepository())..add(FetchStudentItemsByStudentId(StudentId: 3)),
+        // ),
         BlocProvider(
           create: (context) => AttendanceBloc(repository: AttendanceRepository())
             ..add(LoadAttendanceData()),
@@ -172,7 +184,12 @@ class MyApp extends StatelessWidget {
         routes: {
           ...routes, // يستخدم المسارات المعرفة سابقًا
           LoginScreen.routeName: (context) => LoginScreen(), // تعديل: إضافة شاشة تسجيل الدخول
-          HomeScreen.routeName: (context) => HomeScreen(), // تعديل: إضافة شاشة الرئيسية
+          HomeScreen.routeName: (context) => HomeScreen(),
+          '/':(context)=>SelectSon(),
+          ParentHomeScreen.routeName:(context){
+            final StudentModel student=ModalRoute.of(context)!.settings.arguments as StudentModel;
+            return ParentHomeScreen(student: student);
+          }
         },
       ),
     );

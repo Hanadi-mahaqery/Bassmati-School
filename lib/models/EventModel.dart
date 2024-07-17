@@ -5,7 +5,7 @@ class EventModel {
     this.eventDesc,
     this.eventDate,
     this.eventLocation,
-    this.levelId,
+
   });
 
   EventModel.fromJson(dynamic json) {
@@ -14,7 +14,6 @@ class EventModel {
     eventDesc = json['eventDesc'];
     eventDate = json['eventDate'];
     eventLocation = json['eventLocation'];
-    levelId = json['levelId'];
   }
 
   int? eventId;
@@ -22,7 +21,6 @@ class EventModel {
   String? eventDesc;
   String? eventDate;
   String? eventLocation;
-  int? levelId;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -31,7 +29,6 @@ class EventModel {
     map['eventDesc'] = eventDesc;
    // map['eventDate'] = eventDate;
     map['eventLocation'] = eventLocation;
-    map['levelId'] = levelId;
     return map;
   }
 }

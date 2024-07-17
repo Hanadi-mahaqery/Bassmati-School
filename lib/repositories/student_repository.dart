@@ -12,23 +12,39 @@ class StudentRepository {
     dio.options.receiveTimeout = const Duration(seconds: 60);
     dio.options.connectTimeout = const Duration(seconds: 60);
   }
-
-  Future<List<StudentModel>> getAll() async {
+  Future<List<StudentModel>> getByStudent(int stuId) async {
     try {
       await Future.delayed(Duration(seconds: 1));
-      var response = await dio.get(url);
+      var response = await dio.get("$url?studentId=$stuId");
       if (response.statusCode == 200) {
         var dt = response.data as List;
-        List<StudentModel> items =
-            dt.map((e) => StudentModel.fromJson(e)).toList();
+        List<StudentModel> items = [];
+        dt.forEach((e) {
+          items.add(StudentModel.fromJson(e));
+        });
         return items;
       }
       throw Exception("Response Error ${response.statusMessage}");
     } catch (ex) {
-      log("Error in getAll: $ex");
       rethrow;
     }
   }
+  // Future<List<StudentModel>> getAll() async {
+  //   try {
+  //     await Future.delayed(Duration(seconds: 1));
+  //     var response = await dio.get(url);
+  //     if (response.statusCode == 200) {
+  //       var dt = response.data as List;
+  //       List<StudentModel> items =
+  //           dt.map((e) => StudentModel.fromJson(e)).toList();
+  //       return items;
+  //     }
+  //     throw Exception("Response Error ${response.statusMessage}");
+  //   } catch (ex) {
+  //     log("Error in getAll: $ex");
+  //     rethrow;
+  //   }
+  // }
 
   Future<bool> add(StudentModel obj) async {
     var dt = {

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:school_app/EditStudentPage.dart';
+import 'package:school_app/models/StudentModel.dart';
 import 'package:school_app/screen/Meetings/Meeting_type.dart';
 import 'package:school_app/screen/Meetings/PreMeetingScreen.dart';
 import 'package:school_app/screen/Meetings/inCome_meetings_screen.dart';
@@ -172,13 +173,13 @@ Map<String, WidgetBuilder> routes ={
   IslamicDegree2.routName:(context)=>IslamicDegree2(),
   ScienceDegree2.routName:(context)=>ScienceDegree2(),
   EnglishDegree2.routName:(context)=>EnglishDegree2(),
-  StudentScreen.routeName:(context)=>StudentScreen(),
-  IslamicContentScreen.routeName:(context)=>IslamicContentScreen(subjectId: 5, subjectName: 'Islamic'),
-  ArabicContentScreen.routeName:(context)=>ArabicContentScreen(subjectId: 2, subjectName: 'Arabic'),
-  MathContentScreen.routeName:(context)=>MathContentScreen(subjectId: 1, subjectName: 'math'),
-  EnglishContentScreen.routeName:(context)=>EnglishContentScreen(subjectId: 6, subjectName: 'English'),
+//  StudentScreen.routeName:(context)=>StudentScreen(),
+  IslamicContentScreen.routeName:(context)=>IslamicContentScreen(subjectId: 4, subjectName: 'Islamic'),
+  ArabicContentScreen.routeName:(context)=>ArabicContentScreen(subjectId: 5, subjectName: 'Arabic'),
+  MathContentScreen.routeName:(context)=>MathContentScreen(subjectId: 6, subjectName: 'math'),
+  EnglishContentScreen.routeName:(context)=>EnglishContentScreen(subjectId: 8, subjectName: 'English'),
   ScienceContentScreen.routeName:(context)=>ScienceContentScreen(subjectId: 7, subjectName: 'Science'),
-  ParentHomeScreen.routeName:(context)=>ParentHomeScreen(),
+ // ParentHomeScreen.routeName:(context)=>ParentHomeScreen(student: ,),
   BooksFirstSession.routName:(context)=>BooksFirstSession(),
   BooksSecondSession.routeName:(context)=>BooksSecondSession(),
   Arabic2ContentScreen.routeName:(context)=>Arabic2ContentScreen(),

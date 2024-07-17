@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:school_app/blocs/event_bloc.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/data_enum/state_types.dart';
@@ -72,6 +73,10 @@ class EventScreen extends StatelessWidget {
                     itemCount: state.items.length,
                     itemBuilder: (context, index) {
                       var event = state.items[index];
+                      // تحويل التاريخ من النص إلى كائن DateTime
+                      DateTime eventDate = DateTime.parse(event.eventDate!);
+                      // تنسيق التاريخ لعرض اليوم والشهر فقط
+                      String formattedDate = DateFormat('dd MMM').format(eventDate);
                       return Column(
                         children: [
                           Container(
@@ -131,7 +136,7 @@ class EventScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${event.eventDate ?? ''}',
+                                  formattedDate,
                                   style: TextStyle(
                                     color: kTextBlackColor, // لون البيانات
                                     fontWeight: FontWeight.bold,

@@ -108,10 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onpress: () async {
                                   if (_formKey.currentState!.validate()) {
                                     try {
-                                      await _authService.login(
-                                        _emailController.text,
-                                        _passwordController.text,
-                                      );
+                                      // await _authService.login(
+                                      //   _emailController.text,
+                                      //   _passwordController.text,
+                                      // );
                                       Navigator.pushNamedAndRemoveUntil(
                                         context,
                                         HomeScreen.routeName,

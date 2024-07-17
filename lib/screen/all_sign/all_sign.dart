@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/constant.dart';
+import 'package:school_app/screen/home_screen/home_screen.dart';
 import 'package:school_app/screen/login_screen/login_screen.dart';
 import 'package:school_app/screen/parent_login/parent_log.dart';
 import 'package:school_app/student.dart';
@@ -76,9 +77,9 @@ class AllSign extends StatelessWidget {
                     SignType(title: 'As a Parent', icon: 'assets/icons/parent.png', onPress:(){
               Navigator.pushNamed(context, ParentLogin.routeName);
             }) ,
-                    SignType(title: 'View Student', icon: 'assets/icons/parent.png', onPress:(){
-                      Navigator.pushNamed(context, StudentScreen.routeName);
-                    }) ,
+                    // SignType(title: 'View Student', icon: 'assets/icons/parent.png', onPress:(){
+                    //   Navigator.pushNamed(context, StudentScreen.routeName);
+                    // }) ,
 
                   ],
                 )

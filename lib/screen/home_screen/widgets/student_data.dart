@@ -85,9 +85,9 @@ final String pictureAddress;
 }
 
 class StudentDataCard extends StatelessWidget {
-  const StudentDataCard({super.key, required this.title, required this.value, required this.onPress});
+  const StudentDataCard({super.key, required this.title,  required this.onPress});
 final String title;
-final String value;
+//final String value;
 final VoidCallback onPress;
   @override
   Widget build(BuildContext context) {
@@ -114,17 +114,17 @@ final VoidCallback onPress;
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Text(
-              value,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(
-                fontSize: 30.0,
-                color: kTextBlackColor,
-                fontWeight: FontWeight.w300,
-              ),
-            )
+            // Text(
+            // //  value,
+            //   style: Theme.of(context)
+            //       .textTheme
+            //       .bodyMedium!
+            //       .copyWith(
+            //     fontSize: 30.0,
+            //     color: kTextBlackColor,
+            //     fontWeight: FontWeight.w300,
+            //   ),
+            // )
           ],
         ),
       ),

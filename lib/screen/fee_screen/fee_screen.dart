@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:school_app/constant.dart';
 import 'package:school_app/screen/fee_screen/widgets/fee_widgets.dart';
 import 'package:school_app/blocs/intallment_bloc.dart';
@@ -20,7 +21,7 @@ class FeeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fee'),
+        title: Text('Fee',style: TextStyle(color: Colors.white),),
       ),
       body: BlocBuilder<InstallmentBloc, InstallmentState>(
         builder: (context, state) {
@@ -44,6 +45,9 @@ class FeeScreen extends StatelessWidget {
                       itemCount: state.items.length,
                       itemBuilder: (context, int index) {
                         var fee = state.items[index];
+                        DateTime installDate = DateTime.parse(fee.installDate!);
+                        // تنسيق التاريخ لعرض اليوم والشهر فقط
+                        String formattedDate = DateFormat('dd MMM').format(installDate);
                         return Container(
                           margin: EdgeInsets.only(bottom: kDefaultPadding),
                           child: Column(
@@ -74,14 +78,14 @@ class FeeScreen extends StatelessWidget {
                                         thickness: 1.0,
                                       ),
                                     ),
-                                    FeeDetailRow(
-                                      title: 'Status',
-                                      statueValue: fee.installStatus == true ? 'Paid' : 'Unpaid',
-                                    ),
+                                    // FeeDetailRow(
+                                    //   title: 'Status',
+                                    //   statueValue: fee.installStatus == true ? 'Paid' : 'Unpaid',
+                                    // ),
                                     sizedBox,
                                     FeeDetailRow(
                                       title: 'Payment Date',
-                                      statueValue: fee.installDate ?? '',
+                                      statueValue: formattedDate,
                                     ),
                                     sizedBox,
                                     FeeDetailRow(
@@ -101,14 +105,24 @@ class FeeScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              FeeButton(
-                                title: fee.installStatus == true ? 'Paid' : 'Pay Now',
-                                iconData: fee.installStatus == true
-                                    ? Icons.download_outlined
-                                    : Icons.arrow_forward_outlined,
-                                onPress: () {
-                                  // Functionality for the button can be added here
-                                },
+                              Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.all(8.0), // تصغير الـ padding
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.vertical(
+                                    bottom: Radius.circular(8.0), // تصغير نصف القطر
+                                  ),
+                                  color: fee.installStatus == true ? Colors.green : Colors.red,
+                                ),
+                                child: Text(
+                                  fee.installStatus == true ? 'Paid' : 'Unpaid',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.0, // تصغير حجم النص إذا رغبت
+                                  ),
+                                ),
                               ),
                             ],
                           ),

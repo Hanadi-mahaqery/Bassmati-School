@@ -36,7 +36,7 @@ class EventRepository {
       "eventDesc": obj.eventDesc,
       "eventDate": obj.eventDate,
       "eventLocation": obj.eventLocation,
-      "levelId": obj.levelId,
+      // "levelId": obj.levelId,
     };
     try {
       await Future.delayed(Duration(seconds: 1));

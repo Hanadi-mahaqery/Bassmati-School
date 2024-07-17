@@ -14,7 +14,7 @@ class MeetingModel {
     meetTime = json['meetTime'];
     meetLink = json['meetLink'];
     decisions = json['decisions'];
-    meetingStatues = json['meetingStatues'];
+    meetingStatues = json['meetingStatus'];
 
 
   }
@@ -34,7 +34,7 @@ class MeetingModel {
     map['meetTime'] = meetTime;
     map['meetLink'] = meetLink;
     map['decisions'] = decisions;
-    map['meetingStatues'] = meetingStatues;
+    map['meetingStatus'] = meetingStatues;
 
 
     return map;

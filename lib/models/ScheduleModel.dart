@@ -8,6 +8,7 @@ class ScheduleModel {
     this.forthPeriod,
     this.fifthPeriod,
     this.sixthPeriod,
+    this.seventhPeriod,
     this.classId,
   });
 
@@ -15,11 +16,12 @@ class ScheduleModel {
     scheduleId = json['scheduleId'];
     day = json['day'];
     firstPeriod = json['firstPeriod'];
-    seconedPeriod = json['seconedPeriod'];
+    seconedPeriod = json['secondPeriod'];
     thirdPeriod = json['thirdPeriod'];
-    forthPeriod = json['forthPeriod'];
+    forthPeriod = json['fourthPeriod'];
     fifthPeriod = json['fifthPeriod'];
     sixthPeriod = json['sixthPeriod'];
+    seventhPeriod = json['seventhPeriod'];
     classId = json['classId'];
 
 
@@ -33,6 +35,7 @@ class ScheduleModel {
   String? forthPeriod;
   String? fifthPeriod;
   String? sixthPeriod;
+  String? seventhPeriod;
   int? classId;
 
   Map<String, dynamic> toJson() {
@@ -40,11 +43,12 @@ class ScheduleModel {
     map['scheduleId'] = scheduleId;
     map['day'] = day;
     map['firstPeriod'] = firstPeriod;
-    map['seconedPeriod'] = seconedPeriod;
+    map['secondPeriod'] = seconedPeriod;
     map['thirdPeriod'] = thirdPeriod;
-    map['forthPeriod'] = forthPeriod;
+    map['fourthPeriod'] = forthPeriod;
     map['fifthPeriod'] = fifthPeriod;
     map['sixthPeriod'] = sixthPeriod;
+    map['seventhPeriod'] = seventhPeriod;
     map['classId'] = classId;
 
 
